@@ -12,153 +12,128 @@ var selectors = {
 }
 
 const nonMemberNavBar = () => {
-    cy.get(selectors.home)
-      .should('be.visible')
-      .should('contain', 'Home')
-    cy.get(selectors.products)
-      .should('be.visible')
-      .should('contain', 'Products')
-      cy.get(selectors.cart)
-      .should('be.visible')
-      .should('contain', 'Cart')
-    cy.get(selectors.signUpLogin)
-      .should('be.visible')
-      .should('contain', 'Signup / Login')
-      cy.get(selectors.testCases)
-      .should('be.visible')
-      .should('contain', 'Test Cases')
-    cy.get(selectors.apiTesting)
-      .should('be.visible')
-      .should('contain', 'API Testing')
-    cy.get(selectors.videoTutorials)
-      .should('be.visible')
-      .should('contain', 'Video Tutorials')
-    cy.get(selectors.contactUs)
-      .should('be.visible')
-      .should('contain', 'Contact us')
+  cy.get(selectors.home)
+    .should('be.visible')
+    .should('contain', 'Home')
+  cy.get(selectors.products)
+    .should('be.visible')
+    .should('contain', 'Products')
+  cy.get(selectors.cart)
+    .should('be.visible')
+    .should('contain', 'Cart')
+  cy.get(selectors.signUpLogin)
+    .should('be.visible')
+    .should('contain', 'Signup / Login')
+  cy.get(selectors.testCases)
+    .should('be.visible')
+    .should('contain', 'Test Cases')
+  cy.get(selectors.apiTesting)
+    .should('be.visible')
+    .should('contain', 'API Testing')
+  cy.get(selectors.videoTutorials)
+    .should('be.visible')
+    .should('contain', 'Video Tutorials')
+  cy.get(selectors.contactUs)
+    .should('be.visible')
+    .should('contain', 'Contact us')
 }
 
 const memberNavBar = () => {
-    cy.get(selectors.home)
-      .should('be.visible')
-      .should('contain', 'Home')
-    cy.get(selectors.products)
-      .should('be.visible')
-      .should('contain', 'Products')
-      cy.get(selectors.cart)
-      .should('be.visible')
-      .should('contain', 'Cart')
-    cy.get(selectors.signUpLogin)
-      .should('not.exist')
-    cy.get(selectors.logout)
-      .should('be.visible')
-      .should('contain', 'Logout')
-    cy.get(selectors.deleteAccount)
-      .should('be.visible')
-      .should('contain', 'Delete Account')
-    cy.get(selectors.testCases)
-      .should('be.visible')
-      .should('contain', 'Test Cases')
-    cy.get(selectors.apiTesting)
-      .should('be.visible')
-      .should('contain', 'API Testing')
-    cy.get(selectors.videoTutorials)
-      .should('be.visible')
-      .should('contain', 'Video Tutorials')
-    cy.get(selectors.contactUs)
-      .should('be.visible')
-      .should('contain', 'Contact us')
+  cy.get(selectors.home)
+    .should('be.visible')
+    .should('contain', 'Home')
+  cy.get(selectors.products)
+    .should('be.visible')
+    .should('contain', 'Products')
+  cy.get(selectors.cart)
+    .should('be.visible')
+    .should('contain', 'Cart')
+  cy.get(selectors.signUpLogin)
+    .should('not.exist')
+  cy.get(selectors.logout)
+    .should('be.visible')
+    .should('contain', 'Logout')
+  cy.get(selectors.deleteAccount)
+    .should('be.visible')
+    .should('contain', 'Delete Account')
+  cy.get(selectors.testCases)
+    .should('be.visible')
+    .should('contain', 'Test Cases')
+  cy.get(selectors.apiTesting)
+    .should('be.visible')
+    .should('contain', 'API Testing')
+  cy.get(selectors.videoTutorials)
+    .should('be.visible')
+    .should('contain', 'Video Tutorials')
+  cy.get(selectors.contactUs)
+    .should('be.visible')
+    .should('contain', 'Contact us')
 }
 
 const verifyHome = () => {
-    cy.get(selectors.home)
-      .click()
+  cy.get(selectors.home).click()
 }
 
 const verifyProducts = () => {
-    cy.get(selectors.products)
-      .click()
+  cy.get(selectors.products).click()
 }
 
 const verifyCart = () => {
-  cy.get(selectors.cart)
-    .verify()
+  cy.get(selectors.cart).click()
 }
 
 const verifySignupLogin = () => {
-  cy.get(selectors.signUpLogin)
-    .verify()
+  cy.get(selectors.signUpLogin).click()
 }
 
 const verifyTestCases = () => {
-  cy.get(selectors.testCases)
-    .verify()
+  cy.get(selectors.testCases).click()
 }
 
 const verifyAPITesting = () => {
-  cy.get(selectors.apiTesting)
-    .verify()
+  cy.get(selectors.apiTesting).click()
 }
 
 const verifyContactUs = () => {
-  cy.get(selectors.contactUs)
-    .verify()
+  cy.get(selectors.contactUs).click()
 }
 
 class NavigationBar {
 
   static verifyMemberNavigationBar() {
-    it('Verify navigation bar for member accounts', () => {
-      memberNavBar();
-    });
+    memberNavBar();
   }
 
   static verifyNoneMemberNavigationBar() {
-    it('Verify navigation bar for none member accounts', () => {
-      nonMemberNavBar();
-    }); 
+    nonMemberNavBar();
   }
 
   static clickHome() {
-    it('Click Home', () => {
-      verifyHome();
-    }); 
+    verifyHome();
   }
 
   static clickProducts() {
-    it('Click Products', () => {
-      verifyProducts();
-    }); 
+    verifyProducts();
   }
 
   static clickCart() {
-    it('Click Products', () => {
-      verifyCart();
-    }); 
+    verifyCart();
   }
 
   static clickSignupLogin() {
-    it('Click Signup / Login', () => {
-      verifySignupLogin();
-    }); 
+    verifySignupLogin();
   }
 
   static clickTestCases() {
-    it('Click Test Cases', () => {
-      verifyTestCases();
-    }); 
+    verifyTestCases();
   }
 
   static clickAPITesting() {
-    it('Click API Testing', () => {
-      verifyAPITesting();
-    }); 
+    verifyAPITesting();
   }
 
   static clickContactUs() {
-    it('Click Contact Us', () => {
-      verifyContactUs();
-    }); 
+    verifyContactUs();
   }
 
 }

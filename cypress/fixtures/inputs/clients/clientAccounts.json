@@ -28,5 +28,11 @@
     "lastName": "Paulson",
     "email": "testclient5@yopmail.com",
     "password": "client"
+  },
+  "client6": {
+    "firstName": "Donna",
+    "lastName": "Paulson",
+    "email": "incorrect@email.com",
+    "password": "incorrectPassword"
   }
 }

@@ -1,18 +1,14 @@
-import { nonMemberNavBar, memberNavBar } from "../../support/tcm/navigationBar";
 import { signUp } from "../../support/tcm/signUp";
 
 describe('Test Case 1: Register User', () => {
-  let randomData;
+
   before(() => {
     // runs once before all tests in the block
     
     //clears the cookies
     cy.clearCookies();
-    cy.generateRandomUser().then((data) => {
-      randomData = data;
-      cy.visit('/');
-      cy.verifyPageTitle('Automation Exercise');
-    });
+    cy.visit('/');
+    cy.verifyPageTitle('Automation Exercise');
   })
   beforeEach(() => {
     // runs before each test in the block
@@ -29,9 +25,8 @@ describe('Test Case 1: Register User', () => {
     cy.clearCookies()
   })
 
-  nonMemberNavBar();
   signUp();
-  memberNavBar();
+
 
   // it(`Click 'Delete Account' button`, () => {
   //   cy.get('.fa-trash-o').click()

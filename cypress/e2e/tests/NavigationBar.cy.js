@@ -1,6 +1,7 @@
-import { signUpWithExistingAccount } from "../../support/tcm/signUp";
+import NavigationBar from "../../support/pageObjects/client/navigationBar.js";
+import { loginWithAccount } from "../../support/tcm/login.js"
 
-describe('Test Case 5: Register User with existing email', () => {
+describe('Verify Navigation Bar for Member', () => {
   before(() => {
     // runs once before all tests in the block
     
@@ -23,6 +24,14 @@ describe('Test Case 5: Register User with existing email', () => {
     //clears the cookies
     cy.clearCookies()
   })
-  signUpWithExistingAccount('client5');
+  it('Navigation bar is not a member', () => {
+    NavigationBar.verifyNoneMemberNavigationBar();
+  });
 
+  loginWithAccount('client4');
+
+  it('Logged in navigation bar', () => {
+    NavigationBar.verifyMemberNavigationBar();
+  });
+  
 });

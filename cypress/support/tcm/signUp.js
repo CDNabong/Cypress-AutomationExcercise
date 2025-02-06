@@ -1,4 +1,14 @@
+import clientAccounts from '../../fixtures/inputs/clients/clientAccounts.json';
+
 export const signUp = () => {
+  let randomData;
+
+  before(() => {
+    cy.generateRandomUser().then((userData) => {
+      randomData = userData;
+    });
+  });
+
   it(`Click on 'Signup / Login' button`, () => {
     cy.get('.fa-lock')
       .should('be.visible')
@@ -67,4 +77,38 @@ export const signUp = () => {
       .contains('Logged in as')
       .should('contain', `${randomData.fullName}`)
   })
+}
+
+export const signUpWithExistingAccount = (accountKey) => {
+  const existingAccount = clientAccounts[accountKey];
+
+  it(`Click on 'Signup / Login' button`, () => {
+    cy.get('.fa-lock')
+      .should('be.visible')
+      .click();
+    cy.title().should('eq', 'Automation Exercise - Signup / Login');
+    cy.url().should('include', '/login');
+  }); 
+  it(`Verify 'New User Signup!' is visible`, () => {
+    cy.get('.signup-form h2')
+      .should('have.text', 'New User Signup!');
+  });
+  it('Enter name and already registered email address', () => {
+    cy.get('[data-qa=signup-name]')
+      .should('be.visible')
+      .type(existingAccount.firstName + ' ' + existingAccount.lastName)
+    cy.get('[data-qa=signup-email]')
+      .should('be.visible')
+      .type(existingAccount.email)
+  });
+  it(`Click 'Signup' button`, () => {
+    cy.get('[data-qa=signup-button]')
+      .should('have.text', 'Signup')
+      .click()
+  });
+  it(`Verify error 'Email Address already exist!' is visible`, () => {
+    cy.get('p[style="color: red;"]')
+      .should('be.visible')
+      .and('contain', 'Email Address already exist!');
+  });
 }

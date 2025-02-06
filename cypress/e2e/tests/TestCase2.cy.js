@@ -1,4 +1,4 @@
-import { login } from "../../support/tcm/login.js"
+import { loginWithAccount } from "../../support/tcm/login.js"
 
 describe('Test Case 2: Login User with correct email and password', () => {
   before(() => {
@@ -23,5 +23,5 @@ describe('Test Case 2: Login User with correct email and password', () => {
     //clears the cookies
     cy.clearCookies()
   })
-  login();
+  loginWithAccount('client3');
 });
