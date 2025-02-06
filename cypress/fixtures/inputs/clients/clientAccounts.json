@@ -1,0 +1,32 @@
+{
+  "client1": {
+    "firstName": "Harvey",
+    "lastName": "Specter",
+    "email": "testclient1@yopmail.com",
+    "password": "client"
+  },
+  "client2": {
+    "firstName": "Mike",
+    "lastName": "Ross",
+    "email": "testclient2@yopmail.com",
+    "password": "client"
+  },
+  "client3": {
+    "firstName": "Louis",
+    "lastName": "Litt",
+    "email": "testclient3@yopmail.com",
+    "password": "client"
+  },
+  "client4": {
+    "firstName": "Jessica",
+    "lastName": "Pearson",
+    "email": "testclient4@yopmail.com",
+    "password": "client"
+  },
+  "client5": {
+    "firstName": "Donna",
+    "lastName": "Paulson",
+    "email": "testclient5@yopmail.com",
+    "password": "client"
+  }
+}
