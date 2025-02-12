@@ -24,6 +24,7 @@ describe('Test Case 3: Login User with incorrect email and password', () => {
     //clears the cookies
     cy.clearCookies()
   })
+  
   loginWithRandomAccount();
 
 });

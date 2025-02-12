@@ -1,6 +1,8 @@
 const products = {
   addToCart: "button.btn.btn-default.cart",
   continueShopping: "[data-dismiss='modal']",
+  cartModal: ".modal-content",
+  viewCartModal: ".modal-body a[href='/view_cart']",
   women: {
     link: "a[href='#Women']",
     dress: {
@@ -83,6 +85,7 @@ export const menAddtoCartAllProducts = () => {
     cy.get(products.men.tShirts.link).click();
     cy.get(products.men.tShirts.menTShirt).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -91,6 +94,7 @@ export const menAddtoCartAllProducts = () => {
     cy.get(products.men.tShirts.link).click();
     cy.get(products.men.tShirts.vNeckShirt).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -99,13 +103,16 @@ export const menAddtoCartAllProducts = () => {
     cy.get(products.men.tShirts.link).click();
     cy.get(products.men.tShirts.poloShirt).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
+
   it('should add men Detail Shirt to cart', () => {
     cy.get(products.men.link).click();
     cy.get(products.men.tShirts.link).click();
     cy.get(products.men.tShirts.detailShirt).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -114,6 +121,7 @@ export const menAddtoCartAllProducts = () => {
     cy.get(products.men.tShirts.link).click();
     cy.get(products.men.tShirts.greenShirt).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -122,6 +130,7 @@ export const menAddtoCartAllProducts = () => {
     cy.get(products.men.tShirts.link).click();
     cy.get(products.men.tShirts.graphicShirt).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -130,6 +139,7 @@ export const menAddtoCartAllProducts = () => {
     cy.get(products.men.jeans.link).click();
     cy.get(products.men.jeans.stretchJeans).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -138,6 +148,7 @@ export const menAddtoCartAllProducts = () => {
     cy.get(products.men.jeans.link).click();
     cy.get(products.men.jeans.straightJeans).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -146,7 +157,9 @@ export const menAddtoCartAllProducts = () => {
     cy.get(products.men.jeans.link).click();
     cy.get(products.men.jeans.slimFitJeans).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
+    //for checkout cy.get('.modal-body').contains('View Cart').click();
   });
 };
 
@@ -156,6 +169,7 @@ export const womenAddtoCartAllProducts = () => {
     cy.get(products.women.dress.link).click();
     cy.get(products.women.dress.sleevelessDress).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -164,6 +178,7 @@ export const womenAddtoCartAllProducts = () => {
     cy.get(products.women.dress.link).click();
     cy.get(products.women.dress.stylishDress).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -172,6 +187,7 @@ export const womenAddtoCartAllProducts = () => {
     cy.get(products.women.dress.link).click();
     cy.get(products.women.dress.maxiDress).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -180,6 +196,7 @@ export const womenAddtoCartAllProducts = () => {
     cy.get(products.women.tops.link).click();
     cy.get(products.women.tops.blueTop).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -188,6 +205,7 @@ export const womenAddtoCartAllProducts = () => {
     cy.get(products.women.tops.link).click();
     cy.get(products.women.tops.winterTop).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -196,6 +214,7 @@ export const womenAddtoCartAllProducts = () => {
     cy.get(products.women.tops.link).click();
     cy.get(products.women.tops.whiteTop).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -204,6 +223,7 @@ export const womenAddtoCartAllProducts = () => {
     cy.get(products.women.tops.link).click();
     cy.get(products.women.tops.madameTop).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -212,6 +232,7 @@ export const womenAddtoCartAllProducts = () => {
     cy.get(products.women.tops.link).click();
     cy.get(products.women.tops.greenTop).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -220,6 +241,7 @@ export const womenAddtoCartAllProducts = () => {
     cy.get(products.women.tops.link).click();
     cy.get(products.women.tops.laceTop).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -228,6 +250,7 @@ export const womenAddtoCartAllProducts = () => {
     cy.get(products.women.saree.link).click();
     cy.get(products.women.saree.printSaree).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -236,6 +259,7 @@ export const womenAddtoCartAllProducts = () => {
     cy.get(products.women.saree.link).click();
     cy.get(products.women.saree.redLinenSaree).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -244,7 +268,9 @@ export const womenAddtoCartAllProducts = () => {
     cy.get(products.women.saree.link).click();
     cy.get(products.women.saree.blueLinenSaree).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
+    //for checkout cy.get('.modal-body').contains('View Cart').click();
   });
 };
 
@@ -254,6 +280,7 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.dress.link).click();
     cy.get(products.kids.dress.slevelessTopAndShorts).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -262,6 +289,7 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.dress.link).click();
     cy.get(products.kids.dress.slevelessUnicornDress).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -270,6 +298,7 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.dress.link).click();
     cy.get(products.kids.dress.embroidedDress).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -278,6 +307,7 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.dress.link).click();
     cy.get(products.kids.dress.mickeyDress).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -286,6 +316,7 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.dress.link).click();
     cy.get(products.kids.dress.pinkDress).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -294,6 +325,7 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.dress.link).click();
     cy.get(products.kids.dress.multiColorDress).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -302,6 +334,7 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.topsAndShirts.link).click();
     cy.get(products.kids.topsAndShirts.slevelessPrintedTop).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -310,6 +343,7 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.topsAndShirts.link).click();
     cy.get(products.kids.topsAndShirts.halfSLeevesPinkTop).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -318,6 +352,7 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.topsAndShirts.link).click();
     cy.get(products.kids.topsAndShirts.frozenTop).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -326,6 +361,7 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.topsAndShirts.link).click();
     cy.get(products.kids.topsAndShirts.fullSleevesTop).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -334,6 +370,7 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.topsAndShirts.link).click();
     cy.get(products.kids.topsAndShirts.printedOffShoulderTop).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -342,6 +379,7 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.topsAndShirts.link).click();
     cy.get(products.kids.topsAndShirts.pandaShirt).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
   });
 
@@ -350,6 +388,9 @@ export const kidsAddtoCartAllProducts = () => {
     cy.get(products.kids.topsAndShirts.link).click();
     cy.get(products.kids.topsAndShirts.blockedShirt).click();
     cy.get(products.addToCart).click();
+    cy.get(products.cartModal).should('be.visible');
     cy.get(products.continueShopping).click();
+    //for checkout cy.get('.modal-body').contains('View Cart').click();
   });
 };
+

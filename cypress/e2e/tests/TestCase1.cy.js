@@ -24,17 +24,5 @@ describe('Test Case 1: Register User', () => {
     //clears the cookies
     cy.clearCookies()
   })
-
   signUp();
-
-
-  // it(`Click 'Delete Account' button`, () => {
-  //   cy.get('.fa-trash-o').click()
-  // })
-  // it(`Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button`, () => {
-  //   cy.get('[data-qa="account-deleted"]')
-  //     .should('contain', 'Account Deleted!')
-  //   cy.get('[data-qa="continue-button"]').click()
-  // })
-  // nonMemberNavBar()
 });

@@ -23,6 +23,7 @@ describe('Test Case 5: Register User with existing email', () => {
     //clears the cookies
     cy.clearCookies()
   })
+  
   signUpWithExistingAccount('client5');
 
 });
