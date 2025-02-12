@@ -1,4 +1,5 @@
 const products = {
+  addToCart: "button.btn.btn-default.cart",
   women: {
     link: "a[href='#Women']",
     dress: {
