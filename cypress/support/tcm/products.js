@@ -2,7 +2,6 @@ const products = {
   addToCart: "button.btn.btn-default.cart",
   continueShopping: "[data-dismiss='modal']",
   cartModal: ".modal-content",
-  viewCartModal: ".modal-body a[href='/view_cart']",
   women: {
     link: "a[href='#Women']",
     dress: {
