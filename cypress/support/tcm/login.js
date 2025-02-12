@@ -1,6 +1,6 @@
 import clientAccounts from '../../fixtures/inputs/clients/clientAccounts.json';
 
-var selectors = {
+const selectors = {
   home: 'a[href="/"]',
   products: 'a[href="/products"]',
   cart: 'a[href="/view_cart"]',
