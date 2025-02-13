@@ -1,4 +1,4 @@
-import NavigationBar from "../../support/pageObjects/client/navigationBar.js";
+import NavigationBar from "../../support/pageObjects/client/NavigationBar.js";
 import { loginWithAccount } from "../../support/tcm/login.js"
 
 describe('Verify Navigation Bar for Member', () => {
