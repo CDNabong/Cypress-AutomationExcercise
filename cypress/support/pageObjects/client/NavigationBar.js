@@ -1,4 +1,4 @@
-var selectors = {
+const selectors = {
   home: 'a[href="/"]',
   products: 'a[href="/products"]',
   cart: 'a[href="/view_cart"]',
@@ -8,7 +8,7 @@ var selectors = {
   videoTutorials: 'a[href="https://www.youtube.com/c/AutomationExercise"]',
   contactUs: 'a[href="/contact_us"]',
   logout: 'a[href="/logout"]',
-  deleteAccount: 'a[href="/delete_account"]',
+  deleteAccount: 'a[href="/delete_account"]'
 }
 
 const nonMemberNavBar = () => {

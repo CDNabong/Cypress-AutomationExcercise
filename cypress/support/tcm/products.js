@@ -157,8 +157,7 @@ export const menAddtoCartAllProducts = () => {
     cy.get(products.men.jeans.slimFitJeans).click();
     cy.get(products.addToCart).click();
     cy.get(products.cartModal).should('be.visible');
-    cy.get(products.continueShopping).click();
-    //for checkout cy.get('.modal-body').contains('View Cart').click();
+    cy.get('.modal-body').contains('View Cart').click();
   });
 };
 
