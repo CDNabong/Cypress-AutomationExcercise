@@ -1,7 +1,7 @@
 import { loginWithAccount } from "../../support/tcm/login.js"
 import { menAddtoCartAllProducts } from '../../support/tcm/products.js';
 import { logout } from "../../support/tcm/logout.js"
-import Checkout from "../../support/pageObjects/client/checkout.js";
+import Checkout from "../../support/pageObjects/Checkout.js";
 
 
 describe('Complete checkout process', () => {
