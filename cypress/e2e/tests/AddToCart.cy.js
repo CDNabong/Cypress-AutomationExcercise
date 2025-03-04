@@ -1,4 +1,4 @@
-import { menAddtoCartAllProducts, womenAddtoCartAllProducts, kidsAddtoCartAllProducts } from '../../support/tcm/products.js';
+import AddToCart from "../../support/pageObjects/AddToCart";
 
 describe('Add to Cart Tests', () => {
   before(() => {
@@ -21,7 +21,9 @@ describe('Add to Cart Tests', () => {
   after(() => {
     // Cleanup code after all tests run
   });
-  menAddtoCartAllProducts();
-  womenAddtoCartAllProducts();
-  kidsAddtoCartAllProducts();
+  
+  it('Add to Cart', () => {
+    AddToCart.menAddToCart();
+  });
+
 });

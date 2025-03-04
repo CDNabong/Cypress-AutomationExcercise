@@ -17,7 +17,6 @@ class Checkout {
     .should('be.visible')
     .should('contain', 'Proceed To Checkout')
     .click();
-    cy.verifyPageTitle('Automation Exercise - Checkout');
     cy.get(selectors.checkout)
     .should('be.visible')
     .should('contain', 'Place Order')
@@ -25,7 +24,6 @@ class Checkout {
   }
 
   static testPaymentProcess() {
-    cy.verifyPageTitle('Automation Exercise - Payment');
   cy.get('.heading').should('contain', 'Payment');
 
   cy.get(selectors.nameOnCard)

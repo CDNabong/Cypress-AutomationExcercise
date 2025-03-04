@@ -1,14 +1,14 @@
-import NavigationBar from "../../support/pageObjects/NavigationBar.js";
 import Login from "../../support/pageObjects/Login";
 import clientAccounts from "../../fixtures/inputs/clients/clientAccounts.json";
+import Logout from "../../support/pageObjects/Logout";
 
-describe('Verify Navigation Bar for Member', () => {
+describe('Login with Valid Credentials ', () => {
+
   before(() => {
     // runs once before all tests in the block
     
     //clears the cookies
-    cy.clearCookies()
-
+    cy.clearCookies();
     cy.visit('/login');
     cy.verifyPageTitle('Automation Exercise - Signup / Login');
   })
@@ -18,6 +18,7 @@ describe('Verify Navigation Bar for Member', () => {
 
   afterEach(() => {
     // runs after each test in the block
+    cy.log('Test case finished');
   })
 
   after(() => {
@@ -25,18 +26,19 @@ describe('Verify Navigation Bar for Member', () => {
     //clears the cookies
     cy.clearCookies()
   })
-  it('Verify navigation bar is not a member', () => {
-    NavigationBar.nonMemberNavigationBar();
-  });
-
+  
   it('Login with valid credentials', () => {
-    Login.testUsernameField(clientAccounts.client2.email);
-    Login.testPasswordField(clientAccounts.client2.password);
+    Login.testUsernameField(clientAccounts.client1.email);
+    Login.testPasswordField(clientAccounts.client1.password);
     Login.testLoginButton();
   });
 
-  it('Verify navigation bar is a member', () => {
-    NavigationBar.memberNavigationBar();
+  it('Verify that user is logged in', () => {
+    Login.testUserLoggedIn(clientAccounts.client1.firstName, clientAccounts.client1.lastName);
+  });
+
+  it('Logout user', () => {
+    Logout.clickLogout();
   });
   
 });
