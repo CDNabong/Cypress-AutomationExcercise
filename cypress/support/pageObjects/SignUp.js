@@ -62,7 +62,6 @@ class SignUp {
     .contains(`Logged in as ${userData.firstName} ${userData.lastName}`);
     });
 
-
   }
 
 }
