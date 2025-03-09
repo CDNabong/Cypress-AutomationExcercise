@@ -39,6 +39,7 @@ Cypress.Commands.add('skipIfFailed', () => {
 });
 
 Cypress.Commands.add('generateRandomUser', () => {
+
   const firstName = faker.person.firstName(); // Generate a random first name
   const lastName = faker.person.lastName(); // Generate a random last name
   const fullName = `${firstName} ${lastName}`;  // Combine the first and last name into full name
@@ -50,7 +51,6 @@ Cypress.Commands.add('generateRandomUser', () => {
   const state = faker.location.state(); // Random state
   const zipCode = faker.location.zipCode(); // Random zip code
   const text = faker.lorem.words(2);
-
 
   // Return the object with the random user data
   return {
@@ -66,4 +66,5 @@ Cypress.Commands.add('generateRandomUser', () => {
     zipCode,
     text,
   };
+
 });

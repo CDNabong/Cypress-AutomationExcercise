@@ -5,6 +5,9 @@ module.exports = {
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    env: {
+      apiUrl: 'https://automationexercise.com/api/'
+    },
     testIsolation: false,
   },
   video: true,
