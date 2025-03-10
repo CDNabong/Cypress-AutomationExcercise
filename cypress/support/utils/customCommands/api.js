@@ -46,18 +46,15 @@ Cypress.Commands.add('executeAPI', (requestBody, expectedStatusCode, retry = 1) 
   });
 });
 
-// Setting the API endpoint to make it accessible to other API commands
-const apiUrl = Cypress.env('apiUrl');
-
 /**
  * Get all products list and verify response
  */
 Cypress.Commands.add('verifyProductsList', () => {
   cy.executeAPI({
     method: "GET",
-    url: `${apiUrl}productsList`,
+    url: `${Cypress.env('apiUrl')}productsList`,
     failOnStatusCode: false,
-  }, 200)
+  }, 200);
 });
 
 /**
@@ -66,9 +63,9 @@ Cypress.Commands.add('verifyProductsList', () => {
 Cypress.Commands.add('verifyBrandsList', () => {
   cy.executeAPI({
     method: "GET",
-    url: `${apiUrl}brandsList`,
+    url: `${Cypress.env('apiUrl')}brandsList`,
     failOnStatusCode: false,
-  }, 200)
+  }, 200);
 });
 
 /**
@@ -77,7 +74,7 @@ Cypress.Commands.add('verifyBrandsList', () => {
 Cypress.Commands.add('verifySearchProduct', (product) => {
   cy.executeAPI({
     method: "POST",
-    url: `${apiUrl}searchProduct`,
+    url: `${Cypress.env('apiUrl')}searchProduct`,
     failOnStatusCode: false,
     form: true,
     body: {
@@ -86,15 +83,13 @@ Cypress.Commands.add('verifySearchProduct', (product) => {
   }, 200);
 });
 
-
-
 /**
  * Verify valid account details
  */
 Cypress.Commands.add('verifyValidLogin', (email, password) => {
   cy.executeAPI({
     method: "POST",
-    url: `${apiUrl}verifyLogin`,
+    url: `${Cypress.env('apiUrl')}verifyLogin`,
     failOnStatusCode: false,
     form: true,
     body: {
@@ -105,72 +100,14 @@ Cypress.Commands.add('verifyValidLogin', (email, password) => {
 });
 
 /**
- * Generate random user and register via API
- */
-Cypress.Commands.add('createRandomUserAPI', () => {
-
-  // Generate random birth date
-  const birthDate = faker.date.birthdate();
-
-  // Generate random user data
-  const randomUser = {
-    name: faker.person.fullName(),
-    email: faker.internet.email(),
-    password: faker.internet.password({ length: 10, memorable: true }),
-    title: faker.person.prefix(),
-    birth_date: faker.date.getDate(),
-    birth_month: (faker.date.birthdate().getMonth() + 1).toString(),
-    birth_year: birthDate.getFullYear(),
-    firstname: faker.person.firstName(),
-    lastname: faker.person.lastName(),
-    company: faker.company.name(),
-    address1: faker.location.streetAddress(),
-    address2: faker.location.secondaryAddress(),
-    country: faker.location.country(),
-    zipcode: faker.location.zipCode(),
-    state: faker.location.state(),
-    city: faker.location.city(),
-    mobile_number: faker.phone.number()
-  };
-
-  // Make API request to create user
-  cy.executeAPI({
-    method: "POST",
-    url: `${Cypress.env('apiUrl')}createAccount`,
-    failOnStatusCode: false,
-    form: true,
-    body: randomUser
-  }, 201).then(user => {
-    // Store user data for later use
-    cy.wrap(randomUser).as('randomUser');
-    return randomUser;
-  });
-});
-
-/**
  * Verify account using email
  */
 Cypress.Commands.add('verifyUserEmail', (email) => {
   cy.executeAPI({
     method: "GET",
-    url: `${apiUrl}getUserDetailByEmail`,
+    url: `${Cypress.env('apiUrl')}getUserDetailByEmail`,
     qs: {  // 'qs' for query string parameters
       email: email
-    },
-    failOnStatusCode: false,
-  }, 200);
-});
-
-/**
- * Delete account using email and password
- */
-Cypress.Commands.add('deleteUserAccount', (email, password) => {
-  cy.executeAPI({
-    method: "DELETE",
-    url: `${apiUrl}deleteAccount`,
-    body: { // 'body' for request body parameters
-      email: email,
-      password: password
     },
     failOnStatusCode: false,
   }, 200);

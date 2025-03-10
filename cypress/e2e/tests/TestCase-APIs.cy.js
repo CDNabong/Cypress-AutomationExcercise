@@ -24,9 +24,5 @@ describe('Verify API tests', () => {
   API.productsList();
   API.brandsList();
   API.searchProduct();
-  //API.createUser();
-  //API.updateUser();
   API.getUserEmail("testclient1@yopmail.com");
-  API.deleteUser("dummytodelete@yopmail.com","client");
-
 });

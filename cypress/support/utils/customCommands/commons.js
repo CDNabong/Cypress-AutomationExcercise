@@ -54,9 +54,9 @@ Cypress.Commands.add('generateRandomUser', () => {
 
   // Return the object with the random user data
   return {
-    fullName,
     firstName,
     lastName,
+    fullName,
     email,
     password,
     mobile,
