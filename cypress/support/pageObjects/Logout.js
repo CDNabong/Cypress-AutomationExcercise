@@ -3,6 +3,7 @@ const selectors = {
 }
 
 class Logout {
+  
   static clickLogout() {
     cy.get(selectors.logout)
       .should('be.visible')

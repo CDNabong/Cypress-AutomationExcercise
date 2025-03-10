@@ -20,9 +20,9 @@ describe('Verify API tests', () => {
     cy.clearCookies();
   });
   
-  API.validLogin("testclient1@yopmail.com", "client");
+  API.validLogin("testclient2@yopmail.com", "client");
   API.productsList();
   API.brandsList();
   API.searchProduct();
-  API.getUserEmail("testclient1@yopmail.com");
+  API.getUserEmail("testclient2@yopmail.com");
 });

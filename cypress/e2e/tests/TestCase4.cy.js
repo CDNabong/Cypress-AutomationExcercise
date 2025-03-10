@@ -1,5 +1,7 @@
-import { loginWithAccount } from "../../support/tcm/login.js"
-import { logout } from "../../support/tcm/logout.js"
+import NavigationBar from "../../support/pageObjects/NavigationBar";
+import Login from "../../support/pageObjects/Login";
+import clientAccounts from "../../fixtures/inputs/clients/clientAccounts.json";
+import Logout from "../../support/pageObjects/Logout";
 
 describe('Test Case 4: Logout User', () => {
   before(() => {
@@ -25,7 +27,22 @@ describe('Test Case 4: Logout User', () => {
     cy.clearCookies()
   })
 
-  loginWithAccount('client2');
-  logout();
+  it("Click on 'Signup / Login' button", () => {
+    NavigationBar.clickSignUpLogin();
+  });
+
+  it('Login with valid credentials', () => {
+    Login.testUsernameField(clientAccounts.client4.email);
+    Login.testPasswordField(clientAccounts.client4.password);
+    Login.testLoginButton();
+  });
+
+  it('Verify that user is logged in', () => {
+    Login.testUserLoggedIn(clientAccounts.client4.firstName, clientAccounts.client4.lastName);
+  });
+
+  it('Logout user', () => {
+    Logout.clickLogout();
+  });
 
 });

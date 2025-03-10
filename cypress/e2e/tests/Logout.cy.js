@@ -28,13 +28,13 @@ describe('Login with Valid Credentials ', () => {
   })
   
   it('Login with valid credentials', () => {
-    Login.testUsernameField(clientAccounts.client1.email);
-    Login.testPasswordField(clientAccounts.client1.password);
+    Login.testUsernameField(clientAccounts.client3.email);
+    Login.testPasswordField(clientAccounts.client3.password);
     Login.testLoginButton();
   });
 
   it('Verify that user is logged in', () => {
-    Login.testUserLoggedIn(clientAccounts.client1.firstName, clientAccounts.client1.lastName);
+    Login.testUserLoggedIn(clientAccounts.client3.firstName, clientAccounts.client3.lastName);
   });
 
   it('Logout user', () => {

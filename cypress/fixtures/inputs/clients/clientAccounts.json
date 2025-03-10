@@ -1,9 +1,6 @@
 {
   "client1": {
-    "firstName": "Harvey",
-    "lastName": "Specter",
-    "email": "testclient1@yopmail.com",
-    "password": "client"
+    
   },
   "client2": {
     "firstName": "Mike",

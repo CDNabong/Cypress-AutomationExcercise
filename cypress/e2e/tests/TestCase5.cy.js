@@ -1,4 +1,6 @@
-import { signUpWithExistingAccount } from "../../support/tcm/signUp";
+import SignUp from '../../support/pageObjects/SignUp';
+import NavigationBar from '../../support/pageObjects/NavigationBar';
+import clientAccounts from "../../fixtures/inputs/clients/clientAccounts.json";
 
 describe('Test Case 5: Register User with existing email', () => {
   before(() => {
@@ -24,6 +26,17 @@ describe('Test Case 5: Register User with existing email', () => {
     cy.clearCookies()
   })
   
-  signUpWithExistingAccount('client5');
+  it("Click on 'Signup / Login' button", () => {
+    NavigationBar.clickSignUpLogin();
+  });
+
+  it('Signup with invalid credentials', () => {
+    SignUp.testNameField(clientAccounts.client5.firstName);
+    SignUp.testEmailField(clientAccounts.client5.email);
+  });
+
+  it('Verify error notification', () => {
+    SignUp.testErrorNotification();
+  });
 
 });

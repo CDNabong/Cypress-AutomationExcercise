@@ -72,6 +72,26 @@ class NavigationBar {
       .should('contain', 'Contact us')
   }
 
+  static clickHome() {
+    cy.get(selectors.home).click();
+  }
+
+  static clickProducts() {
+    cy.get(selectors.products).click();
+  }
+
+  static clickCart() {
+    cy.get(selectors.cart).click();
+  }
+
+  static clickSignUpLogin() {
+    cy.get(selectors.signUpLogin).click();
+  }
+
+  static verifyNewUserSignup() {
+    cy.get('.signup-form h2').should('contain', 'New User Signup!');
+  }
+
 }
 
 export default NavigationBar;

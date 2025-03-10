@@ -19,14 +19,22 @@ const selectors = {
   accountCreated: '[data-qa="account-created"]',
   continue: '[data-qa="continue-button"]',
   loggedInAccount: '.fa.fa-user',
+  deleteAccount: '.fa.fa-trash-o',
+  accountDeleted: '[data-qa="account-deleted"]'
 };
 
 class SignUp {
 
-  static testRegisterUser() {
+  // Store userData at class level
+  static userData = null;
 
+  static testRegisterUser() {
     cy.generateRandomUser().then((userData) => {
-      cy.get(selectors.signUpName)
+
+      // Explicitly store the data at class level
+      SignUp.userData = userData;
+
+    cy.get(selectors.signUpName)
       .should('be.visible')
       .and('have.attr', 'type', 'text')
       .and('have.attr', 'placeholder', 'Name')
@@ -54,14 +62,53 @@ class SignUp {
     cy.get(selectors.zipcode).type(userData.zipCode);
     cy.get(selectors.mobileNumber).type(userData.mobile);
     cy.get(selectors.createAccount).click();
+
+    });
+  }
+
+  static verifyAccountCreated() {
     cy.get(selectors.accountCreated).should('contain', 'Account Created!');
     cy.get(selectors.continue).click();
-    cy.get(selectors.loggedInAccount)
-    .should('be.visible')
-    .parent()
-    .contains(`Logged in as ${userData.firstName} ${userData.lastName}`);
-    });
+  }
 
+  static verifyAccountLoggedIn() {
+    // Will only proceed when user data is available
+    cy.wrap(SignUp.userData).should('not.be.null').then((userData) => {
+      cy.get(selectors.loggedInAccount)
+        .should('be.visible')
+        .parent()
+        .contains(`Logged in as ${userData.firstName} ${userData.lastName}`);
+    });
+  }
+
+  static verifyAccountDeletion() {
+    cy.get(selectors.deleteAccount).click();
+    cy.get(selectors.loggedInAccount).should('not.exist');
+  }
+
+  static verifyAccountDeleted() {
+    cy.get(selectors.accountDeleted).should('contain', 'Account Deleted!');
+    cy.get(selectors.continue).click();
+  }
+
+  static testNameField(name) {
+    cy.get(selectors.signUpName)
+      .should('be.visible')
+      .and('have.attr', 'type', 'text')
+      .and('have.attr', 'placeholder', 'Name')
+      .type(name);
+  }
+
+  static testEmailField(email) {
+    cy.get(selectors.signUpEmail)
+      .and('have.attr', 'type', 'email')
+      .and('have.attr', 'placeholder', 'Email Address')
+      .type(email);
+    cy.get(selectors.signUpButton).click();
+  }
+
+  static testErrorNotification() {
+    cy.get('p[style="color: red;"]').should('contain', 'Email Address already exist!');
   }
 
 }
