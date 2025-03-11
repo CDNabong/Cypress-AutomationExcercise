@@ -14,82 +14,52 @@ const selectors = {
 class NavigationBar {
 
   static nonMemberNavigationBar() {
-    cy.get(selectors.home)
-      .should('be.visible')
-      .should('contain', 'Home')
-    cy.get(selectors.products)
-      .should('be.visible')
-      .should('contain', 'Products')
-    cy.get(selectors.cart)
-      .should('be.visible')
-      .should('contain', 'Cart')
-    cy.get(selectors.signUpLogin)
-      .should('be.visible')
-      .should('contain', 'Signup / Login')
-    cy.get(selectors.testCases)
-      .should('be.visible')
-      .should('contain', 'Test Cases')
-    cy.get(selectors.apiTesting)
-      .should('be.visible')
-      .should('contain', 'API Testing')
-    cy.get(selectors.videoTutorials)
-      .should('be.visible')
-      .should('contain', 'Video Tutorials')
-    cy.get(selectors.contactUs)
-      .should('be.visible')
-      .should('contain', 'Contact us')
+    cy.checkElemContainsText(selectors.home, 'Home')
+    cy.checkElemContainsText(selectors.products, 'Products')
+    cy.checkElemContainsText(selectors.cart, 'Cart')
+    cy.checkElemContainsText(selectors.signUpLogin, 'Signup / Login');
+    cy.checkElemContainsText(selectors.logout, 'Logout');
+    cy.checkElemContainsText(selectors.deleteAccount, 'Delete Account');
+    cy.checkElemContainsText(selectors.testCases, 'Test Cases');
+    cy.checkElemContainsText(selectors.apiTesting, 'API Testing');
+    cy.checkElemContainsText(selectors.videoTutorials, 'Video Tutorials');
+    cy.checkElemContainsText(selectors.contactUs, 'Contact us');
   }
 
   static memberNavigationBar() {
-    cy.get(selectors.home)
-      .should('be.visible')
-      .should('contain', 'Home')
-    cy.get(selectors.products)
-      .should('be.visible')
-      .should('contain', 'Products')
-    cy.get(selectors.cart)
-      .should('be.visible')
-      .should('contain', 'Cart')
-    cy.get(selectors.signUpLogin)
-      .should('not.exist')
-    cy.get(selectors.logout)
-      .should('be.visible')
-      .should('contain', 'Logout')
-    cy.get(selectors.deleteAccount)
-      .should('be.visible')
-      .should('contain', 'Delete Account')
-    cy.get(selectors.testCases)
-      .should('be.visible')
-      .should('contain', 'Test Cases')
-    cy.get(selectors.apiTesting)
-      .should('be.visible')
-      .should('contain', 'API Testing')
-    cy.get(selectors.videoTutorials)
-      .should('be.visible')
-      .should('contain', 'Video Tutorials')
-    cy.get(selectors.contactUs)
-      .should('be.visible')
-      .should('contain', 'Contact us')
+    cy.checkElemContainsText(selectors.home, 'Home')
+    cy.checkElemContainsText(selectors.products, 'Products')
+    cy.checkElemContainsText(selectors.cart, 'Cart')
+    cy.checkElemContainsText(selectors.logout, 'Logout');
+    cy.checkElemContainsText(selectors.deleteAccount, 'Delete Account');
+    cy.checkElemContainsText(selectors.testCases, 'Test Cases');
+    cy.checkElemContainsText(selectors.apiTesting, 'API Testing');
+    cy.checkElemContainsText(selectors.videoTutorials, 'Video Tutorials');
+    cy.checkElemContainsText(selectors.contactUs, 'Contact us');
   }
 
   static clickHome() {
-    cy.get(selectors.home).click();
+    cy.clickElemContainsText(selectors.home, 'Home');
   }
 
   static clickProducts() {
-    cy.get(selectors.products).click();
+    cy.clickElemContainsText(selectors.products, 'Products');
   }
 
   static clickCart() {
-    cy.get(selectors.cart).click();
+    cy.clickElemContainsText(selectors.cart, 'Cart');
   }
 
   static clickSignUpLogin() {
-    cy.get(selectors.signUpLogin).click();
+    cy.clickElemContainsText(selectors.signUpLogin).click();
   }
 
   static verifyNewUserSignup() {
-    cy.get('.signup-form h2').should('contain', 'New User Signup!');
+    cy.clickElemContainsText('.signup-form h2', 'New User Signup!')
+  }
+
+  static clickContactUs() {
+    cy.clickElemContainsText(selectors.contactUs, 'Contact us');
   }
 
 }

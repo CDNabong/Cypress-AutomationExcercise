@@ -68,3 +68,66 @@ Cypress.Commands.add('generateRandomUser', () => {
   };
 
 });
+
+Cypress.Commands.add('generateRandomText', () => {
+
+  const randomText = faker.lorem.sentences({ min: 1, max: 1 }); // Generate a random sentence
+
+  // Return the object with the randomText
+  return {
+    randomText,
+  };
+
+});
+
+Cypress.Commands.add('generateRandomParagraph', () => {
+
+  const randomParagraph = faker.lorem.paragraphs({ min: 1, max: 2 }) // Generate a random paragraphs
+
+  // Return the object with the randomParagraph
+  return {
+    randomParagraph,
+  };
+
+});
+
+/**
+ * Check element containing the text
+ * @param {string} elemSelector Element Selector
+ * @param {string} text The displayed text of the element
+ */
+Cypress.Commands.add('checkElemContainsText', (elemSelector, text) => {
+  cy.get(elemSelector).contains(text).should('be.visible');
+});
+
+/**
+* Click element containing the text and click
+* @param {string} elemSelector Element Selector
+* @param {string} text The displayed text of the element
+*/
+Cypress.Commands.add('clickElemContainsText', (elemSelector, text) => {
+  cy.get(elemSelector)
+      .contains(text)
+      .should('be.visible')
+      .click();
+});
+
+/**
+ * Check text is visible on the page
+ * @param {string} elemSelector Element Selector
+ * @param {string} text The displayed text of the element
+ */
+Cypress.Commands.add('checkVisibleText', (elemSelector, text) => {
+  cy.get(elemSelector).should('have.text', text).should('be.visible');
+});
+
+/**
+ * Types a text in an element and check the value afterwards.
+ * @param {string} elemSelector Element Selector
+ * @param {string} text The text to type in a text box or text area
+ * @param {string} value Value to check after typing
+ */
+Cypress.Commands.add('typeElemAndCheckValue', (elemSelector, text, value) => {
+  cy.get(elemSelector).as('descElem').should('be.visible').type(text); //type in the description
+  cy.get('@descElem').should('have.value', value);
+});
