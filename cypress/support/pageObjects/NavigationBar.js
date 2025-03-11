@@ -62,6 +62,10 @@ class NavigationBar {
     cy.clickElemContainsText(selectors.contactUs, 'Contact us');
   }
 
+  static clickTestCases() {
+    cy.clickElemContainsText(selectors.testCases, 'Test Cases');
+  }
+
 }
 
 export default NavigationBar;
