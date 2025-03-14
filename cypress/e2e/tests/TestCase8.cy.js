@@ -33,8 +33,8 @@ describe('Test Case 8: Verify All Products and product detail page', () => {
     cy.verifyPageTitle('Automation Exercise - All Products');
   });
 
-  it("Click on 'View Product' of first product", () => {
-    Products.viewProductNumber(1);
+  it("Click on 'View Product'", () => {
+    Products.viewProductNumber(3);
   });
 
   it("Verify user is landed to product detail page", () => {
@@ -42,7 +42,7 @@ describe('Test Case 8: Verify All Products and product detail page', () => {
   });
 
   it("Verify that detail detail is visible: product name, category, price, availability, condition, brand", () => {
-    Products.verifyProductDetails();
+    Products.verifyProductDetails(3);
   });
 
 });

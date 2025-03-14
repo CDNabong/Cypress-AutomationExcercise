@@ -1,0 +1,44 @@
+{
+  "products": {
+    "item1": {
+      "name": "Blue Top",
+      "category": "Category: Women > Tops",
+      "availability": "In Stock",
+      "condition": "New",
+      "brand": "Polo",
+      "price": "Rs. 500"
+    },
+    "item2": {
+      "name": "Men Tshirt",
+      "category": "Category: Men > Tshirts",
+      "availability": "In Stock",
+      "condition": "New",
+      "brand": "H&M",
+      "price": "Rs. 400"
+    },
+    "item3": {
+      "name": "Sleeveless Dress",
+      "category": "Category: Women > Dress",
+      "availability": "In Stock",
+      "condition": "New",
+      "brand": "Madame",
+      "price": "Rs. 1000"
+    },
+    "item4": {
+      "name": "Stylish Dress",
+      "category": "Category: Women > Dress",
+      "availability": "In Stock",
+      "condition": "New",
+      "brand": "Madame",
+      "price": "Rs. 1500"
+    },
+    "item5": {
+      "name": "Winter Top",
+      "category": "Category: Women > Tops",
+      "availability": "In Stock",
+      "condition": "New",
+      "brand": "Mast & Harbour",
+      "price": "Rs. 600"
+    }
+  }
+}
