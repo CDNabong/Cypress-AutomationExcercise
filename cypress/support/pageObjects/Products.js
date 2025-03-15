@@ -13,7 +13,8 @@ const selectors = {
   serchProductField: "#search_product",
   searchButton: "#submit_search",
   searchedProductText: "body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > h2",
-  viewCart: 'a[href="/view_cart"]'
+  viewCart: 'a[href="/view_cart"]',
+  quantity: 'input[name="quantity"]'
 };
 
 
@@ -69,14 +70,26 @@ class Products {
 
   static verifyCartProductsDetails(productNumber1, productNumber2) {
     
+    // iterate this as an enhancement to avoid redundant codes
     cy.checkElemContainsText(`#product-${productNumber1} > td.cart_price > p`, productLists.products[`item${productNumber1}`].price);
     cy.checkElemContainsText(`#product-${productNumber1} > td.cart_quantity > button`, '1');
     cy.checkElemContainsText(`#product-${productNumber1} > td.cart_total > p`, productLists.products[`item${productNumber1}`].price);
-
+    
     cy.checkElemContainsText(`#product-${productNumber2} > td.cart_price > p`, productLists.products[`item${productNumber2}`].price);
     cy.checkElemContainsText(`#product-${productNumber2} > td.cart_quantity > button`, '1');
     cy.checkElemContainsText(`#product-${productNumber2} > td.cart_total > p`, productLists.products[`item${productNumber2}`].price);
+  }
 
+  static increaseQuantity(quantity) {
+    cy.get(selectors.quantity).clear().type(quantity).should('have.value', quantity);
+  }
+
+  static clickAddToCart() {
+    cy.clickElemContainsText(selectors.addToCart, 'Add to cart')
+  }
+
+  static verifyProductQuantity(productNumber, quantity) {
+    cy.checkElemContainsText(`#product-${productNumber} > td.cart_quantity > button`, quantity);
   }
 
 }
