@@ -3,7 +3,7 @@ import NavigationBar from '../../support/pageObjects/NavigationBar';
 import SignUp from "../../support/pageObjects/SignUp";
 import Payments from "../../support/pageObjects/Payment";
 
-describe('Test Case 14: Place Order: Register while Checkout', () => {
+describe('Test Case 15: Place Order: Register before Checkout', () => {
   before(() => {
     // runs once before all tests in the block
     
@@ -27,6 +27,20 @@ describe('Test Case 14: Place Order: Register while Checkout', () => {
     cy.clearCookies()
   })
 
+  it("Click on 'Signup / Login' button", () => {
+    NavigationBar.clickSignUpLogin();
+  });
+
+  it("Verify 'ACCOUNT CREATED!' and click 'Continue' button", () => {
+    NavigationBar.verifyNewUserSignup();
+    SignUp.testRegisterUser();
+    SignUp.verifyAccountCreated();
+  });
+
+  it("Verify ' Logged in as username' at top", () => {
+    SignUp.verifyAccountLoggedIn();
+  });
+
   it("Add products to cart", () => {
     Products.addToCart(2);
   });
@@ -47,18 +61,8 @@ describe('Test Case 14: Place Order: Register while Checkout', () => {
     Products.clickCheckoutButton();
   });
 
-  it("Click 'Register / Login' button", () => {
-    Products.clickRegisterLoginLink();
-  });
-
-  it("Verify 'ACCOUNT CREATED!' and click 'Continue' button", () => {
-    NavigationBar.verifyNewUserSignup();
-    SignUp.testRegisterUser();
-    SignUp.verifyAccountCreated();
-  });
-
-  it("Verify ' Logged in as username' at top", () => {
-    SignUp.verifyAccountLoggedIn();
+  it("Verify Address Details and Review Your Order", () => {
+    Payments.verifyDeliveryAddress();
   });
 
   it("Click 'Cart' button", () => {
@@ -67,10 +71,6 @@ describe('Test Case 14: Place Order: Register while Checkout', () => {
 
   it("Click Proceed To Checkout", () => {
     Products.clickCheckoutButton();
-  });
-
-  it("Verify Address Details and Review Your Order", () => {
-    Payments.verifyDeliveryAddress();
   });
 
   it("Enter description in comment text area and click 'Place Order'", () => {
