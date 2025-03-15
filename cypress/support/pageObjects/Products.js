@@ -12,7 +12,8 @@ const selectors = {
   productPrice: "span span:first-of-type",
   serchProductField: "#search_product",
   searchButton: "#submit_search",
-  searchedProductText: "body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > h2"
+  searchedProductText: "body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > h2",
+  viewCart: 'a[href="/view_cart"]'
 };
 
 
@@ -51,6 +52,31 @@ class Products {
     cy.get('body > section:nth-child(3) > div.container > div > div.col-sm-9.padding-right > div > div:nth-child(3) > div > div.single-products > div.productinfo.text-center > p').should('be.visible').contains('Soft Stretch Jeans');
     cy.get('body > section:nth-child(3) > div.container > div > div.col-sm-9.padding-right > div > div:nth-child(4) > div > div.single-products > div.productinfo.text-center > p').should('be.visible').contains('Regular Fit Straight Jeans');
     cy.get('body > section:nth-child(3) > div.container > div > div.col-sm-9.padding-right > div > div:nth-child(5) > div > div.single-products > div.productinfo.text-center > p').should('be.visible').contains('Grunt Blue Slim Fit Jeans');
+  }
+
+  static addToCart(productNumber) {
+    cy.clickElemContainsText(`a[data-product-id="${productNumber}"].add-to-cart`, 'Add to cart');
+  }
+
+  static viewCart() {
+    cy.clickElemContainsText(selectors.viewCart, 'View Cart');
+  }
+
+  static verifyCartProducts(productNumber1, productNumber2) {
+    cy.checkElemContainsText(`#product-${productNumber1} > td.cart_description > h4 > a`, productLists.products[`item${productNumber1}`].name);
+    cy.checkElemContainsText(`#product-${productNumber2} > td.cart_description > h4 > a`, productLists.products[`item${productNumber2}`].name);
+  }
+
+  static verifyCartProductsDetails(productNumber1, productNumber2) {
+    
+    cy.checkElemContainsText(`#product-${productNumber1} > td.cart_price > p`, productLists.products[`item${productNumber1}`].price);
+    cy.checkElemContainsText(`#product-${productNumber1} > td.cart_quantity > button`, '1');
+    cy.checkElemContainsText(`#product-${productNumber1} > td.cart_total > p`, productLists.products[`item${productNumber1}`].price);
+
+    cy.checkElemContainsText(`#product-${productNumber2} > td.cart_price > p`, productLists.products[`item${productNumber2}`].price);
+    cy.checkElemContainsText(`#product-${productNumber2} > td.cart_quantity > button`, '1');
+    cy.checkElemContainsText(`#product-${productNumber2} > td.cart_total > p`, productLists.products[`item${productNumber2}`].price);
+
   }
 
 }

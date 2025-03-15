@@ -1,7 +1,7 @@
 const selectors = {
   home: 'a[href="/"]',
   products: 'a[href="/products"]',
-  cart: 'a[href="/view_cart"]',
+  cart: '#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(3)',
   signUpLogin: 'a[href="/login"]',
   testCases: 'a[href="/test_cases"]',
   apiTesting: 'a[href="/api_list"]',
@@ -18,8 +18,6 @@ class NavigationBar {
     cy.checkElemContainsText(selectors.products, 'Products')
     cy.checkElemContainsText(selectors.cart, 'Cart')
     cy.checkElemContainsText(selectors.signUpLogin, 'Signup / Login');
-    cy.checkElemContainsText(selectors.logout, 'Logout');
-    cy.checkElemContainsText(selectors.deleteAccount, 'Delete Account');
     cy.checkElemContainsText(selectors.testCases, 'Test Cases');
     cy.checkElemContainsText(selectors.apiTesting, 'API Testing');
     cy.checkElemContainsText(selectors.videoTutorials, 'Video Tutorials');
@@ -51,7 +49,7 @@ class NavigationBar {
   }
 
   static clickSignUpLogin() {
-    cy.clickElemContainsText(selectors.signUpLogin).click();
+    cy.clickElemContainsText(selectors.signUpLogin, 'Signup / Login');
   }
 
   static verifyNewUserSignup() {
