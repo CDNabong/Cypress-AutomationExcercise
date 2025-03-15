@@ -1,7 +1,7 @@
 import NavigationBar from '../../support/pageObjects/NavigationBar';
 import Products from '../../support/pageObjects/Products';
 
-describe('Test Case 8: Verify All Products and product detail page', () => {
+describe('Test Case 9: Search Product', () => {
   before(() => {
     // runs once before all tests in the block
     
@@ -33,16 +33,16 @@ describe('Test Case 8: Verify All Products and product detail page', () => {
     cy.verifyPageTitle('Automation Exercise - All Products');
   });
 
-  it("Click on 'View Product'", () => {
-    Products.viewProductNumber(3);
+  it("Enter product name in search input and click search button", () => {
+    Products.clickSearchProduct('Jeans');
   });
 
-  it("Verify user is landed to product detail page successfully", () => {
-    cy.verifyPageTitle('Automation Exercise - Product Details');
+  it("Verify 'SEARCHED PRODUCTS' is visible", () => {
+    Products.verifySearchedProduct();
   });
 
-  it("Verify that detail detail is visible: product name, category, price, availability, condition, brand", () => {
-    Products.verifyProductDetails(3);
+  it("Verify all the products related to search are visible", () => {
+    Products.verifySearchedProductResult();
   });
 
 });

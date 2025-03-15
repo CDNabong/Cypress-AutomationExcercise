@@ -1,7 +1,7 @@
 import NavigationBar from '../../support/pageObjects/NavigationBar';
 import Products from '../../support/pageObjects/Products';
 
-describe('Test Case 8: Verify All Products and product detail page', () => {
+describe('Test Case 12: Add Products in Cart', () => {
   before(() => {
     // runs once before all tests in the block
     
@@ -33,16 +33,29 @@ describe('Test Case 8: Verify All Products and product detail page', () => {
     cy.verifyPageTitle('Automation Exercise - All Products');
   });
 
-  it("Click on 'View Product'", () => {
-    Products.viewProductNumber(3);
+  it("Hover over first product and click 'Add to cart'", () => {
+    Products.addToCart(1);
   });
 
-  it("Verify user is landed to product detail page successfully", () => {
-    cy.verifyPageTitle('Automation Exercise - Product Details');
+  it("Click 'Continue Shopping' button", () => {
+    Products.clickContinueShopping();
   });
 
-  it("Verify that detail detail is visible: product name, category, price, availability, condition, brand", () => {
-    Products.verifyProductDetails(3);
+  it("Hover over second product and click 'Add to cart'", () => {
+    Products.addToCart(2);
   });
+
+  it("Click 'View Cart' button", () => {
+    Products.viewCart();
+  });
+
+  it("Verify both products are added to Cart", () => {
+    Products.verifyCartProducts(1, 2);
+  });
+
+  it("Verify their prices, quantity and total price", () => {
+    Products.verifyCartProductsDetails(1, 2);
+  });
+
 
 });

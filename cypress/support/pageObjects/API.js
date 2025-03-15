@@ -15,9 +15,9 @@ export default class API {
     });
   }
 
-  static searchProduct() {
+  static searchProduct(product) {
     it('API 5: POST To Search Product', function () {
-      cy.verifySearchProduct();
+      cy.verifySearchProduct(product);
     });
   }
 

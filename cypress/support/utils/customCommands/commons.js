@@ -131,3 +131,22 @@ Cypress.Commands.add('typeElemAndCheckValue', (elemSelector, text, value) => {
   cy.get(elemSelector).as('descElem').should('be.visible').type(text); //type in the description
   cy.get('@descElem').should('have.value', value);
 });
+
+Cypress.Commands.add('completePayment', () => {
+
+  const cardName = faker.finance.accountName();
+  const cardNumber = faker.finance.creditCardNumber();
+  const cvc = faker.finance.creditCardCVV();
+  const expiryMonth = 11
+  const expiryYear = 2030
+
+  // Return the object with the random user data
+  return {
+    cardName,
+    cardNumber,
+    cvc,
+    expiryMonth,
+    expiryYear,
+  };
+
+});
