@@ -3,6 +3,7 @@ const selectors = {
   signUpEmail: '[data-qa=signup-email]',
   signUpButton: '[data-qa="signup-button"]',
   password: '[data-qa=password]',
+  title: "#id_gender1",
   days: '[data-qa="days"]',
   months: '[data-qa="months"]',
   years: '[data-qa="years"]',
@@ -49,6 +50,7 @@ class SignUp {
     cy.get(selectors.password)
       .should('be.visible')
       .type(userData.password);
+    cy.get(selectors.title).click();
     cy.get(selectors.days).select('22');
     cy.get(selectors.months).select('11');
     cy.get(selectors.years).select('1999');

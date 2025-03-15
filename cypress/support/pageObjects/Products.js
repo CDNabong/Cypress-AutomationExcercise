@@ -14,7 +14,11 @@ const selectors = {
   searchButton: "#submit_search",
   searchedProductText: "body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > h2",
   viewCart: 'a[href="/view_cart"]',
-  quantity: 'input[name="quantity"]'
+  quantity: 'input[name="quantity"]',
+  checkoutButton: 'a.btn.btn-default.check_out',
+  registerAndLoginLink: 'a[href="/login"]',
+  description: "textarea.form-control",
+  placeOrderButton: '.btn-default.check_out'
 };
 
 
@@ -74,7 +78,7 @@ class Products {
     cy.checkElemContainsText(`#product-${productNumber1} > td.cart_price > p`, productLists.products[`item${productNumber1}`].price);
     cy.checkElemContainsText(`#product-${productNumber1} > td.cart_quantity > button`, '1');
     cy.checkElemContainsText(`#product-${productNumber1} > td.cart_total > p`, productLists.products[`item${productNumber1}`].price);
-    
+
     cy.checkElemContainsText(`#product-${productNumber2} > td.cart_price > p`, productLists.products[`item${productNumber2}`].price);
     cy.checkElemContainsText(`#product-${productNumber2} > td.cart_quantity > button`, '1');
     cy.checkElemContainsText(`#product-${productNumber2} > td.cart_total > p`, productLists.products[`item${productNumber2}`].price);
@@ -91,6 +95,26 @@ class Products {
   static verifyProductQuantity(productNumber, quantity) {
     cy.checkElemContainsText(`#product-${productNumber} > td.cart_quantity > button`, quantity);
   }
+
+  static clickCheckoutButton() {
+    cy.clickElemContainsText(selectors.checkoutButton, 'Proceed To Checkout');
+  }
+
+  static clickRegisterLoginLink() {
+    cy.clickElemContainsText(selectors.registerAndLoginLink, 'Register / Login');
+  }
+
+  static enterDescription(){
+    cy.generateRandomText().then((text) => {
+      cy.typeElemAndCheckValue(selectors.description, text.randomText, text.randomText);
+    });
+  }
+
+  static clickPlaceOrder() {
+    cy.clickElemContainsText(selectors.placeOrderButton, 'Place Order');
+  }
+
+
 
 }
 
