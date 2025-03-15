@@ -24,9 +24,6 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import { faker } from '@faker-js/faker';
-
-
 /**
 * Execute API Request
  * @param {JSON} requestBody - API request
@@ -54,7 +51,9 @@ Cypress.Commands.add('verifyProductsList', () => {
     method: "GET",
     url: `${Cypress.env('apiUrl')}productsList`,
     failOnStatusCode: false,
-  }, 200);
+  }, 200).then((response) => {
+    cy.log(JSON.stringify(response));
+  });
 });
 
 /**
@@ -65,7 +64,9 @@ Cypress.Commands.add('verifyBrandsList', () => {
     method: "GET",
     url: `${Cypress.env('apiUrl')}brandsList`,
     failOnStatusCode: false,
-  }, 200);
+  }, 200).then((response) => {
+    cy.log(JSON.stringify(response));
+  });
 });
 
 /**
@@ -80,7 +81,9 @@ Cypress.Commands.add('verifySearchProduct', (product) => {
     body: {
       search_product: product,
     }
-  }, 200);
+  }, 200).then((response) => {
+    cy.log(JSON.stringify(response));
+  });
 });
 
 /**
@@ -96,7 +99,9 @@ Cypress.Commands.add('verifyValidLogin', (email, password) => {
       email: email,
       password: password,
     }
-  }, 200);
+  }, 200).then((response) => {
+    cy.log(JSON.stringify(response));
+  });
 });
 
 /**
@@ -110,5 +115,7 @@ Cypress.Commands.add('verifyUserEmail', (email) => {
       email: email
     },
     failOnStatusCode: false,
-  }, 200);
+  }, 200).then((response) => {
+    cy.log(JSON.stringify(response));
+  });
 });

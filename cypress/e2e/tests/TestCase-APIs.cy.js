@@ -23,6 +23,6 @@ describe('Verify API tests', () => {
   API.validLogin("testclient2@yopmail.com", "client");
   API.productsList();
   API.brandsList();
-  API.searchProduct();
+  API.searchProduct('shirt');
   API.getUserEmail("testclient2@yopmail.com");
 });
