@@ -1,7 +1,5 @@
 import Products from '../../support/pageObjects/Products';
 import NavigationBar from '../../support/pageObjects/NavigationBar';
-import Payments from "../../support/pageObjects/Payment";
-import Login from "../../support/pageObjects/Login";
 
 describe('Test Case 17: Remove Products From Cart', () => {
   before(() => {
