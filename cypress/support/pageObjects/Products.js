@@ -114,6 +114,18 @@ class Products {
     cy.clickElemContainsText(selectors.placeOrderButton, 'Place Order');
   }
 
+  static verifyProductExists(productNumber) {
+    cy.get(`[data-product-id="${productNumber}"]`).should('be.visible');
+  }
+
+  static removeProduct(productNumber) {
+    cy.get(`[data-product-id="${productNumber}"]`).click();
+  }
+
+  static verifyProductRemoved(productNumber) {
+    cy.get(`[data-product-id="${productNumber}"]`).should('not.exist');
+  }
+
 
 
 }

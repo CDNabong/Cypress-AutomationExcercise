@@ -58,6 +58,10 @@ describe('Test Case 16: Place Order: Login before Checkout', () => {
     cy.verifyPageTitle('Automation Exercise - Checkout');
   });
 
+  it("Verify product is in cart", () => {
+    Products.verifyProductExists(2);
+  });
+
   it("Click Proceed To Checkout", () => {
     Products.clickCheckoutButton();
   });
