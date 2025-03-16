@@ -2,7 +2,6 @@ import Products from '../../support/pageObjects/Products';
 import NavigationBar from '../../support/pageObjects/NavigationBar';
 import Payments from "../../support/pageObjects/Payment";
 import Login from "../../support/pageObjects/Login";
-import clientAccounts from "../../fixtures/inputs/clients/clientAccounts.json";
 
 describe('Test Case 16: Place Order: Login before Checkout', () => {
   before(() => {
