@@ -32,13 +32,13 @@ describe('Test Case 2: Login User with correct email and password', () => {
   });
   
   it('Login with valid credentials', () => {
-    Login.testUsernameField(clientAccounts.client2.email);
-    Login.testPasswordField(clientAccounts.client2.password);
+    Login.testUsernameField('client2');
+    Login.testPasswordField('client2');
     Login.testLoginButton();
   });
 
   it('Verify that user is logged in', () => {
-    Login.testUserLoggedIn(clientAccounts.client2.firstName, clientAccounts.client2.lastName);
+    Login.testUserLoggedIn('client2');
   });
   
 });

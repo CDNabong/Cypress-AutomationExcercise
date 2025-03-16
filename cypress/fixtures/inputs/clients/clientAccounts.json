@@ -6,25 +6,49 @@
     "firstName": "Mike",
     "lastName": "Ross",
     "email": "testclient2@yopmail.com",
-    "password": "client"
+    "password": "client",
+    "company": "Pearson Specter Litt",
+    "address": "601 E 54th St",
+    "state": "New York",
+    "city": "New York City",
+    "zipCode": "10000",
+    "mobile": "(555) 555-1234"
   },
   "client3": {
     "firstName": "Louis",
     "lastName": "Litt",
     "email": "testclient3@yopmail.com",
-    "password": "client"
+    "password": "client",
+    "company": "Pearson Specter Litt",
+    "address": "601 E 54th St",
+    "state": "New York",
+    "city": "New York City",
+    "zipCode": "10000",
+    "mobile": "(555) 555-1234"
   },
   "client4": {
     "firstName": "Jessica",
     "lastName": "Pearson",
     "email": "testclient4@yopmail.com",
-    "password": "client"
+    "password": "client",
+    "company": "Pearson Specter Litt",
+    "address": "601 E 54th St",
+    "state": "New York",
+    "city": "New York City",
+    "zipCode": "10000",
+    "mobile": "(555) 555-1234"
   },
   "client5": {
     "firstName": "Donna",
     "lastName": "Paulson",
     "email": "testclient5@yopmail.com",
-    "password": "client"
+    "password": "client",
+    "company": "Pearson Specter Litt",
+    "address": "601 E 54th St",
+    "state": "New York",
+    "city": "New York City",
+    "zipCode": "10000",
+    "mobile": "(555) 555-1234"
   },
   "invalidClient": {
     "firstName": "Donna",
