@@ -21,9 +21,19 @@ const selectors = {
   placeOrderButton: '.btn-default.check_out'
 };
 
-
-
-
+const categorySelectors = {
+  women: '#accordian > div:nth-child(1) > div.panel-heading > h4 > a',
+  dress: '#Women > div > ul > li:nth-child(1) > a',
+  tops: '#Women > div > ul > li:nth-child(2) > a',
+  saree: '#Women > div > ul > li:nth-child(3) > a',
+  men: '#accordian > div:nth-child(2) > div.panel-heading > h4 > a',
+  tShirts: '#Men > div > ul > li:nth-child(1) > a',
+  jeans: '#Men > div > ul > li:nth-child(2) > a',
+  kids: '#accordian > div:nth-child(3) > div.panel-heading > h4 > a',
+  kidsDress: '#Kids > div > ul > li:nth-child(1) > a',
+  kidsTops: '#Kids > div > ul > li:nth-child(2) > a',
+  headerSubcategory: 'body > section > div > div.row > div.col-sm-9.padding-right > div > h2',
+};
 
 class Products {
 
@@ -125,7 +135,62 @@ class Products {
     cy.get(`[data-product-id="${productNumber}"]`).should('not.exist');
   }
 
+  static verifyCategories() {
+    cy.checkElemContainsText(categorySelectors.women, 'Women');
+    cy.checkElemContainsText(categorySelectors.men, 'Men');
+    cy.checkElemContainsText(categorySelectors.kids, 'Kids');
+  }
 
+  static clickCategory(gender) {
+    if (gender) {
+      switch (gender) {
+        case 'Women':
+          cy.clickElemContainsText(categorySelectors.women, 'Women');
+          break;
+        case 'Men':
+          cy.clickElemContainsText(categorySelectors.men, 'Men');
+          break;
+        case 'Kids':
+          cy.clickElemContainsText(categorySelectors.kids, 'Kids');
+          break;
+      }
+    }
+  }
+
+  static clickSubCategory(subCategory) {
+    if (subCategory) {
+      switch (subCategory) {
+        case 'Dress':
+          cy.clickElemContainsText(categorySelectors.dress, subCategory);
+          cy.checkElemContainsText(categorySelectors.headerSubcategory, 'Women - Dress Products');
+          break;
+        case 'Tops':
+          cy.clickElemContainsText(categorySelectors.tops, subCategory);
+          cy.checkElemContainsText(categorySelectors.headerSubcategory, 'Women - Tops Products');
+          break;
+        case 'Saree':
+          cy.clickElemContainsText(categorySelectors.saree, subCategory);
+          cy.checkElemContainsText(categorySelectors.headerSubcategory, 'Women - Saree Products');
+          break;
+        case 'Tshirts':
+          cy.clickElemContainsText(categorySelectors.tShirts, subCategory);
+          cy.checkElemContainsText(categorySelectors.headerSubcategory, 'Men - Tshirts Products');
+          break;
+        case 'Jeans':
+          cy.clickElemContainsText(categorySelectors.jeans, subCategory);
+          cy.checkElemContainsText(categorySelectors.headerSubcategory, 'Men - Jeans Products');
+          break;
+        case 'KidsDress':
+          cy.clickElemContainsText(categorySelectors.kidsDress, 'Dress');
+          cy.checkElemContainsText(categorySelectors.headerSubcategory, 'Kids - Dress Products');
+          break;
+        case 'KidsTops':
+          cy.clickElemContainsText(categorySelectors.kidsTops, 'Tops & Shirts');
+          cy.checkElemContainsText(categorySelectors.headerSubcategory, 'Kids - Tops & Shirts Products');
+          break;
+      }
+    } 
+  }
 
 }
 
