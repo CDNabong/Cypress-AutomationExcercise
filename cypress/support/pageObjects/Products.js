@@ -18,12 +18,34 @@ const selectors = {
   checkoutButton: 'a.btn.btn-default.check_out',
   registerAndLoginLink: 'a[href="/login"]',
   description: "textarea.form-control",
-  placeOrderButton: '.btn-default.check_out'
+  placeOrderButton: '.btn-default.check_out',
+  headerSubcategory: 'body > section > div > div.row > div.col-sm-9.padding-right > div > h2',
+  brandCategories: 'body > section:nth-child(4) > div > div > div.col-sm-3 > div.left-sidebar > div.brands_products > h2'
 };
 
+const categorySelectors = {
+  women: '#accordian > div:nth-child(1) > div.panel-heading > h4 > a',
+  dress: '#Women > div > ul > li:nth-child(1) > a',
+  tops: '#Women > div > ul > li:nth-child(2) > a',
+  saree: '#Women > div > ul > li:nth-child(3) > a',
+  men: '#accordian > div:nth-child(2) > div.panel-heading > h4 > a',
+  tShirts: '#Men > div > ul > li:nth-child(1) > a',
+  jeans: '#Men > div > ul > li:nth-child(2) > a',
+  kids: '#accordian > div:nth-child(3) > div.panel-heading > h4 > a',
+  kidsDress: '#Kids > div > ul > li:nth-child(1) > a',
+  kidsTops: '#Kids > div > ul > li:nth-child(2) > a',
+};
 
-
-
+const brandSelectors = {
+  polo: 'a[href="/brand_products/Polo"]',
+  hm: 'a[href="/brand_products/H&M"]',
+  madame: 'a[href="/brand_products/Madame"]',
+  mastHarbour: 'a[href="/brand_products/Mast & Harbour"]',
+  babyHug: 'a[href="/brand_products/Babyhug"]',
+  allenSollyJunior: 'a[href="/brand_products/Allen Solly Junior"]',
+  kookieKids: 'a[href="/brand_products/Kookie Kids"]',
+  biba: 'a[href="/brand_products/Biba"]',
+}
 
 class Products {
 
@@ -59,29 +81,28 @@ class Products {
     cy.get('body > section:nth-child(3) > div.container > div > div.col-sm-9.padding-right > div > div:nth-child(5) > div > div.single-products > div.productinfo.text-center > p').should('be.visible').contains('Grunt Blue Slim Fit Jeans');
   }
 
-  static addToCart(productNumber) {
-    cy.clickElemContainsText(`a[data-product-id="${productNumber}"].add-to-cart`, 'Add to cart');
+  static addToCart(...productNumbers) {
+    productNumbers.forEach(productNumber => {
+      cy.clickElemContainsText(`a[data-product-id="${productNumber}"].add-to-cart`, 'Add to cart');
+    });
   }
 
   static viewCart() {
     cy.clickElemContainsText(selectors.viewCart, 'View Cart');
   }
 
-  static verifyCartProducts(productNumber1, productNumber2) {
-    cy.checkElemContainsText(`#product-${productNumber1} > td.cart_description > h4 > a`, productLists.products[`item${productNumber1}`].name);
-    cy.checkElemContainsText(`#product-${productNumber2} > td.cart_description > h4 > a`, productLists.products[`item${productNumber2}`].name);
+  static verifyCartProducts(...productNumbers) {
+    productNumbers.forEach(productNumber => {
+      cy.checkElemContainsText(`#product-${productNumber} > td.cart_description > h4 > a`, productLists.products[`item${productNumber}`].name);
+    });
   }
 
-  static verifyCartProductsDetails(productNumber1, productNumber2) {
-    
-    // iterate this as an enhancement to avoid redundant codes
-    cy.checkElemContainsText(`#product-${productNumber1} > td.cart_price > p`, productLists.products[`item${productNumber1}`].price);
-    cy.checkElemContainsText(`#product-${productNumber1} > td.cart_quantity > button`, '1');
-    cy.checkElemContainsText(`#product-${productNumber1} > td.cart_total > p`, productLists.products[`item${productNumber1}`].price);
-
-    cy.checkElemContainsText(`#product-${productNumber2} > td.cart_price > p`, productLists.products[`item${productNumber2}`].price);
-    cy.checkElemContainsText(`#product-${productNumber2} > td.cart_quantity > button`, '1');
-    cy.checkElemContainsText(`#product-${productNumber2} > td.cart_total > p`, productLists.products[`item${productNumber2}`].price);
+  static verifyCartProductsDetails(...productNumbers) {
+    productNumbers.forEach(productNumber => {
+      cy.checkElemContainsText(`#product-${productNumber} > td.cart_price > p`, productLists.products[`item${productNumber}`].price);
+      cy.checkElemContainsText(`#product-${productNumber} > td.cart_quantity > button`, '1');
+      cy.checkElemContainsText(`#product-${productNumber} > td.cart_total > p`, productLists.products[`item${productNumber}`].price);
+    });
   }
 
   static increaseQuantity(quantity) {
@@ -126,7 +147,113 @@ class Products {
     cy.get(`[data-product-id="${productNumber}"]`).should('not.exist');
   }
 
+  static verifyCategories() {
+    cy.checkElemContainsText(categorySelectors.women, 'Women');
+    cy.checkElemContainsText(categorySelectors.men, 'Men');
+    cy.checkElemContainsText(categorySelectors.kids, 'Kids');
+  }
 
+  static clickCategory(gender) {
+    if (gender) {
+      switch (gender) {
+        case 'Women':
+          cy.clickElemContainsText(categorySelectors.women, 'Women');
+          break;
+        case 'Men':
+          cy.clickElemContainsText(categorySelectors.men, 'Men');
+          break;
+        case 'Kids':
+          cy.clickElemContainsText(categorySelectors.kids, 'Kids');
+          break;
+      }
+    }
+  }
+
+  static clickSubCategory(subCategory) {
+    if (subCategory) {
+      switch (subCategory) {
+        case 'Dress':
+          cy.clickElemContainsText(categorySelectors.dress, subCategory);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Women - Dress Products');
+          break;
+        case 'Tops':
+          cy.clickElemContainsText(categorySelectors.tops, subCategory);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Women - Tops Products');
+          break;
+        case 'Saree':
+          cy.clickElemContainsText(categorySelectors.saree, subCategory);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Women - Saree Products');
+          break;
+        case 'Tshirts':
+          cy.clickElemContainsText(categorySelectors.tShirts, subCategory);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Men - Tshirts Products');
+          break;
+        case 'Jeans':
+          cy.clickElemContainsText(categorySelectors.jeans, subCategory);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Men - Jeans Products');
+          break;
+        case 'KidsDress':
+          cy.clickElemContainsText(categorySelectors.kidsDress, 'Dress');
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Kids - Dress Products');
+          break;
+        case 'KidsTops':
+          cy.clickElemContainsText(categorySelectors.kidsTops, 'Tops & Shirts');
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Kids - Tops & Shirts Products');
+          break;
+      }
+    } 
+  }
+
+  static verifyBrands() {
+    cy.scrollTo('center')
+    cy.checkElemContainsText(brandSelectors.polo, 'Polo');
+    cy.checkElemContainsText(brandSelectors.hm, 'H&M');
+    cy.checkElemContainsText(brandSelectors.madame, 'Madame');
+    cy.checkElemContainsText(brandSelectors.mastHarbour, 'Mast & Harbour');
+    cy.checkElemContainsText(brandSelectors.babyHug, 'Babyhug');
+    cy.checkElemContainsText(brandSelectors.allenSollyJunior, 'Allen Solly Junior');
+    cy.checkElemContainsText(brandSelectors.kookieKids, 'Kookie Kids');
+    cy.checkElemContainsText(brandSelectors.biba, 'Biba');
+  }
+
+  static clickBrand(brand) {
+    if (brand) {
+      switch (brand) {
+        case 'Polo':
+          cy.clickElemContainsText(brandSelectors.polo, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Polo Products');
+          break;
+        case 'H&M':
+          cy.clickElemContainsText(brandSelectors.hm, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - H&M Products');
+          break;
+        case 'Madame':
+          cy.clickElemContainsText(brandSelectors.madame, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Madame Products');
+          break;
+        case 'Mast & Harbour':
+          cy.clickElemContainsText(brandSelectors.mastHarbour, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Mast & Harbour Products');
+          break;
+        case 'Babyhug':
+          cy.clickElemContainsText(brandSelectors.babyHug, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Babyhug Products');
+          break;
+        case 'Allen Solly Junior':
+          cy.clickElemContainsText(brandSelectors.allenSollyJunior, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Allen Solly Junior Products');
+          break;
+        case 'Kookie Kids':
+          cy.clickElemContainsText(brandSelectors.kookieKids, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Kookie Kids Products');
+          break;
+        case 'Biba':
+          cy.clickElemContainsText(brandSelectors.biba, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Biba Products');
+          break;
+      }
+    }
+  }
 
 }
 
