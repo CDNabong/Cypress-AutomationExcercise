@@ -53,8 +53,4 @@ describe('Test Case 17: Remove Products From Cart', () => {
     Products.verifyProductRemoved(2);
   });
 
-
-
-  
-
 });

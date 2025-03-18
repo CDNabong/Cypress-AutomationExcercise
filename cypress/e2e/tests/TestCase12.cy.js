@@ -42,7 +42,7 @@ describe('Test Case 12: Add Products in Cart', () => {
   });
 
   it("Hover over second product and click 'Add to cart'", () => {
-    Products.addToCart(2);
+    Products.addToCart(2, 3);
   });
 
   it("Click 'View Cart' button", () => {
@@ -50,11 +50,11 @@ describe('Test Case 12: Add Products in Cart', () => {
   });
 
   it("Verify both products are added to Cart", () => {
-    Products.verifyCartProducts(1, 2);
+    Products.verifyCartProducts(1, 2, 3);
   });
 
   it("Verify their prices, quantity and total price", () => {
-    Products.verifyCartProductsDetails(1, 2);
+    Products.verifyCartProductsDetails(1, 2, 3);
   });
 
 
