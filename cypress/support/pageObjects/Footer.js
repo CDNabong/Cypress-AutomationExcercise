@@ -2,7 +2,8 @@ const selectors = {
   footerSubscription: '#footer > div.footer-widget > div > div > div.col-sm-3.col-sm-offset-1 > div > h2',
   emailSubscriptionField: '#susbscribe_email',
   subscribeButton: '#subscribe',
-  successNotification: '#success-subscribe'
+  successNotification: '#success-subscribe',
+  scrollUpIcon: "#scrollUp"
 }
 
 class Footer {
@@ -20,6 +21,10 @@ class Footer {
 
   static verifySuccessNotification() {
     cy.checkElemContainsText(selectors.successNotification, 'You have been successfully subscribed!');
+  }
+
+  static clickScrollUpIcon() {
+    cy.get(selectors.scrollUpIcon).click();
   }
 
 }
