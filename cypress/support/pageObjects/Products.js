@@ -25,7 +25,14 @@ const selectors = {
   reviewEmail: '#email',
   reviewMessage: '#review',
   reviewSubmitBtn: '#button-review',
-  reviewSuccessNotif: '#review-section'
+  reviewSuccessNotif: '#review-section',
+  recommendedItems: 'body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div.recommended_items > h2',
+  recommendedItem1: '#recommended-item-carousel > div > div.item.active > div:nth-child(1) > div > div > div > a',
+  recommendedItem2: '#recommended-item-carousel > div > div.item.active > div:nth-child(2) > div > div > div > a',
+  recommendedItem3: '#recommended-item-carousel > div > div.item.active > div:nth-child(3) > div > div > div > a',
+  recommendedItem4: '#recommended-item-carousel > div > div.item.active > div:nth-child(4) > div > div > div > a',
+  recommendedItem5: '#recommended-item-carousel > div > div.item.active > div:nth-child(5) > div > div > div > a',
+  recommendedItem6: '#recommended-item-carousel > div > div.item.active > div:nth-child(6) > div > div > div > a',
 };
 
 const categorySelectors = {
@@ -274,6 +281,17 @@ class Products {
 
   static verifyReviewSuccessNotification() {
     cy.checkElemContainsText(selectors.reviewSuccessNotif, 'Thank you for your review.')
+  }
+
+  static verifyRecommendedItems() {
+    cy.checkElemContainsText(selectors.recommendedItems, 'recommended items');
+  }
+
+  static addToCartRecommended() {
+    cy.clickElemContainsText(selectors.recommendedItem1, 'Add to cart');
+    cy.clickElemContainsText(selectors.continueShopping, 'Continue Shopping');
+    cy.clickElemContainsText(selectors.recommendedItem2, 'Add to cart');
+    cy.clickElemContainsText(selectors.continueShopping, 'Continue Shopping');
   }
 
 }

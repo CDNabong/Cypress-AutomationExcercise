@@ -25,8 +25,8 @@ describe("Test Case 25: Verify Scroll Up using 'Arrow' button and Scroll Down fu
     cy.clearCookies()
   })
 
-  it(" Scroll down page to bottom", () => {
-    cy.scrollTo('bottom')
+  it("Scroll down page to bottom", () => {
+    cy.scrollTo('bottom');
   });
 
   it("Verify text 'SUBSCRIPTION'", () => {
