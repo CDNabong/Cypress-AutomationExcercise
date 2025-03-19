@@ -29,10 +29,6 @@ describe('Test Case 17: Remove Products From Cart', () => {
     Products.addToCart(2);
   });
 
-  it("Click 'Continue Shopping' button", () => {
-    Products.clickContinueShopping();
-  });
-
   it("Click 'Cart' button", () => {
     NavigationBar.clickCart();
   });

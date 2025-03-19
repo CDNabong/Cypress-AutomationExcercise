@@ -32,13 +32,13 @@ describe('Test Case 4: Logout User', () => {
   });
 
   it('Login with valid credentials', () => {
-    Login.testUsernameField(clientAccounts.client4.email);
-    Login.testPasswordField(clientAccounts.client4.password);
+    Login.testUsernameField('client4');
+    Login.testPasswordField('client4');
     Login.testLoginButton();
   });
 
   it('Verify that user is logged in', () => {
-    Login.testUserLoggedIn(clientAccounts.client4.firstName, clientAccounts.client4.lastName);
+    Login.testUserLoggedIn('client4');
   });
 
   it('Logout user', () => {

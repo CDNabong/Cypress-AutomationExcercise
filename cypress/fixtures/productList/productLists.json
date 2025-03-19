@@ -39,6 +39,30 @@
       "condition": "New",
       "brand": "Mast & Harbour",
       "price": "Rs. 600"
+    },
+    "item33": {
+      "name": "Soft Stretch Jeans",
+      "category": "Category: Men > Jeans",
+      "availability": "In Stock",
+      "condition": "New",
+      "brand": "Polo",
+      "price": "Rs. 799"
+    },
+    "item35": {
+      "name": "Soft Stretch Jeans",
+      "category": "Category: Men > Jeans",
+      "availability": "In Stock",
+      "condition": "New",
+      "brand": "H&M",
+      "price": "Rs. 1200"
+    },
+    "item37": {
+      "name": "Grunt Blue Slim Fit Jeans",
+      "category": "Category: Men > Jeans",
+      "availability": "In Stock",
+      "condition": "New",
+      "brand": "Polo",
+      "price": "Rs. 1400"
     }
   }
 }

@@ -1,0 +1,42 @@
+{
+  "saree": [
+    {
+      "id": 39,
+      "name": "Cotton Silk Hand Block Print Saree",
+      "price": "Rs. 3000",
+      "brand": "Biba"
+    },
+    {
+      "id": 40,
+      "name": "Rust Red Linen Saree",
+      "price": "Rs. 3500",
+      "brand": "Biba"
+    },
+    {
+      "id": 41,
+      "name": "Beautiful Peacock Blue Cotton Linen Saree",
+      "price": "Rs. 5000",
+      "brand": "Madame"
+    }
+  ],
+  "jean": [
+    {
+      "id": 33,
+      "name": "Soft Stretch Jeans",
+      "price": "Rs. 799",
+      "brand": "Polo"
+    },
+    {
+      "id": 35,
+      "name": "Regular Fit Straight Jeans",
+      "price": "Rs. 1200",
+      "brand": "H&M"
+    },
+    {
+      "id": 37,
+      "name": "Grunt Blue Slim Fit Jeans",
+      "price": "Rs. 1400",
+      "brand": "Polo"
+    }
+  ]
+}
