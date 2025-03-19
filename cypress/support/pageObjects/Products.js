@@ -19,7 +19,13 @@ const selectors = {
   description: "textarea.form-control",
   placeOrderButton: '.btn-default.check_out',
   headerSubcategory: 'body > section > div > div.row > div.col-sm-9.padding-right > div > h2',
-  brandCategories: 'body > section:nth-child(4) > div > div > div.col-sm-3 > div.left-sidebar > div.brands_products > h2'
+  brandCategories: 'body > section:nth-child(4) > div > div > div.col-sm-3 > div.left-sidebar > div.brands_products > h2',
+  writeReview: 'body > section > div > div > div.col-sm-9.padding-right > div.category-tab.shop-details-tab > div.col-sm-12 > ul > li > a',
+  reviewName: '#name',
+  reviewEmail: '#email',
+  reviewMessage: '#review',
+  reviewSubmitBtn: '#button-review',
+  reviewSuccessNotif: '#review-section'
 };
 
 const categorySelectors = {
@@ -249,6 +255,25 @@ class Products {
           break;
       }
     }
+  }
+
+  static verifyWriteReviewIndicator() {
+    cy.checkElemContainsText(selectors.writeReview, 'Write Your Review')
+  }
+
+  static reviewProduct() {
+    cy.generateRandomUser().then((userData) => {
+      cy.typeElemAndCheckValue(selectors.reviewName, userData.fullName, userData.fullName);
+      cy.typeElemAndCheckValue(selectors.reviewEmail, userData.email, userData.email);
+    });
+    cy.generateRandomText().then((text) => {
+      cy.typeElemAndCheckValue(selectors.reviewMessage, text.randomText, text.randomText);
+    });
+    cy.clickElemContainsText(selectors.reviewSubmitBtn, 'Submit')
+  }
+
+  static verifyReviewSuccessNotification() {
+    cy.checkElemContainsText(selectors.reviewSuccessNotif, 'Thank you for your review.')
   }
 
 }
