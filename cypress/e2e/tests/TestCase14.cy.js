@@ -31,10 +31,6 @@ describe('Test Case 14: Place Order: Register while Checkout', () => {
     Products.addToCart(2);
   });
 
-  it("Click 'Continue Shopping' button", () => {
-    Products.clickContinueShopping();
-  });
-
   it("Click 'Cart' button", () => {
     NavigationBar.clickCart();
   });

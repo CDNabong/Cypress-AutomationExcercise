@@ -1,5 +1,4 @@
 import Login from "../../support/pageObjects/Login";
-import clientAccounts from "../../fixtures/inputs/clients/clientAccounts.json";
 import NavigationBar from '../../support/pageObjects/NavigationBar';
 
 describe('Test Case 2: Login User with correct email and password', () => {

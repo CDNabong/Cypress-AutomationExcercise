@@ -46,10 +46,6 @@ describe('Test Case 16: Place Order: Login before Checkout', () => {
     Products.addToCart(2);
   });
 
-  it("Click 'Continue Shopping' button", () => {
-    Products.clickContinueShopping();
-  });
-
   it("Click 'Cart' button", () => {
     NavigationBar.clickCart();
   });

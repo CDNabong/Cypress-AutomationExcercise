@@ -33,8 +33,8 @@ describe('Test Case 3: Login User with incorrect email and password', () => {
   });
   
   it('Login with valid credentials', () => {
-    Login.testUsernameField(clientAccounts.invalidClient.email);
-    Login.testPasswordField(clientAccounts.invalidClient.password);
+    Login.testUsernameField('invalidClient');
+    Login.testPasswordField('invalidClient');
     Login.testLoginButton();
   });
 

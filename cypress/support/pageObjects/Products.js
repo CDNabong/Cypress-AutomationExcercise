@@ -12,7 +12,6 @@ const selectors = {
   productPrice: "span span:first-of-type",
   serchProductField: "#search_product",
   searchButton: "#submit_search",
-  searchedProductText: "body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > h2",
   viewCart: 'a[href="/view_cart"]',
   quantity: 'input[name="quantity"]',
   checkoutButton: 'a.btn.btn-default.check_out',
@@ -71,19 +70,16 @@ class Products {
     cy.get(selectors.searchButton).click();
   }
 
-  static verifySearchedProduct() {
-    cy.checkElemContainsText(selectors.searchedProductText, 'Searched Products');
-  }
-
-  static verifySearchedProductResult() {
-    cy.get('body > section:nth-child(3) > div.container > div > div.col-sm-9.padding-right > div > div:nth-child(3) > div > div.single-products > div.productinfo.text-center > p').should('be.visible').contains('Soft Stretch Jeans');
-    cy.get('body > section:nth-child(3) > div.container > div > div.col-sm-9.padding-right > div > div:nth-child(4) > div > div.single-products > div.productinfo.text-center > p').should('be.visible').contains('Regular Fit Straight Jeans');
-    cy.get('body > section:nth-child(3) > div.container > div > div.col-sm-9.padding-right > div > div:nth-child(5) > div > div.single-products > div.productinfo.text-center > p').should('be.visible').contains('Grunt Blue Slim Fit Jeans');
+  static verifySearchedProductResult(...productNumbers) {
+    productNumbers.forEach(productNumber => {
+      cy.checkElemContainsText(`a[href='/product_details/${productNumber}']`, 'View Product');
+    });
   }
 
   static addToCart(...productNumbers) {
     productNumbers.forEach(productNumber => {
       cy.clickElemContainsText(`a[data-product-id="${productNumber}"].add-to-cart`, 'Add to cart');
+      cy.clickElemContainsText(selectors.continueShopping, 'Continue Shopping');
     });
   }
 

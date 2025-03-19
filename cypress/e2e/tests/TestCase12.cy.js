@@ -37,16 +37,12 @@ describe('Test Case 12: Add Products in Cart', () => {
     Products.addToCart(1);
   });
 
-  it("Click 'Continue Shopping' button", () => {
-    Products.clickContinueShopping();
-  });
-
   it("Hover over second product and click 'Add to cart'", () => {
     Products.addToCart(2, 3);
   });
 
-  it("Click 'View Cart' button", () => {
-    Products.viewCart();
+  it("Click 'Cart' button", () => {
+    NavigationBar.clickCart();
   });
 
   it("Verify both products are added to Cart", () => {
