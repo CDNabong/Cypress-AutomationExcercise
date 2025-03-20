@@ -18,6 +18,7 @@ const selectors = {
   billingFullAddress: '#address_invoice > li.address_city.address_state_name.address_postcode',
   billingCountry: '#address_invoice > li.address_country_name',
   billingContactNumber: '#address_invoice > li.address_phone',
+  downloadInvoice: '.btn-default.check_out'
 }
 
 class Payments {
@@ -60,6 +61,10 @@ class Payments {
       cy.checkElemContainsText(selectors.billingCountry, 'United States');
       cy.checkElemContainsText(selectors.billingContactNumber, `${userData.mobile}`);
     });
+  }
+
+  static clickDownloadInvoice() {
+    cy.clickElemContainsText(selectors.downloadInvoice, 'Download Invoice');
   }
 
 }
