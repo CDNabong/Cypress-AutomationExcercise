@@ -106,10 +106,7 @@ Cypress.Commands.add('checkElemContainsText', (elemSelector, text) => {
 * @param {string} text The displayed text of the element
 */
 Cypress.Commands.add('clickElemContainsText', (elemSelector, text) => {
-  cy.get(elemSelector)
-      .contains(text)
-      .should('be.visible')
-      .click();
+  cy.get(elemSelector).contains(text).should('be.visible').click();
 });
 
 /**
@@ -149,4 +146,21 @@ Cypress.Commands.add('completePayment', () => {
     expiryYear,
   };
 
+});
+
+/**
+* Click element containing the text and click
+* @param {string} elemSelector Element Selector
+* @param {string} text The displayed text of the element
+*/
+Cypress.Commands.add('CommonBeforeAfterEachHooks', () => {
+  beforeEach(() => {
+    // runs before each test in the block
+    cy.log('Test case started');
+  })
+
+  afterEach(() => {
+    // runs after each test in the block
+    cy.log('Test case finished');
+  })
 });

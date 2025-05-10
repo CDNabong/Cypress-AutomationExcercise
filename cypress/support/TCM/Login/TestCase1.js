@@ -1,17 +1,8 @@
-import NavigationBar from "../../support/pageObjects/NavigationBar";
-import SignUp from "../../support/pageObjects/SignUp";
+import NavigationBar from '../../../pageObjects/NavigationBar.js';
+import SignUp from '../../support/pageObjects/SignUp.js';
 
 describe('Test Case 1: Register User', () => {
 
-  before(() => {
-    // runs once before all tests in the block
-    
-    //clears the cookies
-    cy.clearCookies();
-    cy.visit('/');
-    cy.verifyPageTitle('Automation Exercise');
-  })
-  
   it("Click on 'Signup / Login' button", () => {
     NavigationBar.clickSignUpLogin();
   });
