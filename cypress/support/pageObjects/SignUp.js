@@ -21,96 +21,107 @@ const selectors = {
   continue: '[data-qa="continue-button"]',
   loggedInAccount: '.fa.fa-user',
   deleteAccount: '.fa.fa-trash-o',
-  accountDeleted: '[data-qa="account-deleted"]'
+  accountDeleted: '[data-qa="account-deleted"]',
+  errorNotification: 'p[style="color: red;"]'
 };
 
+const verifySignUp = () => {
+  cy.generateRandomUser().then((userData) => {
+
+    // Explicitly store the data at class level
+    SignUp.userData = userData;
+
+    cy.typeElemAndCheckValue(selectors.signUpName, userData.fullName, userData.fullName);
+    cy.typeElemAndCheckValue(selectors.signUpEmail, userData.email, userData.email);
+    cy.clickElemContainsText(selectors.signUpButton, 'Signup')
+    cy.typeElemAndCheckValue(selectors.password, userData.password, userData.password);
+    // cy.selectElemContainsText(selectors.title, 'Mr.');
+    cy.selectElemContainsText(selectors.days, '22');
+    cy.selectElemContainsText(selectors.months, '11');
+    cy.selectElemContainsText(selectors.years, '1999');
+    cy.typeElemAndCheckValue(selectors.firstName, userData.firstName, userData.firstName);
+    cy.typeElemAndCheckValue(selectors.lastName, userData.lastName, userData.lastName);
+    cy.typeElemAndCheckValue(selectors.company, userData.text, userData.text);
+    cy.typeElemAndCheckValue(selectors.address, userData.streetAddress, userData.streetAddress);
+    cy.selectElemContainsText(selectors.country, 'United States');
+    cy.typeElemAndCheckValue(selectors.state, userData.state, userData.state);
+    cy.typeElemAndCheckValue(selectors.city, userData.city, userData.city);
+    cy.typeElemAndCheckValue(selectors.zipcode, userData.zipCode, userData.zipCode);
+    cy.typeElemAndCheckValue(selectors.mobileNumber, userData.mobile, userData.mobile);
+    cy.clickVisibleElement(selectors.createAccount);
+  });
+}
+
+const verifyAccountCreated = () => {
+  cy.checkElemContainsText(selectors.accountCreated, 'Account Created!');
+  cy.clickVisibleElement(selectors.continue);
+}
+
+const accountLoggedIn = () => {
+  cy.wrap(SignUp.userData).should('not.be.null').then((userData) => {
+      cy.get(selectors.loggedInAccount).should('be.visible').parent().contains(`Logged in as ${userData.firstName} ${userData.lastName}`);
+  });
+}
+
+const accountDeletion = () => {
+  cy.clickVisibleElement(selectors.deleteAccount);
+  cy.get(selectors.loggedInAccount).should('not.exist');
+}
+
+const accountDeleted = () => {
+  cy.checkElemContainsText(selectors.accountDeleted, 'Account Deleted!');
+  cy.clickVisibleElement(selectors.continue);
+}
 class SignUp {
 
   // Store userData at class level
   static userData = null;
 
   static testRegisterUser() {
-    cy.generateRandomUser().then((userData) => {
-
-      // Explicitly store the data at class level
-      SignUp.userData = userData;
-
-    cy.get(selectors.signUpName)
-      .should('be.visible')
-      .and('have.attr', 'type', 'text')
-      .and('have.attr', 'placeholder', 'Name')
-      .type(userData.fullName);
-    cy.get(selectors.signUpEmail)
-      .and('have.attr', 'type', 'email')
-      .and('have.attr', 'placeholder', 'Email Address')
-      .type(userData.email);
-    cy.get(selectors.signUpButton)
-      .should('have.text', 'Signup')
-      .click();
-    cy.get(selectors.password)
-      .should('be.visible')
-      .type(userData.password);
-    cy.get(selectors.title).click();
-    cy.get(selectors.days).select('22');
-    cy.get(selectors.months).select('11');
-    cy.get(selectors.years).select('1999');
-    cy.get(selectors.firstName).type(userData.firstName);
-    cy.get(selectors.lastName).type(userData.lastName);
-    cy.get(selectors.company).type(userData.text);
-    cy.get(selectors.address).type(userData.streetAddress);
-    cy.get(selectors.country).select('United States');
-    cy.get(selectors.state).type(userData.state);
-    cy.get(selectors.city).type(userData.city);
-    cy.get(selectors.zipcode).type(userData.zipCode);
-    cy.get(selectors.mobileNumber).type(userData.mobile);
-    cy.get(selectors.createAccount).click();
-
+    it('Should register a new user', () => {
+      verifySignUp();
     });
   }
 
-  static verifyAccountCreated() {
-    cy.get(selectors.accountCreated).should('contain', 'Account Created!');
-    cy.get(selectors.continue).click();
+  static testAccountCreated() {
+    it('Should verify the user is created', () => {
+      verifyAccountCreated();
+    });
   }
 
   static verifyAccountLoggedIn() {
-    // Will only proceed when user data is available
-    cy.wrap(SignUp.userData).should('not.be.null').then((userData) => {
-      cy.get(selectors.loggedInAccount)
-        .should('be.visible')
-        .parent()
-        .contains(`Logged in as ${userData.firstName} ${userData.lastName}`);
-    });
+    it('Should verify the user is logged in', () => {
+      accountLoggedIn();
+    });    
   }
 
   static verifyAccountDeletion() {
-    cy.get(selectors.deleteAccount).click();
-    cy.get(selectors.loggedInAccount).should('not.exist');
+    it("Click 'Delete Account' button", () => {
+      accountDeletion();
+    });
   }
 
   static verifyAccountDeleted() {
-    cy.get(selectors.accountDeleted).should('contain', 'Account Deleted!');
-    cy.get(selectors.continue).click();
+    it("Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button", () => {
+      accountDeleted();
+    });
   }
 
+
+
+
+  
   static testNameField(name) {
-    cy.get(selectors.signUpName)
-      .should('be.visible')
-      .and('have.attr', 'type', 'text')
-      .and('have.attr', 'placeholder', 'Name')
-      .type(name);
+    cy.typeElemAndCheckValue(selectors.signUpName, name, name);
   }
 
   static testEmailField(email) {
-    cy.get(selectors.signUpEmail)
-      .and('have.attr', 'type', 'email')
-      .and('have.attr', 'placeholder', 'Email Address')
-      .type(email);
-    cy.get(selectors.signUpButton).click();
+    cy.typeElemAndCheckValue(selectors.signUpEmail, email, email);
+    cy.clickVisibleElement(selectors.signUpButton);
   }
 
   static testErrorNotification() {
-    cy.get('p[style="color: red;"]').should('contain', 'Email Address already exist!');
+    cy.checkElemContainsText(errorNotification, 'Email Address already exist!');
   }
 
   static verifyAddress() {

@@ -110,6 +110,23 @@ Cypress.Commands.add('clickElemContainsText', (elemSelector, text) => {
 });
 
 /**
+* Click element containing the text and click
+* @param {string} elemSelector Element Selector
+* @param {string} text The displayed text of the element
+*/
+Cypress.Commands.add('selectElemContainsText', (elemSelector, text) => {
+  cy.get(elemSelector).select(text);
+});
+
+/**
+ * Clicks a visible element
+ * @param {string} elemSelector Element Selector
+ */
+Cypress.Commands.add('clickVisibleElement', (elemSelector) => {
+    cy.get(elemSelector).should('exist').should('be.visible').click({ multiple: true });
+});
+
+/**
  * Check text is visible on the page
  * @param {string} elemSelector Element Selector
  * @param {string} text The displayed text of the element
@@ -146,21 +163,4 @@ Cypress.Commands.add('completePayment', () => {
     expiryYear,
   };
 
-});
-
-/**
-* Click element containing the text and click
-* @param {string} elemSelector Element Selector
-* @param {string} text The displayed text of the element
-*/
-Cypress.Commands.add('CommonBeforeAfterEachHooks', () => {
-  beforeEach(() => {
-    // runs before each test in the block
-    cy.log('Test case started');
-  })
-
-  afterEach(() => {
-    // runs after each test in the block
-    cy.log('Test case finished');
-  })
 });

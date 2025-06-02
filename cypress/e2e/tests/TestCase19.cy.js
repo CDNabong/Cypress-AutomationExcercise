@@ -27,9 +27,9 @@ describe('Test Case 19: View & Cart Brand Products', () => {
     cy.verifyPageTitle('Automation Exercise');
   })
 
-  it("Click on 'Products' button", () => {
-    NavigationBar.clickProducts();
-  });
+  
+  NavigationBar.clickProducts();
+  
 
   it("Verify that Brands are visible on left side bar", () => {
     Products.verifyBrands();

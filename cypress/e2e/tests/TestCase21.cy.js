@@ -26,9 +26,9 @@ describe('Test Case 21: Add review on product', () => {
     cy.clearCookies()
   })
 
-  it("Click on 'Products' button", () => {
-    NavigationBar.clickProducts();
-  });
+  
+  NavigationBar.clickProducts();
+  
 
   it("Verify user is landed to all products page successfully", () => {
     cy.verifyPageTitle('Automation Exercise - All Products');

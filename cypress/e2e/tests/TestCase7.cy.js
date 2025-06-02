@@ -1,3 +1,4 @@
+import CommonHooks from '../../support/pageObjects/commonHooks';
 import NavigationBar from '../../support/pageObjects/NavigationBar';
 
 describe('Test Case 7: Verify Test Cases Page', () => {
@@ -10,19 +11,7 @@ describe('Test Case 7: Verify Test Cases Page', () => {
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })
-  beforeEach(() => {
-    // runs before each test in the block
-  })
-
-  afterEach(() => {
-    // runs after each test in the block
-  })
-
-  after(() => {
-    // runs once after all tests in the block
-    //clears the cookies
-    cy.clearCookies()
-  })
+  CommonHooks.CommonBeforeEachAfterEachHooks
 
   it("Click on 'Test Cases' button", () => {
     NavigationBar.clickTestCases();

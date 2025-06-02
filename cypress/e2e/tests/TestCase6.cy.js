@@ -1,3 +1,4 @@
+import CommonHooks from '../../support/pageObjects/commonHooks';
 import ContactUs from '../../support/pageObjects/ContactUs';
 import NavigationBar from '../../support/pageObjects/NavigationBar';
 
@@ -11,19 +12,7 @@ describe('Test Case 6: Contact Us Form', () => {
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })
-  beforeEach(() => {
-    // runs before each test in the block
-  })
-
-  afterEach(() => {
-    // runs after each test in the block
-  })
-
-  after(() => {
-    // runs once after all tests in the block
-    //clears the cookies
-    cy.clearCookies()
-  })
+  CommonHooks.CommonBeforeEachAfterEachHooks
 
   it("Click on 'Contact us' button", () => {
     NavigationBar.clickContactUs();

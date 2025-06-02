@@ -1,5 +1,5 @@
 import Login from "../../support/pageObjects/Login";
-import clientAccounts from "../../fixtures/inputs/clients/clientAccounts.json";
+import CommonHooks from "../../support/pageObjects/commonHooks";
 import NavigationBar from '../../support/pageObjects/NavigationBar';
 
 
@@ -13,20 +13,7 @@ describe('Test Case 3: Login User with incorrect email and password', () => {
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })
-  beforeEach(() => {
-    // runs before each test in the block
-  })
-
-  afterEach(() => {
-    // runs after each test in the block
-    cy.log('Test case finished');
-  })
-
-  after(() => {
-    // runs once after all tests in the block
-    //clears the cookies
-    cy.clearCookies()
-  })
+  CommonHooks.CommonBeforeEachAfterEachHooks
 
   it("Click on 'Signup / Login' button", () => {
     NavigationBar.clickSignUpLogin();

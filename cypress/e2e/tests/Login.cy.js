@@ -22,7 +22,7 @@ describe('Verify Login with correct credentials', () => {
 
   it('Click Logout', () => {
     cy.get('.oxd-userdropdown-tab').should('be.visible').click();
-    cy.get('.oxd-userdropdown-link').contains('Logout').click();
+    cy.get('a[href="/web/index.php/auth/logout"]').click();
     cy.title().should('eq', 'OrangeHRM');
   })
 

@@ -11,17 +11,38 @@ const selectors = {
   deleteAccount: 'a[href="/delete_account"]'
 }
 
-class NavigationBar {
+const verifyNonMemberNavigationBar = () => {
+  cy.checkElemContainsText(selectors.home, 'Home')
+  cy.checkElemContainsText(selectors.products, 'Products')
+  cy.checkElemContainsText(selectors.cart, 'Cart')
+  cy.checkElemContainsText(selectors.signUpLogin, 'Signup / Login');
+  cy.checkElemContainsText(selectors.testCases, 'Test Cases');
+  cy.checkElemContainsText(selectors.apiTesting, 'API Testing');
+  cy.checkElemContainsText(selectors.videoTutorials, 'Video Tutorials');
+  cy.checkElemContainsText(selectors.contactUs, 'Contact us');
+}
 
-  static nonMemberNavigationBar() {
-    cy.checkElemContainsText(selectors.home, 'Home')
-    cy.checkElemContainsText(selectors.products, 'Products')
-    cy.checkElemContainsText(selectors.cart, 'Cart')
-    cy.checkElemContainsText(selectors.signUpLogin, 'Signup / Login');
-    cy.checkElemContainsText(selectors.testCases, 'Test Cases');
-    cy.checkElemContainsText(selectors.apiTesting, 'API Testing');
-    cy.checkElemContainsText(selectors.videoTutorials, 'Video Tutorials');
-    cy.checkElemContainsText(selectors.contactUs, 'Contact us');
+const verifyNewUserSignup = () => {
+  cy.clickElemContainsText('.signup-form h2', 'New User Signup!')
+}
+
+const verifySignUpLogin = () => {
+  cy.clickElemContainsText(selectors.signUpLogin, 'Signup / Login');
+}
+
+const verifyProducts = () => {
+  cy.clickElemContainsText(selectors.products, 'Products');
+}
+
+class NavigationBar {
+   static clickSignUpLogin() {
+    it("Click on 'Signup / Login' button", () => {
+      verifySignUpLogin();
+    });
+  }
+
+  static testNonMemberNavigationBar() {
+
   }
 
   static memberNavigationBar() {
@@ -36,24 +57,21 @@ class NavigationBar {
     cy.checkElemContainsText(selectors.contactUs, 'Contact us');
   }
 
-  static clickHome() {
-    cy.clickElemContainsText(selectors.home, 'Home');
-  }
 
   static clickProducts() {
-    cy.clickElemContainsText(selectors.products, 'Products');
+    it("Click on 'Products' button", () => {
+      verifyProducts();
+    });
+  }
+
+  static testNewUserSignup() {
+    it("Verify 'New User Signup!' is visible", () => {
+      verifyNewUserSignup();
+    });
   }
 
   static clickCart() {
     cy.clickElemContainsText(selectors.cart, 'Cart');
-  }
-
-  static clickSignUpLogin() {
-    cy.clickElemContainsText(selectors.signUpLogin, 'Signup / Login');
-  }
-
-  static verifyNewUserSignup() {
-    cy.clickElemContainsText('.signup-form h2', 'New User Signup!')
   }
 
   static clickContactUs() {

@@ -1,7 +1,7 @@
 import NavigationBar from "../../support/pageObjects/NavigationBar";
 import Login from "../../support/pageObjects/Login";
-import clientAccounts from "../../fixtures/inputs/clients/clientAccounts.json";
 import Logout from "../../support/pageObjects/Logout";
+import CommonHooks from "../../support/pageObjects/commonHooks";
 
 describe('Test Case 4: Logout User', () => {
   before(() => {
@@ -13,19 +13,7 @@ describe('Test Case 4: Logout User', () => {
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })
-  beforeEach(() => {
-    // runs before each test in the block
-  })
-
-  afterEach(() => {
-    // runs after each test in the block
-  })
-
-  after(() => {
-    // runs once after all tests in the block
-    //clears the cookies
-    cy.clearCookies()
-  })
+  CommonHooks.CommonBeforeEachAfterEachHooks
 
   it("Click on 'Signup / Login' button", () => {
     NavigationBar.clickSignUpLogin();

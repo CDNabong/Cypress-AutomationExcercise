@@ -1,3 +1,4 @@
+import CommonHooks from "../../support/pageObjects/commonHooks";
 import Login from "../../support/pageObjects/Login";
 import NavigationBar from '../../support/pageObjects/NavigationBar';
 
@@ -11,20 +12,7 @@ describe('Test Case 2: Login User with correct email and password', () => {
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })
-  beforeEach(() => {
-    // runs before each test in the block
-  })
-
-  afterEach(() => {
-    // runs after each test in the block
-    cy.log('Test case finished');
-  })
-
-  after(() => {
-    // runs once after all tests in the block
-    //clears the cookies
-    cy.clearCookies()
-  })
+  CommonHooks.CommonBeforeEachAfterEachHooks
 
   it("Click on 'Signup / Login' button", () => {
     NavigationBar.clickSignUpLogin();

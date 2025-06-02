@@ -1,6 +1,7 @@
 import SignUp from '../../support/pageObjects/SignUp';
 import NavigationBar from '../../support/pageObjects/NavigationBar';
 import clientAccounts from "../../fixtures/inputs/clients/clientAccounts.json";
+import CommonHooks from '../../support/pageObjects/commonHooks';
 
 describe('Test Case 5: Register User with existing email', () => {
   before(() => {
@@ -12,19 +13,7 @@ describe('Test Case 5: Register User with existing email', () => {
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })
-  beforeEach(() => {
-    // runs before each test in the block
-  })
-
-  afterEach(() => {
-    // runs after each test in the block
-  })
-
-  after(() => {
-    // runs once after all tests in the block
-    //clears the cookies
-    cy.clearCookies()
-  })
+  CommonHooks.CommonBeforeEachAfterEachHooks
   
   it("Click on 'Signup / Login' button", () => {
     NavigationBar.clickSignUpLogin();

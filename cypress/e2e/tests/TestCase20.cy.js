@@ -27,9 +27,9 @@ describe('Test Case 20: Search Products and Verify Cart After Login', () => {
     cy.clearCookies()
   })
 
-  it("Click on 'Products' button", () => {
-    NavigationBar.clickProducts();
-  });
+  
+  NavigationBar.clickProducts();
+  
 
   it("Verify user is landed to all products page successfully", () => {
     cy.verifyPageTitle('Automation Exercise - All Products');
