@@ -12,13 +12,6 @@ describe('Test Case 7: Verify Test Cases Page', () => {
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-
-  it("Click on 'Test Cases' button", () => {
-    NavigationBar.clickTestCases();
-  });
-
-  it("Verify page title test cases", () => {
-    cy.verifyPageTitle('Automation Practice Website for UI Testing - Test Cases');
-  });
+  NavigationBar.verifyTestCases();
 
 });

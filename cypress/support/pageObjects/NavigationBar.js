@@ -34,6 +34,16 @@ const verifyProducts = () => {
   cy.clickElemContainsText(selectors.products, 'Products');
 }
 
+const clickContactUs = () => {
+  cy.clickElemContainsText(selectors.contactUs, 'Contact us');
+}
+
+const clickTestCases = () => {
+  cy.clickElemContainsText(selectors.testCases, 'Test Cases');
+}
+
+
+
 class NavigationBar {
    static clickSignUpLogin() {
     it("Click on 'Signup / Login' button", () => {
@@ -62,6 +72,10 @@ class NavigationBar {
     it("Click on 'Products' button", () => {
       verifyProducts();
     });
+    
+    it("Verify user is landed to all products page successfully", () => {
+      cy.verifyPageTitle('Automation Exercise - All Products');
+    });
   }
 
   static testNewUserSignup() {
@@ -74,12 +88,20 @@ class NavigationBar {
     cy.clickElemContainsText(selectors.cart, 'Cart');
   }
 
-  static clickContactUs() {
-    cy.clickElemContainsText(selectors.contactUs, 'Contact us');
+  static verifyContactUs() {
+    it("Click on 'Contact us' button", () => {
+      clickContactUs();
+    });
   }
 
-  static clickTestCases() {
-    cy.clickElemContainsText(selectors.testCases, 'Test Cases');
+  static verifyTestCases() {
+    it("Click on 'Test Cases' button", () => {
+      clickTestCases();
+    });
+    
+    it("Verify page title test cases", () => {
+      cy.verifyPageTitle('Automation Practice Website for UI Testing - Test Cases');
+    });
   }
 
 }

@@ -10,50 +10,76 @@ const selectors = {
   homeButton: '.btn-success'
 }
 
+const getInTouch = () => {
+  cy.checkElemContainsText(selectors.getInTouch, 'Get In Touch');
+}
+
+const enterName = () => {
+  cy.generateRandomUser().then((userData) => {
+    cy.typeElemAndCheckValue(selectors.contactUsName, userData.fullName, userData.fullName);
+  });
+}
+
+const enterEmail = () => {
+  cy.generateRandomUser().then((userData) => {
+    cy.typeElemAndCheckValue(selectors.contactUsEmail, userData.email, userData.email);
+  });
+}
+
+const enterSubject = () => {
+  cy.generateRandomText().then((text) => {
+    cy.typeElemAndCheckValue(selectors.contactUsSubject, text.randomText, text.randomText);
+  });
+}
+
+const enterBody = () => {
+  cy.generateRandomParagraph().then((text) => {
+    cy.typeElemAndCheckValue(selectors.contactUsBody, text.randomParagraph, text.randomParagraph);
+  });
+}
+
+const uploadFile = () => {
+  cy.fixture('example.json', null).as('fixtures')
+  cy.get(selectors.chooseFile).selectFile('@fixtures');
+  cy.clickElemContainsText(selectors.submitButton, 'Submit');
+  cy.checkElemContainsText(selectors.successNotification, 'Success! Your details have been submitted successfully.');
+  cy.clickElemContainsText(selectors.homeButton, 'Home');
+}
+
+
+
 
 class ContactUs {
 
   static verifyGetInTouch() {
-    cy.checkElemContainsText(selectors.getInTouch, 'Get In Touch');
-  }
-
-  static testNameField() {
-    cy.generateRandomUser().then((userData) => {
-      cy.typeElemAndCheckValue(selectors.contactUsName, userData.fullName, userData.fullName);
+    it("Verify 'GET IN TOUCH' is visible", () => {
+      getInTouch();
     });
   }
 
-  static testEmailField() {
-    cy.generateRandomUser().then((userData) => {
-      cy.typeElemAndCheckValue(selectors.contactUsEmail, userData.email, userData.email);
+  static verifyUserDetails() {
+    it("Enter name and email", () => {
+      enterName();
+      enterEmail();
     });
   }
 
-  static testSubjectField() {
-    cy.generateRandomText().then((text) => {
-      cy.typeElemAndCheckValue(selectors.contactUsSubject, text.randomText, text.randomText);
-    });
-  }
-
-  static testBodyField() {
-    cy.generateRandomParagraph().then((text) => {
-      cy.typeElemAndCheckValue(selectors.contactUsBody, text.randomParagraph, text.randomParagraph);
+  static verifyMessageDetails() {
+    it("Enter subject and body", () => {
+      enterSubject();
+      enterBody();
     });
   }
 
   static testUploadFile() {
-    cy.fixture('example.json', null).as('fixtures')
-    cy.get(selectors.chooseFile).selectFile('@fixtures');
-    cy.clickElemContainsText(selectors.submitButton, 'Submit');
+    it("Verify upload file and success notification", () => {
+      uploadFile();
+    });
+
+    it("Verify homepage", () => {
+      cy.verifyPageTitle('Automation Exercise');
+    });
   }
-
-  static successNotification() {
-    cy.checkElemContainsText(selectors.successNotification, 'Success! Your details have been submitted successfully.');
-    cy.clickElemContainsText(selectors.homeButton, 'Home');
-  }
-
-
-
 
 }
 

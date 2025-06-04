@@ -6,21 +6,37 @@ const selectors = {
   scrollUpIcon: "#scrollUp"
 }
 
-class Footer {
+const verifySubscriptionText = () => {
+  cy.checkElemContainsText(selectors.footerSubscription, 'Subscription');
+}
 
-  static verifySubscriptionText() {
-    cy.checkElemContainsText(selectors.footerSubscription, 'Subscription');
-  }
-
-  static enterEmailForSubscription() {
-    cy.generateRandomUser().then((userData) => {
+const enterEmailForSubscription = () => {
+  cy.generateRandomUser().then((userData) => {
       cy.typeElemAndCheckValue(selectors.emailSubscriptionField, userData.email, userData.email);
     });
-    cy.get(selectors.subscribeButton).click();
+  cy.clickVisibleElement(selectors.subscribeButton);
+}
+
+const verifySuccessNotification = () => {
+  cy.checkElemContainsText(selectors.successNotification, 'You have been successfully subscribed!');
+}
+
+class Footer {
+
+  static subscriptionText() {
+    it("Verify text 'SUBSCRIPTION'", () => {
+      verifySubscriptionText();
+    });
   }
 
-  static verifySuccessNotification() {
-    cy.checkElemContainsText(selectors.successNotification, 'You have been successfully subscribed!');
+  static verifyEmailForSubscription() {
+    it("Enter email address in input and click arrow button'", () => {
+      enterEmailForSubscription();
+    });
+
+    it("Verify success message 'You have been successfully subscribed!' is visible", () => {
+      verifySuccessNotification();
+    });
   }
 
   static clickScrollUpIcon() {

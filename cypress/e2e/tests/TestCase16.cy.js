@@ -63,7 +63,7 @@ describe('Test Case 16: Place Order: Login before Checkout', () => {
   });
 
   it("Verify Address Details and Review Your Order", () => {
-    Login.verifyDeliveryAddress ('client2');
+    Login.verifyDeliveryAddress('client2');
   });
 
   it("Click 'Cart' button", () => {

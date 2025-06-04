@@ -59,33 +59,65 @@ const brandSelectors = {
   biba: 'a[href="/brand_products/Biba"]',
 }
 
+const viewProductNumber = (productNumber) => {
+  cy.clickElemContainsText(`a[href='/product_details/${productNumber}']`, 'View Product');
+}
+
+const verifyProductDetails = (itemNumber) => {
+  cy.checkElemContainsText(selectors.productName, productLists.products[`item${itemNumber}`].name);
+  cy.checkElemContainsText(selectors.productCategory, productLists.products[`item${itemNumber}`].category);
+  cy.checkElemContainsText(selectors.productAvailability, productLists.products[`item${itemNumber}`].availability);
+  cy.checkElemContainsText(selectors.productCondition, productLists.products[`item${itemNumber}`].condition);
+  cy.checkElemContainsText(selectors.productBrand, productLists.products[`item${itemNumber}`].brand);
+  cy.checkElemContainsText(selectors.productPrice, productLists.products[`item${itemNumber}`].price);
+}
+
+const clickSearchProduct = (productName) => {
+  cy.get(selectors.serchProductField).type(productName);
+  cy.get(selectors.searchButton).click();
+}
+
+const verifySearchedProductResult = (...productNumbers) => {
+  productNumbers.forEach(productNumber => {
+    cy.checkElemContainsText(`a[href='/product_details/${productNumber}']`, 'View Product');
+  });
+}
+
+
+
+
+
 class Products {
 
-  static viewProductNumber(productNumber) {
-    cy.clickElemContainsText(`a[href='/product_details/${productNumber}']`, 'View Product');
+  static productNumber(productNumber) {
+    it("Click on 'View Product'", () => {
+      viewProductNumber(productNumber);
+    });
+
+    it("Verify user is landed to product detail page successfully", () => {
+      cy.verifyPageTitle('Automation Exercise - Product Details');
+    });
   }
 
-  static verifyProductDetails(itemNumber) {
-    cy.checkElemContainsText(selectors.productName, productLists.products[`item${itemNumber}`].name);
-    cy.checkElemContainsText(selectors.productCategory, productLists.products[`item${itemNumber}`].category);
-    cy.checkElemContainsText(selectors.productAvailability, productLists.products[`item${itemNumber}`].availability);
-    cy.checkElemContainsText(selectors.productCondition, productLists.products[`item${itemNumber}`].condition);
-    cy.checkElemContainsText(selectors.productBrand, productLists.products[`item${itemNumber}`].brand);
-    cy.checkElemContainsText(selectors.productPrice, productLists.products[`item${itemNumber}`].price);
+  static productDetails(itemNumber) {
+    it("Verify that detail detail is visible: product name, category, price, availability, condition, brand", () => {
+      verifyProductDetails(itemNumber);
+    });
   }
 
   static clickContinueShopping() {
     cy.clickElemContainsText(selectors.continueShopping, 'Continue Shopping');
   }
 
-  static clickSearchProduct(productName) {
-    cy.get(selectors.serchProductField).type(productName);
-    cy.get(selectors.searchButton).click();
+  static searchProduct(productName) {
+    it("Enter product name in search input and click search button", () => {
+      clickSearchProduct(productName);
+    });
   }
 
-  static verifySearchedProductResult(...productNumbers) {
-    productNumbers.forEach(productNumber => {
-      cy.checkElemContainsText(`a[href='/product_details/${productNumber}']`, 'View Product');
+  static searchedProductResult(...productNumbers) {
+    it("Verify all the products related to search are visible", () => {
+      verifySearchedProductResult(...productNumbers);
     });
   }
 

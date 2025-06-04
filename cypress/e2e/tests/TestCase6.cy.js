@@ -13,32 +13,10 @@ describe('Test Case 6: Contact Us Form', () => {
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-
-  it("Click on 'Contact us' button", () => {
-    NavigationBar.clickContactUs();
-  });
-
-  it("Verify 'GET IN TOUCH' is visible", () => {
-    ContactUs.verifyGetInTouch();
-  });
-  
-  it("Enter name, email, subject and message", () => {
-    ContactUs.testNameField();
-    ContactUs.testEmailField();
-    ContactUs.testSubjectField();
-    ContactUs.testBodyField();
-  });
-
-  it("Upload a file", () => {
-    ContactUs.testUploadFile();
-  });
-
-  it("Verify success notification", () => {
-    ContactUs.successNotification();
-  });
-
-  it("Verify page title homepage", () => {
-    cy.verifyPageTitle('Automation Exercise');
-  });
+  NavigationBar.verifyContactUs();
+  ContactUs.verifyGetInTouch();
+  ContactUs.verifyUserDetails();
+  ContactUs.verifyMessageDetails();
+  ContactUs.testUploadFile();
 
 });
