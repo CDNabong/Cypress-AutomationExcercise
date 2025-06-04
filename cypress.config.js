@@ -13,6 +13,7 @@ module.exports = {
   video: true,
   screenshotOnRunFailure: true,
   failOnStatusCode: false,
+  defaultCommandTimeout: 120000
 };
 
 

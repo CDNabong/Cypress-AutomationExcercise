@@ -7,26 +7,15 @@ describe('Test Case 3: Login User with incorrect email and password', () => {
 
   before(() => {
     // runs once before all tests in the block
-    
     //clears the cookies
     cy.clearCookies();
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })
+
   CommonHooks.CommonBeforeEachAfterEachHooks
+  NavigationBar.clickSignUpLogin();
+  Login.validateUserLogin('invalidClient');
+  Login.verifyErrorNotification();
 
-  it("Click on 'Signup / Login' button", () => {
-    NavigationBar.clickSignUpLogin();
-  });
-  
-  it('Login with valid credentials', () => {
-    Login.testUsernameField('invalidClient');
-    Login.testPasswordField('invalidClient');
-    Login.testLoginButton();
-  });
-
-  it('Verify error notification', () => {
-    Login.testErrorNotification();
-  });
-  
 });

@@ -14,18 +14,8 @@ describe('Test Case 5: Register User with existing email', () => {
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-  
-  it("Click on 'Signup / Login' button", () => {
-    NavigationBar.clickSignUpLogin();
-  });
-
-  it('Signup with invalid credentials', () => {
-    SignUp.testNameField(clientAccounts.client5.firstName);
-    SignUp.testEmailField(clientAccounts.client5.email);
-  });
-
-  it('Verify error notification', () => {
-    SignUp.testErrorNotification();
-  });
+  NavigationBar.clickSignUpLogin();
+  SignUp.verifySignUpInvalidCredentials(clientAccounts.client5.firstName, clientAccounts.client5.email);
+  SignUp.verifySignUpErrorNotification();
 
 });

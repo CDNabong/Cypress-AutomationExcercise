@@ -15,7 +15,7 @@ describe('Test Case 1: Register User', () => {
   NavigationBar.clickSignUpLogin();
   NavigationBar.testNewUserSignup();
   SignUp.testRegisterUser();
-  SignUp.testAccountCreated();
+  SignUp.verifyAccountCreated();
   SignUp.verifyAccountLoggedIn();
   SignUp.verifyAccountDeletion();
   SignUp.verifyAccountDeleted();

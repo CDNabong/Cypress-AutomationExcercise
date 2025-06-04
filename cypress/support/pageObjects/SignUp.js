@@ -52,7 +52,7 @@ const verifySignUp = () => {
   });
 }
 
-const verifyAccountCreated = () => {
+const testAccountCreated = () => {
   cy.checkElemContainsText(selectors.accountCreated, 'Account Created!');
   cy.clickVisibleElement(selectors.continue);
 }
@@ -72,6 +72,20 @@ const accountDeleted = () => {
   cy.checkElemContainsText(selectors.accountDeleted, 'Account Deleted!');
   cy.clickVisibleElement(selectors.continue);
 }
+
+const testNameField = (name) => {
+  cy.typeElemAndCheckValue(selectors.signUpName, name, name);
+}
+
+const testEmailField = (email) => {
+  cy.typeElemAndCheckValue(selectors.signUpEmail, email, email);
+  cy.clickElemContainsText(selectors.signUpButton, 'Signup');
+}
+
+const testErrorNotification = () => {
+  cy.checkElemContainsText(selectors.errorNotification, 'Email Address already exist!');
+}
+
 class SignUp {
 
   // Store userData at class level
@@ -83,9 +97,9 @@ class SignUp {
     });
   }
 
-  static testAccountCreated() {
+  static verifyAccountCreated() {
     it('Should verify the user is created', () => {
-      verifyAccountCreated();
+      testAccountCreated();
     });
   }
 
@@ -107,21 +121,17 @@ class SignUp {
     });
   }
 
-
-
-
-  
-  static testNameField(name) {
-    cy.typeElemAndCheckValue(selectors.signUpName, name, name);
+  static verifySignUpInvalidCredentials(name, email) {
+    it('Signup with invalid credentials', () => {
+      testNameField(name);
+      testEmailField(email);
+    });
   }
 
-  static testEmailField(email) {
-    cy.typeElemAndCheckValue(selectors.signUpEmail, email, email);
-    cy.clickVisibleElement(selectors.signUpButton);
-  }
-
-  static testErrorNotification() {
-    cy.checkElemContainsText(errorNotification, 'Email Address already exist!');
+  static verifySignUpErrorNotification() {
+    it('Verify error notification', () => {
+      testErrorNotification();
+    });
   }
 
   static verifyAddress() {
