@@ -1,5 +1,6 @@
 import NavigationBar from '../../support/pageObjects/NavigationBar';
 import Footer from '../../support/pageObjects/Footer';
+import CommonHooks from '../../support/pageObjects/commonHooks';
 
 describe('Test Case 11: Verify Subscription in Cart page', () => {
   before(() => {
@@ -11,34 +12,9 @@ describe('Test Case 11: Verify Subscription in Cart page', () => {
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })
-  beforeEach(() => {
-    // runs before each test in the block
-  })
-
-  afterEach(() => {
-    // runs after each test in the block
-  })
-
-  after(() => {
-    // runs once after all tests in the block
-    //clears the cookies
-    cy.clearCookies()
-  })
-
-  it("Click on 'Cart' button", () => {
-    NavigationBar.clickCart();
-  });
-
-  it("Verify text 'SUBSCRIPTION'", () => {
-    Footer.verifySubscriptionText();
-  });
-
-  it(" Enter email address in input and click arrow button'", () => {
-    Footer.enterEmailForSubscription();
-  });
-
-  it("Verify success message 'You have been successfully subscribed!' is visible", () => {
-    Footer.verifySuccessNotification();
-  });
+  CommonHooks.CommonBeforeEachAfterEachHooks
+  NavigationBar.verifyCart();
+  Footer.subscriptionText();
+  Footer.verifyEmailForSubscription();
 
 });

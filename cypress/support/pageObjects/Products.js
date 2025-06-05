@@ -83,9 +83,42 @@ const verifySearchedProductResult = (...productNumbers) => {
   });
 }
 
+const addToCart = (...productNumbers) => {
+  productNumbers.forEach(productNumber => {
+      cy.clickElemContainsText(`a[data-product-id="${productNumber}"].add-to-cart`, 'Add to cart');
+      cy.clickElemContainsText(selectors.continueShopping, 'Continue Shopping');
+    });
+}
 
+const cartProducts = (...productNumbers) => {
+  productNumbers.forEach(productNumber => {
+      cy.checkElemContainsText(`#product-${productNumber} > td.cart_description > h4 > a`, productLists.products[`item${productNumber}`].name);
+    });
+}
 
+const cartProductsDetails = (...productNumbers) => {
+  productNumbers.forEach(productNumber => {
+      cy.checkElemContainsText(`#product-${productNumber} > td.cart_price > p`, productLists.products[`item${productNumber}`].price);
+      cy.checkElemContainsText(`#product-${productNumber} > td.cart_quantity > button`, '1');
+      cy.checkElemContainsText(`#product-${productNumber} > td.cart_total > p`, productLists.products[`item${productNumber}`].price);
+    });
+}
 
+const increaseQuantity = (quantity) => {
+  cy.get(selectors.quantity).clear().type(quantity).should('have.value', quantity);
+}
+
+const clickAddToCart = () => {
+  cy.clickElemContainsText(selectors.addToCart, 'Add to cart')
+}
+
+const clickViewCart = () => {
+  cy.clickElemContainsText(selectors.viewCart, 'View Cart');
+}
+
+const productQuantity = (productNumber, quantity) => {
+  cy.checkElemContainsText(`#product-${productNumber} > td.cart_quantity > button`, quantity);
+}
 
 class Products {
 
@@ -115,47 +148,52 @@ class Products {
     });
   }
 
-  static searchedProductResult(...productNumbers) {
+  static searchedProductResult(productNumbers) {
     it("Verify all the products related to search are visible", () => {
-      verifySearchedProductResult(...productNumbers);
+      verifySearchedProductResult(productNumbers);
     });
   }
 
-  static addToCart(...productNumbers) {
-    productNumbers.forEach(productNumber => {
-      cy.clickElemContainsText(`a[data-product-id="${productNumber}"].add-to-cart`, 'Add to cart');
-      cy.clickElemContainsText(selectors.continueShopping, 'Continue Shopping');
-    });
+  static verifyAddToCart(productNumbers) {
+    it("Add product and click 'Add to cart'", () => {
+      addToCart(productNumbers);
+  });
   }
 
   static viewCart() {
-    cy.clickElemContainsText(selectors.viewCart, 'View Cart');
-  }
-
-  static verifyCartProducts(...productNumbers) {
-    productNumbers.forEach(productNumber => {
-      cy.checkElemContainsText(`#product-${productNumber} > td.cart_description > h4 > a`, productLists.products[`item${productNumber}`].name);
+    it("Click 'View Cart' button", () => {
+      clickViewCart();
     });
   }
 
-  static verifyCartProductsDetails(...productNumbers) {
-    productNumbers.forEach(productNumber => {
-      cy.checkElemContainsText(`#product-${productNumber} > td.cart_price > p`, productLists.products[`item${productNumber}`].price);
-      cy.checkElemContainsText(`#product-${productNumber} > td.cart_quantity > button`, '1');
-      cy.checkElemContainsText(`#product-${productNumber} > td.cart_total > p`, productLists.products[`item${productNumber}`].price);
+  static verifyCartProducts(productNumbers) {
+    it("Verify both products are added to Cart", () => {
+      cartProducts(productNumbers);
     });
   }
 
-  static increaseQuantity(quantity) {
-    cy.get(selectors.quantity).clear().type(quantity).should('have.value', quantity);
+  static verifyCartProductsDetails(productNumbers) {
+    it("Verify their prices, quantity and total price", () => {
+      cartProductsDetails(productNumbers);
+    });
   }
 
-  static clickAddToCart() {
-    cy.clickElemContainsText(selectors.addToCart, 'Add to cart')
+  static productQuantity(quantity) {
+    it("Increase quantity to 4", () => {
+      increaseQuantity(quantity);
+    });
+  }
+
+  static verifyClickAddToCart() {
+    it("Click 'Add to cart' button", () => {
+      clickAddToCart();
+    });  
   }
 
   static verifyProductQuantity(productNumber, quantity) {
-    cy.checkElemContainsText(`#product-${productNumber} > td.cart_quantity > button`, quantity);
+    it("Verify that product is displayed in cart page with exact quantity", () => {
+      productQuantity(productNumber, quantity);
+    });
   }
 
   static clickCheckoutButton() {

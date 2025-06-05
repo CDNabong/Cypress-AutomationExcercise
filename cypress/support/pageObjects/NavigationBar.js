@@ -42,6 +42,10 @@ const clickTestCases = () => {
   cy.clickElemContainsText(selectors.testCases, 'Test Cases');
 }
 
+const clickCart = () => {
+  cy.clickElemContainsText(selectors.cart, 'Cart');
+}
+
 
 
 class NavigationBar {
@@ -84,8 +88,10 @@ class NavigationBar {
     });
   }
 
-  static clickCart() {
-    cy.clickElemContainsText(selectors.cart, 'Cart');
+  static verifyCart() {
+    it("Click on 'Cart' button", () => {
+      clickCart();
+    });
   }
 
   static verifyContactUs() {
