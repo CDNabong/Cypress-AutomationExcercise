@@ -139,7 +139,74 @@ const clickCheckoutButton = () => {
   }
 
 
+  const productExists = (productNumber) => {
+    cy.get(`[data-product-id="${productNumber}"]`).should('be.visible');
+  }
 
+  const removeProduct = (productNumber) => {
+    cy.get(`[data-product-id="${productNumber}"]`).click();
+  }
+
+  const productRemoved = (productNumber) => {
+    cy.get(`[data-product-id="${productNumber}"]`).should('not.exist');
+  }
+
+  const genderCategories = () => {
+    cy.checkElemContainsText(categorySelectors.women, 'Women');
+    cy.checkElemContainsText(categorySelectors.men, 'Men');
+    cy.checkElemContainsText(categorySelectors.kids, 'Kids');
+  }
+
+  const clickCategory = (gender) => {
+    if (gender) {
+      switch (gender) {
+        case 'Women':
+          cy.clickElemContainsText(categorySelectors.women, 'Women');
+          break;
+        case 'Men':
+          cy.clickElemContainsText(categorySelectors.men, 'Men');
+          break;
+        case 'Kids':
+          cy.clickElemContainsText(categorySelectors.kids, 'Kids');
+          break;
+      }
+    }
+  }
+
+  const clickSubCategory = (subCategory) => {
+    if (subCategory) {
+      switch (subCategory) {
+        case 'Dress':
+          cy.clickElemContainsText(categorySelectors.dress, subCategory);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Women - Dress Products');
+          break;
+        case 'Tops':
+          cy.clickElemContainsText(categorySelectors.tops, subCategory);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Women - Tops Products');
+          break;
+        case 'Saree':
+          cy.clickElemContainsText(categorySelectors.saree, subCategory);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Women - Saree Products');
+          break;
+        case 'Tshirts':
+          cy.clickElemContainsText(categorySelectors.tShirts, subCategory);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Men - Tshirts Products');
+          break;
+        case 'Jeans':
+          cy.clickElemContainsText(categorySelectors.jeans, subCategory);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Men - Jeans Products');
+          break;
+        case 'KidsDress':
+          cy.clickElemContainsText(categorySelectors.kidsDress, 'Dress');
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Kids - Dress Products');
+          break;
+        case 'KidsTops':
+          cy.clickElemContainsText(categorySelectors.kidsTops, 'Tops & Shirts');
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Kids - Tops & Shirts Products');
+          break;
+      }
+    } 
+  }
 
 
 
@@ -249,72 +316,39 @@ class Products {
   }
 
   static verifyProductExists(productNumber) {
-    cy.get(`[data-product-id="${productNumber}"]`).should('be.visible');
+    it("Verify product is in cart", () => {
+      productExists(productNumber);
+    });
   }
 
-  static removeProduct(productNumber) {
-    cy.get(`[data-product-id="${productNumber}"]`).click();
+  static verifyProductRemoval(productNumber) {
+    it("Click 'X' button corresponding to particular product", () => {
+      removeProduct(productNumber);
+    });
   }
 
   static verifyProductRemoved(productNumber) {
-    cy.get(`[data-product-id="${productNumber}"]`).should('not.exist');
+    it("Verify that product is removed from the cart", () => {
+      productRemoved(productNumber);
+    });
   }
 
   static verifyCategories() {
-    cy.checkElemContainsText(categorySelectors.women, 'Women');
-    cy.checkElemContainsText(categorySelectors.men, 'Men');
-    cy.checkElemContainsText(categorySelectors.kids, 'Kids');
+    it('Verify that categories are visible on left side bar', () => {
+      genderCategories();
+    });
   }
 
-  static clickCategory(gender) {
-    if (gender) {
-      switch (gender) {
-        case 'Women':
-          cy.clickElemContainsText(categorySelectors.women, 'Women');
-          break;
-        case 'Men':
-          cy.clickElemContainsText(categorySelectors.men, 'Men');
-          break;
-        case 'Kids':
-          cy.clickElemContainsText(categorySelectors.kids, 'Kids');
-          break;
-      }
-    }
+  static verifyClickedCategory(gender) {
+    it(`Click on ${gender} category`, () => {
+      clickCategory(gender);
+    });
   }
 
-  static clickSubCategory(subCategory) {
-    if (subCategory) {
-      switch (subCategory) {
-        case 'Dress':
-          cy.clickElemContainsText(categorySelectors.dress, subCategory);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Women - Dress Products');
-          break;
-        case 'Tops':
-          cy.clickElemContainsText(categorySelectors.tops, subCategory);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Women - Tops Products');
-          break;
-        case 'Saree':
-          cy.clickElemContainsText(categorySelectors.saree, subCategory);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Women - Saree Products');
-          break;
-        case 'Tshirts':
-          cy.clickElemContainsText(categorySelectors.tShirts, subCategory);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Men - Tshirts Products');
-          break;
-        case 'Jeans':
-          cy.clickElemContainsText(categorySelectors.jeans, subCategory);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Men - Jeans Products');
-          break;
-        case 'KidsDress':
-          cy.clickElemContainsText(categorySelectors.kidsDress, 'Dress');
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Kids - Dress Products');
-          break;
-        case 'KidsTops':
-          cy.clickElemContainsText(categorySelectors.kidsTops, 'Tops & Shirts');
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Kids - Tops & Shirts Products');
-          break;
-      }
-    } 
+  static verifySubCategory(subCategory) {
+    it(`Click ${subCategory}`, () => {
+      clickSubCategory(subCategory);
+  });
   }
 
   static verifyBrands() {

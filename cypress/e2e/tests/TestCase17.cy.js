@@ -1,5 +1,6 @@
 import Products from '../../support/pageObjects/Products';
 import NavigationBar from '../../support/pageObjects/NavigationBar';
+import CommonHooks from '../../support/pageObjects/commonHooks';
 
 describe('Test Case 17: Remove Products From Cart', () => {
   before(() => {
@@ -11,42 +12,11 @@ describe('Test Case 17: Remove Products From Cart', () => {
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })
-  beforeEach(() => {
-    // runs before each test in the block
-  })
-
-  afterEach(() => {
-    // runs after each test in the block
-  })
-
-  after(() => {
-    // runs once after all tests in the block
-    //clears the cookies
-    cy.clearCookies()
-  })
-
-  it("Add products to cart", () => {
-    Products.addToCart(2);
-  });
-
-  it("Click 'Cart' button", () => {
-    NavigationBar.clickCart();
-  });
-
-  it("Verify user is landed to product detail page successfully", () => {
-    cy.verifyPageTitle('Automation Exercise - Checkout');
-  });
-
-  it("Verify product is in cart", () => {
-    Products.verifyProductExists(2);
-  });
-
-  it("Click 'X' button corresponding to particular product", () => {
-    Products.removeProduct(2);
-  });
-
-  it("Verify that product is removed from the cart", () => {
-    Products.verifyProductRemoved(2);
-  });
-
+  CommonHooks.CommonBeforeEachAfterEachHooks
+  Products.verifyAddToCart(2);
+  NavigationBar.verifyCart();
+  Products.verifyProductExists(2);
+  Products.verifyProductRemoval(2);
+  Products.verifyProductRemoved(2);
+  
 });

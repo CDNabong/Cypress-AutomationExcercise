@@ -42,7 +42,7 @@ const clickLogout = () => {
   cy.clickElemContainsText(selectors.logout, 'Logout');
 }
 
-const verifyDeliveryAddress = (clientAccount) => {
+const enterDeliveryAddress = (clientAccount) => {
   cy.checkElemContainsText(selectors.deliveryCompany, clientAccounts[clientAccount].company);
   cy.checkElemContainsText(selectors.deliveryAddressCity, clientAccounts[clientAccount].address);
   cy.checkElemContainsText(selectors.deliveryFullAddress, `${clientAccounts[clientAccount].city} ${clientAccounts[clientAccount].state} ${clientAccounts[clientAccount].zipCode}`);
@@ -79,7 +79,9 @@ class Login {
   }
 
   static verifyDeliveryAddress(clientAccount) {
-    // ADD IT BLOCKS
+    it("Verify Address Details and Review Your Order", () => {
+      enterDeliveryAddress(clientAccount);
+    });
   }
 
   
