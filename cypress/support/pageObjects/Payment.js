@@ -21,34 +21,62 @@ const selectors = {
   downloadInvoice: '.btn-default.check_out'
 }
 
+const deliveryAddress = () => {
+  // Will only proceed when user data is available
+  cy.wrap(SignUp.userData).should('not.be.null').then((userData) => {
+    cy.checkElemContainsText(selectors.deliveryCompany, `${userData.text}`);
+    cy.checkElemContainsText(selectors.deliveryAddressCity, `${userData.streetAddress}`);
+    cy.checkElemContainsText(selectors.deliveryFullAddress, `${userData.city} ${userData.state} ${userData.zipCode}`);
+    cy.checkElemContainsText(selectors.deliveryCountry, 'United States');
+    cy.checkElemContainsText(selectors.deliveryContactNumber, `${userData.mobile}`);
+  });
+}
+
+const paymentProcess = () => {
+  cy.completePayment().then((card) => {
+  cy.get(selectors.cardName).type(card.cardName);
+  cy.get(selectors.cardNumber).type(card.cardNumber);
+  cy.get(selectors.cvc).type(card.cvc);
+  cy.get(selectors.expiryMonth).type(card.expiryMonth);
+  cy.get(selectors.expiryYear).type(card.expiryYear);
+  });
+}
+
+const clickPayAndConfirmOrderButton = () => {
+  cy.clickElemContainsText(selectors.payButton, 'Pay and Confirm Order');
+}
+
+const successulPaymentNotification = () => {
+  cy.checkElemContainsText(selectors.orderPlaced, 'Order Placed!');
+}
+
+
+
+
+
 class Payments {
 
-  static paymentProcess() {
-    cy.completePayment().then((card) => {
-    cy.get(selectors.cardName).type(card.cardName);
-    cy.get(selectors.cardNumber).type(card.cardNumber);
-    cy.get(selectors.cvc).type(card.cvc);
-    cy.get(selectors.expiryMonth).type(card.expiryMonth);
-    cy.get(selectors.expiryYear).type(card.expiryYear);
+  static verifyPaymentProcess() {
+    it("Enter payment details: Name on Card, Card Number, CVC, Expiration date", () => {
+      paymentProcess();
     });
   }
 
-  static clickPayAndConfirmOrderButton() {
-    cy.clickElemContainsText(selectors.payButton, 'Pay and Confirm Order');
+  static verifyPayAndConfirmOrderButton() {
+    it("Click 'Pay and Confirm Order' button", () => {
+      clickPayAndConfirmOrderButton();
+    });
   }
 
   static verifySuccessPaymentNotification() {
-    cy.checkElemContainsText(selectors.orderPlaced, 'Order Placed!');
+    it("Verify success message 'Your order has been placed successfully!'", () => {
+      successulPaymentNotification();
+    });
   }
 
   static verifyDeliveryAddress() {
-    // Will only proceed when user data is available
-    cy.wrap(SignUp.userData).should('not.be.null').then((userData) => {
-      cy.checkElemContainsText(selectors.deliveryCompany, `${userData.text}`);
-      cy.checkElemContainsText(selectors.deliveryAddressCity, `${userData.streetAddress}`);
-      cy.checkElemContainsText(selectors.deliveryFullAddress, `${userData.city} ${userData.state} ${userData.zipCode}`);
-      cy.checkElemContainsText(selectors.deliveryCountry, 'United States');
-      cy.checkElemContainsText(selectors.deliveryContactNumber, `${userData.mobile}`);
+    it("Verify Address Details and Review Your Order", () => {
+      deliveryAddress();
     });
   }
 

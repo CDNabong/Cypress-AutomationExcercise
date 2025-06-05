@@ -120,6 +120,34 @@ const productQuantity = (productNumber, quantity) => {
   cy.checkElemContainsText(`#product-${productNumber} > td.cart_quantity > button`, quantity);
 }
 
+const clickCheckoutButton = () => {
+  cy.clickElemContainsText(selectors.checkoutButton, 'Proceed To Checkout');
+}
+
+  const clickRegisterLoginLink = () => {
+    cy.clickElemContainsText(selectors.registerAndLoginLink, 'Register / Login');
+  }
+
+  const enterDescription = () => {
+    cy.generateRandomText().then((text) => {
+      cy.typeElemAndCheckValue(selectors.description, text.randomText, text.randomText);
+    });
+  }
+
+  const clickPlaceOrder = () => {
+    cy.clickElemContainsText(selectors.placeOrderButton, 'Place Order');
+  }
+
+
+
+
+
+
+
+
+
+
+
 class Products {
 
   static productNumber(productNumber) {
@@ -196,22 +224,28 @@ class Products {
     });
   }
 
-  static clickCheckoutButton() {
-    cy.clickElemContainsText(selectors.checkoutButton, 'Proceed To Checkout');
-  }
-
-  static clickRegisterLoginLink() {
-    cy.clickElemContainsText(selectors.registerAndLoginLink, 'Register / Login');
-  }
-
-  static enterDescription(){
-    cy.generateRandomText().then((text) => {
-      cy.typeElemAndCheckValue(selectors.description, text.randomText, text.randomText);
+  static verifyCheckoutButton() {
+    it("Click Proceed To Checkout", () => {
+      clickCheckoutButton();
     });
   }
 
-  static clickPlaceOrder() {
-    cy.clickElemContainsText(selectors.placeOrderButton, 'Place Order');
+  static verifyRegisterLoginLink() {
+     it("Click 'Register / Login' button", () => {
+      clickRegisterLoginLink();
+    });
+  }
+
+  static verifyDescription(){
+    it("Enter description in comment text area", () => {
+      enterDescription();
+    });
+  }
+
+  static verifyOrderAdded() {
+    it("Click 'Place Order'", () => {
+      clickPlaceOrder();
+    });
   }
 
   static verifyProductExists(productNumber) {
