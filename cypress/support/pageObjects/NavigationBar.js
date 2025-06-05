@@ -54,24 +54,7 @@ class NavigationBar {
       verifySignUpLogin();
     });
   }
-
-  static testNonMemberNavigationBar() {
-
-  }
-
-  static memberNavigationBar() {
-    cy.checkElemContainsText(selectors.home, 'Home')
-    cy.checkElemContainsText(selectors.products, 'Products')
-    cy.checkElemContainsText(selectors.cart, 'Cart')
-    cy.checkElemContainsText(selectors.logout, 'Logout');
-    cy.checkElemContainsText(selectors.deleteAccount, 'Delete Account');
-    cy.checkElemContainsText(selectors.testCases, 'Test Cases');
-    cy.checkElemContainsText(selectors.apiTesting, 'API Testing');
-    cy.checkElemContainsText(selectors.videoTutorials, 'Video Tutorials');
-    cy.checkElemContainsText(selectors.contactUs, 'Contact us');
-  }
-
-
+  
   static clickProducts() {
     it("Click on 'Products' button", () => {
       verifyProducts();

@@ -143,12 +143,16 @@ const clickCheckoutButton = () => {
     cy.get(`[data-product-id="${productNumber}"]`).should('be.visible');
   }
 
-  const removeProduct = (productNumber) => {
-    cy.get(`[data-product-id="${productNumber}"]`).click();
+  const removeProduct = (...productNumber) => {
+    productNumber.forEach(productNumber => {
+      cy.get(`[data-product-id="${productNumber}"]`).click();
+    });
   }
 
-  const productRemoved = (productNumber) => {
-    cy.get(`[data-product-id="${productNumber}"]`).should('not.exist');
+  const productRemoved = (...productNumber) => {
+    productNumber.forEach(productNumber => {
+      cy.get(`[data-product-id="${productNumber}"]`).should('not.exist');
+    });
   }
 
   const genderCategories = () => {
@@ -208,12 +212,86 @@ const clickCheckoutButton = () => {
     } 
   }
 
+  const verifyBrands = () => {
+    cy.scrollTo('center')
+    cy.checkElemContainsText(brandSelectors.polo, 'Polo');
+    cy.checkElemContainsText(brandSelectors.hm, 'H&M');
+    cy.checkElemContainsText(brandSelectors.madame, 'Madame');
+    cy.checkElemContainsText(brandSelectors.mastHarbour, 'Mast & Harbour');
+    cy.checkElemContainsText(brandSelectors.babyHug, 'Babyhug');
+    cy.checkElemContainsText(brandSelectors.allenSollyJunior, 'Allen Solly Junior');
+    cy.checkElemContainsText(brandSelectors.kookieKids, 'Kookie Kids');
+    cy.checkElemContainsText(brandSelectors.biba, 'Biba');
+  }
 
+  const clickBrands = (brand) => {
+  if (brand) {
+      switch (brand) {
+        case 'Polo':
+          cy.clickElemContainsText(brandSelectors.polo, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Polo Products');
+          break;
+        case 'H&M':
+          cy.clickElemContainsText(brandSelectors.hm, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - H&M Products');
+          break;
+        case 'Madame':
+          cy.clickElemContainsText(brandSelectors.madame, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Madame Products');
+          break;
+        case 'Mast & Harbour':
+          cy.clickElemContainsText(brandSelectors.mastHarbour, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Mast & Harbour Products');
+          break;
+        case 'Babyhug':
+          cy.clickElemContainsText(brandSelectors.babyHug, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Babyhug Products');
+          break;
+        case 'Allen Solly Junior':
+          cy.clickElemContainsText(brandSelectors.allenSollyJunior, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Allen Solly Junior Products');
+          break;
+        case 'Kookie Kids':
+          cy.clickElemContainsText(brandSelectors.kookieKids, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Kookie Kids Products');
+          break;
+        case 'Biba':
+          cy.clickElemContainsText(brandSelectors.biba, brand);
+          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Biba Products');
+          break;
+      }
+    }
+  }
 
+  const writeReviewIndicator = () => {
+    cy.checkElemContainsText(selectors.writeReview, 'Write Your Review')
+  }
 
+  const enterProductReview = () => {
+    cy.generateRandomUser().then((userData) => {
+      cy.typeElemAndCheckValue(selectors.reviewName, userData.fullName, userData.fullName);
+      cy.typeElemAndCheckValue(selectors.reviewEmail, userData.email, userData.email);
+    });
+    cy.generateRandomText().then((text) => {
+      cy.typeElemAndCheckValue(selectors.reviewMessage, text.randomText, text.randomText);
+    });
+    cy.clickElemContainsText(selectors.reviewSubmitBtn, 'Submit')
+  }
 
+  const reviewSuccessNotification = () => {
+    cy.checkElemContainsText(selectors.reviewSuccessNotif, 'Thank you for your review.')
+  }
 
+  const addToCartRecommendedItems = () => {
+    cy.clickElemContainsText(selectors.recommendedItem1, 'Add to cart');
+    cy.clickElemContainsText(selectors.continueShopping, 'Continue Shopping');
+    cy.clickElemContainsText(selectors.recommendedItem2, 'Add to cart');
+    cy.clickElemContainsText(selectors.continueShopping, 'Continue Shopping');
+  }
 
+  const recommendedItemsHeader = () => {
+    cy.checkElemContainsText(selectors.recommendedItems, 'recommended items');
+  }
 
 class Products {
 
@@ -243,16 +321,16 @@ class Products {
     });
   }
 
-  static searchedProductResult(productNumbers) {
+  static searchedProductResult(...productNumbers) {
     it("Verify all the products related to search are visible", () => {
-      verifySearchedProductResult(productNumbers);
+      verifySearchedProductResult(...productNumbers);
     });
   }
 
-  static verifyAddToCart(productNumbers) {
+  static verifyAddToCart(...productNumbers) {
     it("Add product and click 'Add to cart'", () => {
-      addToCart(productNumbers);
-  });
+      addToCart(...productNumbers);
+    });
   }
 
   static viewCart() {
@@ -261,15 +339,15 @@ class Products {
     });
   }
 
-  static verifyCartProducts(productNumbers) {
+  static verifyCartProducts(...productNumbers) {
     it("Verify both products are added to Cart", () => {
-      cartProducts(productNumbers);
+      cartProducts(...productNumbers);
     });
   }
 
-  static verifyCartProductsDetails(productNumbers) {
+  static verifyCartProductsDetails(...productNumbers) {
     it("Verify their prices, quantity and total price", () => {
-      cartProductsDetails(productNumbers);
+      cartProductsDetails(...productNumbers);
     });
   }
 
@@ -321,15 +399,15 @@ class Products {
     });
   }
 
-  static verifyProductRemoval(productNumber) {
+  static verifyProductRemoval(...productNumber) {
     it("Click 'X' button corresponding to particular product", () => {
-      removeProduct(productNumber);
+      removeProduct(...productNumber);
     });
   }
 
-  static verifyProductRemoved(productNumber) {
+  static verifyProductRemoved(...productNumber) {
     it("Verify that product is removed from the cart", () => {
-      productRemoved(productNumber);
+      productRemoved(...productNumber);
     });
   }
 
@@ -351,85 +429,46 @@ class Products {
   });
   }
 
-  static verifyBrands() {
-    cy.scrollTo('center')
-    cy.checkElemContainsText(brandSelectors.polo, 'Polo');
-    cy.checkElemContainsText(brandSelectors.hm, 'H&M');
-    cy.checkElemContainsText(brandSelectors.madame, 'Madame');
-    cy.checkElemContainsText(brandSelectors.mastHarbour, 'Mast & Harbour');
-    cy.checkElemContainsText(brandSelectors.babyHug, 'Babyhug');
-    cy.checkElemContainsText(brandSelectors.allenSollyJunior, 'Allen Solly Junior');
-    cy.checkElemContainsText(brandSelectors.kookieKids, 'Kookie Kids');
-    cy.checkElemContainsText(brandSelectors.biba, 'Biba');
+  static testBrands() {
+    it("Verify that Brands are visible on left side bar", () => {
+      verifyBrands();
+    });
   }
 
-  static clickBrand(brand) {
-    if (brand) {
-      switch (brand) {
-        case 'Polo':
-          cy.clickElemContainsText(brandSelectors.polo, brand);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Polo Products');
-          break;
-        case 'H&M':
-          cy.clickElemContainsText(brandSelectors.hm, brand);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - H&M Products');
-          break;
-        case 'Madame':
-          cy.clickElemContainsText(brandSelectors.madame, brand);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Madame Products');
-          break;
-        case 'Mast & Harbour':
-          cy.clickElemContainsText(brandSelectors.mastHarbour, brand);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Mast & Harbour Products');
-          break;
-        case 'Babyhug':
-          cy.clickElemContainsText(brandSelectors.babyHug, brand);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Babyhug Products');
-          break;
-        case 'Allen Solly Junior':
-          cy.clickElemContainsText(brandSelectors.allenSollyJunior, brand);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Allen Solly Junior Products');
-          break;
-        case 'Kookie Kids':
-          cy.clickElemContainsText(brandSelectors.kookieKids, brand);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Kookie Kids Products');
-          break;
-        case 'Biba':
-          cy.clickElemContainsText(brandSelectors.biba, brand);
-          cy.checkElemContainsText(selectors.headerSubcategory, 'Brand - Biba Products');
-          break;
-      }
-    }
+  static verifyBrands(brand) {
+    it(`Click on ${brand} brand name`, () => {
+      clickBrands(brand);
+    });
   }
 
   static verifyWriteReviewIndicator() {
-    cy.checkElemContainsText(selectors.writeReview, 'Write Your Review')
+    it("Verify 'Write Your Review' is visible", () => {
+      writeReviewIndicator();
+    });
   }
 
-  static reviewProduct() {
-    cy.generateRandomUser().then((userData) => {
-      cy.typeElemAndCheckValue(selectors.reviewName, userData.fullName, userData.fullName);
-      cy.typeElemAndCheckValue(selectors.reviewEmail, userData.email, userData.email);
+  static verifyProductReview() {
+    it("Enter name, email and review", () => {
+      enterProductReview();
     });
-    cy.generateRandomText().then((text) => {
-      cy.typeElemAndCheckValue(selectors.reviewMessage, text.randomText, text.randomText);
-    });
-    cy.clickElemContainsText(selectors.reviewSubmitBtn, 'Submit')
   }
 
   static verifyReviewSuccessNotification() {
-    cy.checkElemContainsText(selectors.reviewSuccessNotif, 'Thank you for your review.')
+    it("Verify success message 'Thank you for your review.'", () => {
+      reviewSuccessNotification();
+    });
   }
 
-  static verifyRecommendedItems() {
-    cy.checkElemContainsText(selectors.recommendedItems, 'recommended items');
+  static verifyRecommendedItemsHeader() {
+    it("Verify 'RECOMMENDED ITEMS' are visible", () => {
+      recommendedItemsHeader();
+    });
   }
 
-  static addToCartRecommended() {
-    cy.clickElemContainsText(selectors.recommendedItem1, 'Add to cart');
-    cy.clickElemContainsText(selectors.continueShopping, 'Continue Shopping');
-    cy.clickElemContainsText(selectors.recommendedItem2, 'Add to cart');
-    cy.clickElemContainsText(selectors.continueShopping, 'Continue Shopping');
+  static verifyAddToCartRecommendedItems() {
+    it("Click on 'Add To Cart' on Recommended product", () => {
+      addToCartRecommendedItems();
+    });
   }
 
 }

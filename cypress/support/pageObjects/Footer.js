@@ -21,6 +21,10 @@ const verifySuccessNotification = () => {
   cy.checkElemContainsText(selectors.successNotification, 'You have been successfully subscribed!');
 }
 
+const scrollUpIcon = () => {
+  cy.clickVisibleElement(selectors.scrollUpIcon);
+}
+
 class Footer {
 
   static subscriptionText() {
@@ -40,7 +44,9 @@ class Footer {
   }
 
   static clickScrollUpIcon() {
-    cy.get(selectors.scrollUpIcon).click();
+    it("Click on arrow at bottom right side to move upward", () => {
+      scrollUpIcon();
+    });
   }
 
 }

@@ -134,16 +134,6 @@ class SignUp {
     });
   }
 
-  static verifyAddress() {
-    // Will only proceed when user data is available
-    cy.wrap(SignUp.userData).should('not.be.null').then((userData) => {
-      cy.get(selectors.loggedInAccount)
-        .should('be.visible')
-        .parent()
-        .contains(`Logged in as ${userData.firstName} ${userData.lastName}`);
-    });
-  }
-
 }
 
 export default SignUp;

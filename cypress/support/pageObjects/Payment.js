@@ -50,9 +50,20 @@ const successulPaymentNotification = () => {
   cy.checkElemContainsText(selectors.orderPlaced, 'Order Placed!');
 }
 
+const billingAddress = () => {
+  // Will only proceed when user data is available
+  cy.wrap(SignUp.userData).should('not.be.null').then((userData) => {
+    cy.checkElemContainsText(selectors.billingCompany, `${userData.text}`);
+    cy.checkElemContainsText(selectors.billingAddressCity, `${userData.streetAddress}`);
+    cy.checkElemContainsText(selectors.billingFullAddress, `${userData.city} ${userData.state} ${userData.zipCode}`);
+    cy.checkElemContainsText(selectors.billingCountry, 'United States');
+    cy.checkElemContainsText(selectors.billingContactNumber, `${userData.mobile}`);
+  });
+}
 
-
-
+const downloadInvoice = () => {
+  cy.clickElemContainsText(selectors.downloadInvoice, 'Download Invoice');
+}
 
 class Payments {
 
@@ -81,18 +92,15 @@ class Payments {
   }
 
   static verifyBillingAddress() {
-    // Will only proceed when user data is available
-    cy.wrap(SignUp.userData).should('not.be.null').then((userData) => {
-      cy.checkElemContainsText(selectors.billingCompany, `${userData.text}`);
-      cy.checkElemContainsText(selectors.billingAddressCity, `${userData.streetAddress}`);
-      cy.checkElemContainsText(selectors.billingFullAddress, `${userData.city} ${userData.state} ${userData.zipCode}`);
-      cy.checkElemContainsText(selectors.billingCountry, 'United States');
-      cy.checkElemContainsText(selectors.billingContactNumber, `${userData.mobile}`);
+    it("Verify that the billing address is same address filled at the time registration of account", () => {
+      billingAddress();
     });
   }
 
   static clickDownloadInvoice() {
-    cy.clickElemContainsText(selectors.downloadInvoice, 'Download Invoice');
+    it("Click 'Download Invoice' button and verify invoice is downloaded successfully.", () => {
+      downloadInvoice();
+    });
   }
 
 }
