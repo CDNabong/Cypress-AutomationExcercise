@@ -1,5 +1,13 @@
 {
-  "name": "Using fixtures to represent data",
-  "email": "hello@cypress.io",
-  "body": "Fixtures are a great way to mock data for responses to routes"
+  "string": "This is a sample JSON string",
+  "integer": 3,
+  "boolean": true,
+  "arrayInteger": [1, 2, 3, 4, 5],
+  "arrayString": ["apple", "banana", "cherry"],
+  "object": 
+    [{
+      "key1": "value1",
+      "key2": 1,
+      "key3": true
+    }]
 }

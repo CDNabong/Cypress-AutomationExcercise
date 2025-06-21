@@ -13,7 +13,9 @@ module.exports = {
   video: true,
   screenshotOnRunFailure: true,
   failOnStatusCode: false,
-  defaultCommandTimeout: 120000
+  defaultCommandTimeout: 120000,
+  viewportWidth: 1920,
+  viewportHeight: 1080,
 };
 
 
