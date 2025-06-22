@@ -10,46 +10,6 @@ describe('Verify API tests', () => {
 
   CommonHooks.CommonBeforeEachAfterEachHooks
 
-  /*
-  it('API 1: Get All Products List', () => {
-    cy.request({
-      method: 'GET',
-      url: `${apiUrl}productsList`,
-    }).then((response) => {
-      expect(response.status).to.eq(200);
-      // expect(response.body).to.have.property('products').with.lengthOf(43);
-      const products = response.body.products;
-      console.log(products);
-      expect(products).to.be.an('array');
-      cy.log(response.body);
-      cy.log(JSON.stringify(response.body));
-    });
-  })
-
-  it('API 3: Get All Brands List', () => {
-    cy.request({
-      method: 'GET',
-      url: `${apiUrl}brandsList`,
-    }).then((response) => {
-      expect(response.status).to.eq(200);
-      cy.log(JSON.stringify(response.body));
-    });
-  })
-
-  it('API 5: POST To Search Product', () => {
-    cy.request({
-      method: 'POST',
-      url: `${apiUrl}searchProduct`,
-      form: true,
-      body: {
-        search_product: 'T-shirt'
-      }
-    }).then((response) => {
-      expect(response.status).to.eq(200);
-      cy.log(JSON.stringify(response.body));
-    });
-  })
-  */
   const firstName = faker.person.firstName(); // Generate a random first name
   const lastName = faker.person.lastName(); // Generate a random last name
   const fullName = `${firstName} ${lastName}`;  // Combine the first and last name into full name
@@ -61,20 +21,33 @@ describe('Verify API tests', () => {
   const state = faker.location.state(); // Random state
   const zipCode = faker.location.zipCode(); // Random zip code
 
+  it.skip('API 1: Get All Products List', () => {
+    // TODO
+  })
+
+  it.skip('API 3: Get All Brands List', () => {
+    // TODO
+  })
+
+  it.skip('API 5: POST To Search Product', () => {
+    // TODO
+  })
+
   it('API 10: POST To Verify Login with invalid details', () => {
     cy.request({
       method: 'POST',
       url: `${apiUrl}verifyLogin`,
       form: true,
+      failOnStatusCode: false, // Add this if you're expecting a 404-style response code inside the body
       body: {
         email: email,
         password: password,
       }
     }).then((response) => {
-      const verifyInvalidLoginResponse = JSON.stringify(response.body)
       expect(response.status).to.eq(200);
-      expect(verifyInvalidLoginResponse).to.include(404); // check if the response contains 404
-      expect(verifyInvalidLoginResponse).to.include('User not found!'); // check if the response contains 'User not found!'
+      const parsedResponse = JSON.parse(response.body)
+      expect(parsedResponse).to.have.property('responseCode', 404); // check if the responseCode is 404
+      expect(parsedResponse).to.have.property('message', 'User not found!'); // check if the message is 'User not found!'
     });
   })
 
@@ -103,10 +76,29 @@ describe('Verify API tests', () => {
         mobile_number: mobile
       }
     }).then((response) => {
-      const verifyCreatedUserResponse = JSON.stringify(response.body);
+      const parsedResponse = JSON.parse(response.body);
       expect(response.status).to.eq(200);
-      expect(verifyCreatedUserResponse).to.include(201); // check if the response contains '201'
-      expect(verifyCreatedUserResponse).to.include('User created!'); // check if the response contains 'User created!'
+      expect(parsedResponse).to.have.property('responseCode', 201); // check if the responseCode is 201
+      expect(parsedResponse).to.have.property('message', 'User created!'); // check if the message is 'User created!'
+    });
+  })
+
+  it('API 14: GET user account detail by email', () => {
+    cy.request({
+      method: 'GET',
+      url: `${apiUrl}getUserDetailByEmail`,
+      form: true,
+      qs: { // 'qs' for query string parameters
+        email: email,
+      }
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      const parsedResponse = JSON.parse(response.body)
+      expect(parsedResponse).to.have.property('responseCode', 200); // check if the responseCode is 200
+      expect(parsedResponse.user).to.have.property('first_name', firstName); // check if the first_name is firstName
+      expect(parsedResponse.user).to.have.property('last_name', lastName); // check if the last_name is lastName
+      expect(parsedResponse.user).to.have.property('name', fullName); // check if the name is fullName
+      expect(parsedResponse.user).to.have.property('email', email); // check if the email is email
     });
   })
 
@@ -120,11 +112,50 @@ describe('Verify API tests', () => {
         password: password,
       }
     }).then((response) => {
-      const verifyValidLoginResponse = JSON.stringify(response.body);
+      const parsedResponse = JSON.parse(response.body);
       expect(response.status).to.eq(200);
-      expect(verifyValidLoginResponse).to.include(200); // check if the response contains 200
-      expect(verifyValidLoginResponse).to.include('User exists!'); // check if the response contains 'User exists!'
+      expect(parsedResponse).to.have.property('responseCode', 200); // check if the responseCode is 200
+      expect(parsedResponse).to.have.property('message', 'User exists!'); // check if the message is 'User exists!'
     });
+  })
+
+  it('API 13: PUT METHOD To Update User Account', () => {
+    cy.request({
+      method: 'PUT',
+      url: `${apiUrl}updateAccount`,
+      failOnStatusCode: false, // Add this if you're expecting a 404-style response code inside the body
+      form: true,
+      body: {
+        email: email,
+        password: password,
+        firstname: lastName, 
+        lastname: firstName,
+        name: lastName + ' ' + firstName, // Update the name to be lastName firstName
+      }
+    }).then((response) => {
+      const parsedResponse = JSON.parse(response.body);
+      expect(response.status).to.eq(200);
+      expect(parsedResponse).to.have.property('responseCode', 200); // check if the responseCode is 200
+      expect(parsedResponse).to.have.property('message', 'User updated!'); // check if the message is 'User updated!'
+    });
+  })
+
+  it('API 14: GET user account detail by email', () => {
+    cy.request({
+      method: 'GET',
+      url: `${apiUrl}getUserDetailByEmail`,
+      form: true,
+      qs: { // 'qs' for query string parameters
+        email: email,
+      }
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      const parsedResponse = JSON.parse(response.body)
+      expect(parsedResponse).to.have.property('responseCode', 200); // check if the responseCode is 200
+      expect(parsedResponse.user).to.have.property('first_name', lastName); // check if the first_name is firstName
+      expect(parsedResponse.user).to.have.property('last_name', firstName); // check if the last_name is lastName
+      expect(parsedResponse.user).to.have.property('name', `${lastName} ${firstName}`); // check if the name is fullName
+      });
   })
 
   it('API 12: DELETE METHOD To Delete User Account', () => {
@@ -136,11 +167,11 @@ describe('Verify API tests', () => {
         email: email,
         password: password,
       }
-    }).then((response) => {
-      const verifyDeleteResponse = JSON.stringify(response.body)
+    }).then((response) => { // // Yields response object as first arg
+      const parsedResponse = JSON.parse(response.body);
       expect(response.status).to.eq(200);
-      expect(verifyDeleteResponse).to.include(200); // check if the response contains 404
-      expect(verifyDeleteResponse).to.include('Account deleted!'); // check if the response contains 'User not found!'
+      expect(parsedResponse).to.have.property('responseCode', 200); // check if the responseCode is 200
+      expect(parsedResponse).to.have.property('message', 'Account deleted!'); // check if the message is 'Account deleted!'
     });
   })
 
