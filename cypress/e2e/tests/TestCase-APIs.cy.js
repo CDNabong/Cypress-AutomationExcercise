@@ -21,16 +21,63 @@ describe('Verify API tests', () => {
   const state = faker.location.state(); // Random state
   const zipCode = faker.location.zipCode(); // Random zip code
 
-  it.skip('API 1: Get All Products List', () => {
-    // TODO
+  it('API 1: Get All Products List', () => {
+    cy.request({
+      method: 'GET',
+      url: `${apiUrl}productsList`,
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      const parsedResponse = JSON.parse(response.body)
+      expect(parsedResponse).to.have.property('responseCode', 200); // check if the responseCode is 200
+      expect(parsedResponse).to.have.property('products'); // check if the products property exists
+      parsedResponse.products.forEach(product => {
+        expect(product).to.have.property('id'); // check if each product has an id
+        expect(product).to.have.property('name'); // check if each product has a name
+        expect(product).to.have.property('category'); // check if each product has a category
+        expect(product).to.have.property('price'); // check if each product has a price
+      });
+      expect(parsedResponse.products.length).to.equal(34); // Ensure the product count
+    });
   })
 
-  it.skip('API 3: Get All Brands List', () => {
-    // TODO
+  it('API 3: Get All Brands List', () => {
+    cy.request({
+      method: 'GET',
+      url: `${apiUrl}brandsList`,
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      const parsedResponse = JSON.parse(response.body)
+      expect(parsedResponse).to.have.property('responseCode', 200); // check if the responseCode is 200
+      expect(parsedResponse).to.have.property('brands'); // check if the products property exists
+      parsedResponse.brands.forEach(brand => {
+        expect(brand).to.have.property('id'); // check if each product has an id
+        expect(brand).to.have.property('brand'); // check if each product has a name
+      });
+      expect(parsedResponse.brands.length).to.equal(34); // Ensure the brand count
+    });
   })
 
-  it.skip('API 5: POST To Search Product', () => {
-    // TODO
+  it('API 5: POST To Search Product', () => {
+    cy.request({
+      method: 'POST',
+      url: `${apiUrl}searchProduct`,
+      form: true,
+      body: {
+        search_product: 'saree'
+      }
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      const parsedResponse = JSON.parse(response.body)
+      expect(parsedResponse).to.have.property('responseCode', 200); // check if the responseCode is 200
+      expect(parsedResponse).to.have.property('products'); // check if the products property exists
+      parsedResponse.products.forEach(product => {
+        expect(product).to.have.property('id'); // check if each product has an id
+        expect(product).to.have.property('name'); // check if each product has a name
+        expect(product).to.have.property('price'); // check if each product has a price
+        expect(product).to.have.property('brand'); // check if each product has a price
+      });
+      expect(parsedResponse.products.length).to.equal(3); // Ensure the product count
+    });
   })
 
   it('API 10: POST To Verify Login with invalid details', () => {
