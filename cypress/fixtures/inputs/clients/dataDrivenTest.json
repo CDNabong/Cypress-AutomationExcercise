@@ -1,0 +1,45 @@
+[
+  {
+    "email": "testclient2@yopmail.com",
+    "password": "client",
+    "expectedResult": "Success",
+    "firstName": "Mike",
+    "lastName": "Ross"
+  },
+  {
+    "email": "incorrect@email.com",
+    "password": "incorrectclient",
+    "expectedResult": "Invalid"
+  },
+  {
+    "email": "testclient4@yopmail.com",
+    "password": "client",
+    "expectedResult": "Success",
+    "firstName": "Jessica",
+    "lastName": "Pearson"
+  },
+  {
+    "email": "incorrect@email.com",
+    "password": "incorrectclient",
+    "expectedResult": "Invalid"
+  },
+   {
+    "email": "testclient4@yopmail.com",
+    "password": "client",
+    "expectedResult": "Success",
+    "firstName": "Jessica",
+    "lastName": "Pearson"
+  },
+  {
+    "email": "incorrect@email.com",
+    "password": "incorrectclient",
+    "expectedResult": "Invalid"
+  },
+  {
+    "email": "testclient3@yopmail.com",
+    "password": "client",
+    "expectedResult": "Success",
+    "firstName": "Louis",
+    "lastName": "Litt"
+  }
+]

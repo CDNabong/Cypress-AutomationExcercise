@@ -53,19 +53,7 @@ Cypress.Commands.add('generateRandomUser', () => {
   const text = faker.lorem.words(2);
 
   // Return the object with the random user data
-  return {
-    firstName,
-    lastName,
-    fullName,
-    email,
-    password,
-    mobile,
-    streetAddress,
-    city,
-    state,
-    zipCode,
-    text,
-  };
+  return { firstName, lastName, fullName, email, password, mobile, streetAddress, city, state, zipCode, text };
 
 });
 
@@ -74,9 +62,7 @@ Cypress.Commands.add('generateRandomText', () => {
   const randomText = faker.lorem.sentences({ min: 1, max: 1 }); // Generate a random sentence
 
   // Return the object with the randomText
-  return {
-    randomText,
-  };
+  return randomText;
 
 });
 
@@ -85,10 +71,7 @@ Cypress.Commands.add('generateRandomParagraph', () => {
   const randomParagraph = faker.lorem.paragraphs({ min: 1, max: 2 }) // Generate a random paragraphs
 
   // Return the object with the randomParagraph
-  return {
-    randomParagraph,
-  };
-
+  return randomParagraph;
 });
 
 /**
@@ -155,12 +138,13 @@ Cypress.Commands.add('completePayment', () => {
   const expiryYear = 2030
 
   // Return the object with the random user data
-  return {
-    cardName,
-    cardNumber,
-    cvc,
-    expiryMonth,
-    expiryYear,
-  };
+  return { cardName, cardNumber, cvc, expiryMonth, expiryYear };
 
+});
+
+
+Cypress.Commands.add('clientAccountInfo', () => {
+  cy.fixture('fixtures/inputs/clients/clientAccounts').then((clientAccounts) => {
+    return Cypress.env('datasets', clientAccounts);
+  });
 });
