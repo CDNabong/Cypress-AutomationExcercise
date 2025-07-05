@@ -4,10 +4,8 @@ import CommonHooks from '../../support/pageObjects/commonHooks';
 describe('Test Case 13: Verify Product quantity in Cart', () => {
   before(() => {
     // runs once before all tests in the block
-    
     //clears the cookies
     cy.clearCookies()
-
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })

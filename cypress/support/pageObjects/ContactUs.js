@@ -27,14 +27,14 @@ const enterEmail = () => {
 }
 
 const enterSubject = () => {
-  cy.generateRandomText().then((text) => {
-    cy.typeElemAndCheckValue(selectors.contactUsSubject, text.randomText, text.randomText);
+  cy.generateRandomUser().then((textData) => {
+    cy.typeElemAndCheckValue(selectors.contactUsSubject, textData.text, textData.text);
   });
 }
 
 const enterBody = () => {
-  cy.generateRandomText().then((text) => {
-    cy.typeElemAndCheckValue(selectors.contactUsBody, text.randomText, text.randomText);
+  cy.generateRandomUser().then((textData) => {
+    cy.typeElemAndCheckValue(selectors.contactUsBody, textData.text, textData.text);
   });
 }
 
@@ -61,11 +61,11 @@ class ContactUs {
   }
 
   static verifySubjectText() {
-    return enterSubject();
+    enterSubject();
   }
 
   static verifyBodyText() {
-    return enterBody();
+    enterBody();
   }
 
   static testUploadFile() {

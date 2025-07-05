@@ -26,11 +26,11 @@ describe('Test Case 6: Contact Us Form', () => {
   });
 
   it("Enter subject texts", () => {
-    ContactUs.verifySubjectText(); // not working properly, need to fix
+    ContactUs.verifySubjectText();
   });
 
   it("Enter body texts", () => {
-    ContactUs.verifyBodyText(); // not working properly, need to fix
+    ContactUs.verifyBodyText();
   });
 
   it("Verify upload file and success notification", () => {

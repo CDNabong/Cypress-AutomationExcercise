@@ -6,7 +6,6 @@ describe('Test Case 10: Verify Subscription in home page', () => {
     // runs once before all tests in the block
     //clears the cookies
     cy.clearCookies()
-
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })

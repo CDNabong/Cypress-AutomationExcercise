@@ -7,7 +7,6 @@ describe('Test Case 8: Verify All Products and product detail page', () => {
     // runs once before all tests in the block
     //clears the cookies
     cy.clearCookies()
-
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })

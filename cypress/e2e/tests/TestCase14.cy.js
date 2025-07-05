@@ -7,10 +7,8 @@ import CommonHooks from '../../support/pageObjects/commonHooks';
 describe('Test Case 14: Place Order: Register while Checkout', () => {
   before(() => {
     // runs once before all tests in the block
-    
     //clears the cookies
     cy.clearCookies()
-
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })

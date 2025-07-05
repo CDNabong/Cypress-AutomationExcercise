@@ -133,8 +133,8 @@ const clickCheckoutButton = () => {
   }
 
   const enterDescription = () => {
-    cy.generateRandomText().then((text) => {
-      cy.typeElemAndCheckValue(selectors.description, text.randomText, text.randomText); // still not working
+    cy.generateRandomUser().then((textData) => {
+      cy.typeElemAndCheckValue(selectors.description, textData.text, textData.text);
     });
   }
 
@@ -275,9 +275,7 @@ const clickCheckoutButton = () => {
     cy.generateRandomUser().then((userData) => {
       cy.typeElemAndCheckValue(selectors.reviewName, userData.fullName, userData.fullName);
       cy.typeElemAndCheckValue(selectors.reviewEmail, userData.email, userData.email);
-    });
-    cy.generateRandomText().then((text) => {
-      cy.typeElemAndCheckValue(selectors.reviewMessage, text.randomText, text.randomText);
+      cy.typeElemAndCheckValue(selectors.reviewMessage, userData.text, userData.text);
     });
     cy.clickElemContainsText(selectors.reviewSubmitBtn, 'Submit')
   }

@@ -50,22 +50,12 @@ Cypress.Commands.add('generateRandomUser', () => {
   const city = faker.location.city(); // Random city
   const state = faker.location.state(); // Random state
   const zipCode = faker.location.zipCode(); // Random zip code
-  const text = faker.lorem.words(2);
+  const text = faker.lorem.words(3);
 
   // Return the object with the random user data
   return { firstName, lastName, fullName, email, password, mobile, streetAddress, city, state, zipCode, text };
 
 });
-
-Cypress.Commands.add('generateRandomText', () => {
-
-  const randomText = faker.lorem.words({ min: 1, max: 5 });  // Generate 1-5 random words
-
-  // Return the object with the randomText
-  return randomText;
-
-});
-
 
 /**
  * Check element containing the text

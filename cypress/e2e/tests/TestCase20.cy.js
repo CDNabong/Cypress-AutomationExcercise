@@ -7,7 +7,6 @@ describe('Test Case 20: Search Products and Verify Cart After Login', () => {
 
   before(() => {
     // runs once before all tests in the block
-    
     //clears the cookies
     cy.clearCookies();
     cy.visit('/');
