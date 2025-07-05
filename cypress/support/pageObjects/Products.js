@@ -296,19 +296,11 @@ const clickCheckoutButton = () => {
 class Products {
 
   static productNumber(productNumber) {
-    it("Click on 'View Product'", () => {
-      viewProductNumber(productNumber);
-    });
-
-    it("Verify user is landed to product detail page successfully", () => {
-      cy.verifyPageTitle('Automation Exercise - Product Details');
-    });
+    viewProductNumber(productNumber);
   }
 
   static productDetails(itemNumber) {
-    it("Verify that detail detail is visible: product name, category, price, availability, condition, brand", () => {
-      verifyProductDetails(itemNumber);
-    });
+    verifyProductDetails(itemNumber);
   }
 
   static clickContinueShopping() {
@@ -316,15 +308,11 @@ class Products {
   }
 
   static searchProduct(productName) {
-    it("Enter product name in search input and click search button", () => {
-      clickSearchProduct(productName);
-    });
+    clickSearchProduct(productName);
   }
 
   static searchedProductResult(...productNumbers) {
-    it("Verify all the products related to search are visible", () => {
-      verifySearchedProductResult(...productNumbers);
-    });
+    verifySearchedProductResult(...productNumbers);
   }
 
   static verifyAddToCart(...productNumbers) {

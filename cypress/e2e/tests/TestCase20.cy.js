@@ -14,7 +14,14 @@ describe('Test Case 20: Search Products and Verify Cart After Login', () => {
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-  NavigationBar.clickProducts();
+  
+  it("Click on 'Products' button", () => {
+      NavigationBar.clickProducts();
+  });
+    
+  it("Verify user is landed to all products page successfully", () => {
+    cy.verifyPageTitle('Automation Exercise - All Products');
+  });
   Products.searchProduct('Jeans');
   Products.searchedProductResult(33, 35, 37);
   Products.verifyAddToCart(33, 35, 37);

@@ -59,20 +59,13 @@ Cypress.Commands.add('generateRandomUser', () => {
 
 Cypress.Commands.add('generateRandomText', () => {
 
-  const randomText = faker.lorem.sentences({ min: 1, max: 1 }); // Generate a random sentence
+  const randomText = faker.lorem.words({ min: 1, max: 5 })  // Generate 1-5 random words
 
   // Return the object with the randomText
   return randomText;
 
 });
 
-Cypress.Commands.add('generateRandomParagraph', () => {
-
-  const randomParagraph = faker.lorem.paragraphs({ min: 1, max: 2 }) // Generate a random paragraphs
-
-  // Return the object with the randomParagraph
-  return randomParagraph;
-});
 
 /**
  * Check element containing the text

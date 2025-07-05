@@ -13,7 +13,14 @@ describe('Test Case 19: View & Cart Brand Products', () => {
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-  NavigationBar.clickProducts();
+  
+  it("Click on 'Products' button", () => {
+      NavigationBar.clickProducts();
+  });
+    
+  it("Verify user is landed to all products page successfully", () => {
+    cy.verifyPageTitle('Automation Exercise - All Products');
+  });
   Products.testBrands();
   Products.verifyBrands('Polo');
   Products.verifyBrands('H&M');

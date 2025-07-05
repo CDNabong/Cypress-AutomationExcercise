@@ -12,7 +12,13 @@ describe('Test Case 13: Verify Product quantity in Cart', () => {
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-  Products.productNumber(5);
+  it("Click on 'View Product'", () => {
+    Products.productNumber(5);
+  });
+
+  it("Verify user is landed to product detail page successfully", () => {
+    cy.verifyPageTitle('Automation Exercise - Product Details');
+  });(5);
   Products.productDetails(5);
   Products.productQuantity(4);
   Products.verifyClickAddToCart();

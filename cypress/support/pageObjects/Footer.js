@@ -28,19 +28,12 @@ const scrollUpIcon = () => {
 class Footer {
 
   static subscriptionText() {
-    it("Verify text 'SUBSCRIPTION'", () => {
-      verifySubscriptionText();
-    });
+    verifySubscriptionText();
   }
 
   static verifyEmailForSubscription() {
-    it("Enter email address in input and click arrow button'", () => {
-      enterEmailForSubscription();
-    });
-
-    it("Verify success message 'You have been successfully subscribed!' is visible", () => {
-      verifySuccessNotification();
-    });
+    enterEmailForSubscription();
+    verifySuccessNotification();
   }
 
   static clickScrollUpIcon() {

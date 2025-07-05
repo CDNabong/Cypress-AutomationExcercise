@@ -54,13 +54,7 @@ class NavigationBar {
   }
   
   static clickProducts() {
-    it("Click on 'Products' button", () => {
-      verifyProducts();
-    });
-    
-    it("Verify user is landed to all products page successfully", () => {
-      cy.verifyPageTitle('Automation Exercise - All Products');
-    });
+    verifyProducts();
   }
 
   static testNewUserSignup() {
@@ -74,19 +68,11 @@ class NavigationBar {
   }
 
   static verifyContactUs() {
-    it("Click on 'Contact us' button", () => {
-      clickContactUs();
-    });
+    clickContactUs();
   }
 
   static verifyTestCases() {
-    it("Click on 'Test Cases' button", () => {
-      clickTestCases();
-    });
-    
-    it("Verify page title test cases", () => {
-      cy.verifyPageTitle('Automation Practice Website for UI Testing - Test Cases');
-    });
+    clickTestCases();
   }
 
 }

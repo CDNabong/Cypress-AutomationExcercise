@@ -13,7 +13,14 @@ describe('Test Case 12: Add Products in Cart', () => {
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-  NavigationBar.clickProducts();
+  
+  it("Click on 'Products' button", () => {
+      NavigationBar.clickProducts();
+  });
+    
+  it("Verify user is landed to all products page successfully", () => {
+    cy.verifyPageTitle('Automation Exercise - All Products');
+  });
   Products.verifyAddToCart(1);
   Products.verifyAddToCart(2, 3);
   NavigationBar.verifyCart();

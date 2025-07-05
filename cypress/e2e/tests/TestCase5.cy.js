@@ -6,7 +6,6 @@ import CommonHooks from '../../support/pageObjects/commonHooks';
 describe('Test Case 5: Register User with existing email', () => {
   before(() => {
     // runs once before all tests in the block
-    
     //clears the cookies
     cy.clearCookies()
 

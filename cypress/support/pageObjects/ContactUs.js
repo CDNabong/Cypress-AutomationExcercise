@@ -33,8 +33,8 @@ const enterSubject = () => {
 }
 
 const enterBody = () => {
-  cy.generateRandomParagraph().then((text) => {
-    cy.typeElemAndCheckValue(selectors.contactUsBody, text.randomParagraph, text.randomParagraph);
+  cy.generateRandomText().then((text) => {
+    cy.typeElemAndCheckValue(selectors.contactUsBody, text.randomText, text.randomText);
   });
 }
 
@@ -52,33 +52,24 @@ const uploadFile = () => {
 class ContactUs {
 
   static verifyGetInTouch() {
-    it("Verify 'GET IN TOUCH' is visible", () => {
-      getInTouch();
-    });
+    getInTouch();
   }
 
   static verifyUserDetails() {
-    it("Enter name and email", () => {
-      enterName();
-      enterEmail();
-    });
+    enterName();
+    enterEmail();
   }
 
-  static verifyMessageDetails() {
-    it("Enter subject and body", () => {
-      enterSubject();
-      enterBody();
-    });
+  static verifySubjectText() {
+    return enterSubject();
+  }
+
+  static verifyBodyText() {
+    return enterBody();
   }
 
   static testUploadFile() {
-    it("Verify upload file and success notification", () => {
-      uploadFile();
-    });
-
-    it("Verify homepage", () => {
-      cy.verifyPageTitle('Automation Exercise');
-    });
+    uploadFile();
   }
 
 }

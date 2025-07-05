@@ -13,8 +13,21 @@ describe('Test Case 21: Add review on product', () => {
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-  NavigationBar.clickProducts();
-  Products.productNumber(5);
+  
+  it("Click on 'Products' button", () => {
+      NavigationBar.clickProducts();
+  });
+    
+  it("Verify user is landed to all products page successfully", () => {
+    cy.verifyPageTitle('Automation Exercise - All Products');
+  });
+  it("Click on 'View Product'", () => {
+    Products.productNumber(5);
+  });
+
+  it("Verify user is landed to product detail page successfully", () => {
+    cy.verifyPageTitle('Automation Exercise - Product Details');
+  });
   Products.verifyWriteReviewIndicator();
   Products.verifyProductReview();
   Products.verifyReviewSuccessNotification();
