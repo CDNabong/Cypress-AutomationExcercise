@@ -22,12 +22,23 @@ describe('Test Case 20: Search Products and Verify Cart After Login', () => {
   it("Verify user is landed to all products page successfully", () => {
     cy.verifyPageTitle('Automation Exercise - All Products');
   });
-  Products.searchProduct('Jeans');
-  Products.searchedProductResult(33, 35, 37);
-  Products.verifyAddToCart(33, 35, 37);
+
+  it("Enter product name in search input and click search button", () => {
+    Products.searchProduct('Jeans');
+  });
+
+  it("Verify all the products related to search are visible", () => {
+    Products.searchedProductResult(33, 35, 37);
+  });
+
+  it("Add product and click 'Add to cart'", () => {
+    Products.verifyAddToCart(33, 35, 37);
+  });
+
   it("Click on 'Signup / Login' button", () => {
     NavigationBar.clickSignUpLogin();
   });
+
   it('Enter login credentials', () => {
     Login.validateUserLogin('client2');
   });
@@ -35,12 +46,17 @@ describe('Test Case 20: Search Products and Verify Cart After Login', () => {
   it('Verify user is logged in', () => {
     Login.validateUserLoggedIn('client2');
   });
+
   it("Click on 'Cart' button", () => {
     NavigationBar.verifyCart();
   });
+
   it("Verify their prices, quantity and total price", () => {
     Products.verifyCartProductsDetails(33, 35, 37);
   });
-  Products.verifyProductRemoval(33, 35, 37);
-  Products.verifyProductRemoved(33, 35, 37);
+
+  it("Click 'X' button corresponding to particular product", () => {
+    Products.verifyProductRemoval(33, 35, 37);
+  });
+  
 });

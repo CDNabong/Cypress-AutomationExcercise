@@ -5,7 +5,6 @@ describe("Test Case 25: Verify Scroll Up using 'Arrow' button and Scroll Down fu
 
   before(() => {
     // runs once before all tests in the block
-    
     //clears the cookies
     cy.clearCookies();
     cy.visit('/');
@@ -20,9 +19,11 @@ describe("Test Case 25: Verify Scroll Up using 'Arrow' button and Scroll Down fu
   it("Verify text 'SUBSCRIPTION'", () => {
     Footer.subscriptionText();
   });
-  
-  Footer.clickScrollUpIcon();
 
+  it("Click on arrow at bottom right side to move upward", () => {
+    Footer.clickScrollUpIcon();
+  });
+  
   it("Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen", () => {
     cy.window().its('scrollY').should('eq', 0);
   });

@@ -6,7 +6,6 @@ describe('Test Case 22: Add to cart from Recommended items', () => {
 
   before(() => {
     // runs once before all tests in the block
-    
     //clears the cookies
     cy.clearCookies();
     cy.visit('/');
@@ -17,11 +16,19 @@ describe('Test Case 22: Add to cart from Recommended items', () => {
   it("Scroll down to recommended items", () => {
     cy.get('.recommended_items').scrollIntoView();
   });
-  Products.verifyRecommendedItemsHeader();
-  Products.verifyAddToCartRecommendedItems();
+
+  it("Verify 'RECOMMENDED ITEMS' are visible", () => {
+    Products.verifyRecommendedItemsHeader();
+  });
+
+  it("Click on 'Add To Cart' on Recommended product", () => {
+    Products.verifyAddToCartRecommendedItems();
+  });
+
   it("Click on 'Cart' button", () => {
     NavigationBar.verifyCart();
   });
+
   it("Verify both products are added to Cart", () => {
     Products.verifyCartProducts(4, 5);
   });

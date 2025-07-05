@@ -37,9 +37,7 @@ class Footer {
   }
 
   static clickScrollUpIcon() {
-    it("Click on arrow at bottom right side to move upward", () => {
-      scrollUpIcon();
-    });
+    scrollUpIcon();
   }
 
 }

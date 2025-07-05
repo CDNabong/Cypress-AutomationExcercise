@@ -84,15 +84,11 @@ class Payments {
   }
 
   static verifyBillingAddress() {
-    it("Verify that the billing address is same address filled at the time registration of account", () => {
-      billingAddress();
-    });
+    billingAddress();
   }
 
   static clickDownloadInvoice() {
-    it("Click 'Download Invoice' button and verify invoice is downloaded successfully.", () => {
-      downloadInvoice();
-    });
+    downloadInvoice();
   }
 
 }

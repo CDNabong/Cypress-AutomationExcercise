@@ -21,10 +21,10 @@ const selectors = {
   headerSubcategory: 'body > section > div > div.row > div.col-sm-9.padding-right > div > h2',
   brandCategories: 'body > section:nth-child(4) > div > div > div.col-sm-3 > div.left-sidebar > div.brands_products > h2',
   writeReview: 'body > section > div > div > div.col-sm-9.padding-right > div.category-tab.shop-details-tab > div.col-sm-12 > ul > li > a',
-  reviewName: '#name',
-  reviewEmail: '#email',
-  reviewMessage: '#review',
-  reviewSubmitBtn: '#button-review',
+  reviewName: 'input#name',
+  reviewEmail: 'input#email',
+  reviewMessage: 'textarea#review',
+  reviewSubmitBtn: 'button#button-review',
   reviewSuccessNotif: '#review-section',
   recommendedItems: 'body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div.recommended_items > h2',
   recommendedItem1: '#recommended-item-carousel > div > div.item.active > div:nth-child(1) > div > div > div > a',
@@ -70,6 +70,10 @@ const verifyProductDetails = (itemNumber) => {
   cy.checkElemContainsText(selectors.productCondition, productLists.products[`item${itemNumber}`].condition);
   cy.checkElemContainsText(selectors.productBrand, productLists.products[`item${itemNumber}`].brand);
   cy.checkElemContainsText(selectors.productPrice, productLists.products[`item${itemNumber}`].price);
+}
+
+const clickContinueShopping = () => {
+  cy.clickElemContainsText(selectors.continueShopping, 'Continue Shopping');
 }
 
 const clickSearchProduct = (productName) => {
@@ -304,7 +308,7 @@ class Products {
   }
 
   static clickContinueShopping() {
-    cy.clickElemContainsText(selectors.continueShopping, 'Continue Shopping');
+    clickContinueShopping();  
   }
 
   static searchProduct(productName) {
@@ -372,63 +376,43 @@ class Products {
   }
 
   static verifyCategories() {
-    it('Verify that categories are visible on left side bar', () => {
-      genderCategories();
-    });
+    genderCategories();
   }
 
   static verifyClickedCategory(gender) {
-    it(`Click on ${gender} category`, () => {
-      clickCategory(gender);
-    });
+    clickCategory(gender);
   }
 
   static verifySubCategory(subCategory) {
-    it(`Click ${subCategory}`, () => {
-      clickSubCategory(subCategory);
-  });
+    clickSubCategory(subCategory);
   }
 
   static testBrands() {
-    it("Verify that Brands are visible on left side bar", () => {
-      verifyBrands();
-    });
+    verifyBrands();
   }
 
   static verifyBrands(brand) {
-    it(`Click on ${brand} brand name`, () => {
-      clickBrands(brand);
-    });
+    clickBrands(brand);
   }
 
   static verifyWriteReviewIndicator() {
-    it("Verify 'Write Your Review' is visible", () => {
-      writeReviewIndicator();
-    });
+    writeReviewIndicator();
   }
 
   static verifyProductReview() {
-    it("Enter name, email and review", () => {
-      enterProductReview();
-    });
+    enterProductReview();
   }
 
   static verifyReviewSuccessNotification() {
-    it("Verify success message 'Thank you for your review.'", () => {
-      reviewSuccessNotification();
-    });
+    reviewSuccessNotification();
   }
 
   static verifyRecommendedItemsHeader() {
-    it("Verify 'RECOMMENDED ITEMS' are visible", () => {
-      recommendedItemsHeader();
-    });
+    recommendedItemsHeader();
   }
 
   static verifyAddToCartRecommendedItems() {
-    it("Click on 'Add To Cart' on Recommended product", () => {
-      addToCartRecommendedItems();
-    });
+    addToCartRecommendedItems();
   }
 
 }

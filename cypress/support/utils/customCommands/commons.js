@@ -59,7 +59,7 @@ Cypress.Commands.add('generateRandomUser', () => {
 
 Cypress.Commands.add('generateRandomText', () => {
 
-  const randomText = faker.lorem.words({ min: 1, max: 5 })  // Generate 1-5 random words
+  const randomText = faker.lorem.words({ min: 1, max: 5 });  // Generate 1-5 random words
 
   // Return the object with the randomText
   return randomText;

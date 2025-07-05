@@ -59,9 +59,7 @@ class Login {
   }
 
   static validateUserLoggedIn(clientAccount) {
-    it('Verify user is logged in', () => {
-      testUserLoggedIn(clientAccount);
-    });
+    testUserLoggedIn(clientAccount);
   }
 
   static verifyErrorNotification() {
