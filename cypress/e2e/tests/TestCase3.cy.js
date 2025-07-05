@@ -12,10 +12,19 @@ describe('Test Case 3: Login User with incorrect email and password', () => {
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })
-
   CommonHooks.CommonBeforeEachAfterEachHooks
-  NavigationBar.clickSignUpLogin();
-  Login.validateUserLogin('invalidClient');
-  Login.verifyErrorNotification();
+
+  it("Click on 'Signup / Login' button", () => {
+    NavigationBar.clickSignUpLogin();
+  });
+
+  it('Enter login credentials', () => {
+    Login.validateUserLogin('invalidClient');  
+  });
+
+  it('Verify error notification', () => {
+    Login.verifyErrorNotification();
+  });
+
 
 });

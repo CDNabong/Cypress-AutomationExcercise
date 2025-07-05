@@ -8,17 +8,23 @@ describe('Test Case 2: Login User with correct email and password', () => {
     // runs once before all tests in the block
     //clears the cookies
     cy.clearCookies();
-
-    // set client account information
-    cy.clientAccountInfo();
     
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
 
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-  NavigationBar.clickSignUpLogin();
-  Login.validateUserLogin('client2');
-  Login.validateUserLoggedIn('client2');
+
+  it("Click on 'Signup / Login' button", () => {
+    NavigationBar.clickSignUpLogin();
+  });
+
+  it('Enter login credentials', () => {
+    Login.validateUserLogin('client2');
+  });
+
+  it('Verify user is logged in', () => {
+    Login.validateUserLoggedIn('client2');
+  });
 
 });

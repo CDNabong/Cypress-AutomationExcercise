@@ -141,10 +141,3 @@ Cypress.Commands.add('completePayment', () => {
   return { cardName, cardNumber, cvc, expiryMonth, expiryYear };
 
 });
-
-
-Cypress.Commands.add('clientAccountInfo', () => {
-  cy.fixture('fixtures/inputs/clients/clientAccounts').then((clientAccounts) => {
-    return Cypress.env('datasets', clientAccounts);
-  });
-});

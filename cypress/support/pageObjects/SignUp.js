@@ -92,46 +92,32 @@ class SignUp {
   static userData = null;
 
   static testRegisterUser() {
-    it('Should register a new user', () => {
-      verifySignUp();
-    });
+    return verifySignUp();
   }
 
   static verifyAccountCreated() {
-    it('Should verify the user is created', () => {
-      testAccountCreated();
-    });
+    return testAccountCreated();
   }
 
   static verifyAccountLoggedIn() {
-    it('Should verify the user is logged in', () => {
-      accountLoggedIn();
-    });    
+    return accountLoggedIn();
   }
 
   static verifyAccountDeletion() {
-    it("Click 'Delete Account' button", () => {
-      accountDeletion();
-    });
+    return accountDeletion();
   }
 
   static verifyAccountDeleted() {
-    it("Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button", () => {
-      accountDeleted();
-    });
+    return accountDeleted();
   }
 
   static verifySignUpInvalidCredentials(name, email) {
-    it('Signup with invalid credentials', () => {
-      testNameField(name);
-      testEmailField(email);
-    });
+    testNameField(name);
+    testEmailField(email);
   }
 
   static verifySignUpErrorNotification() {
-    it('Verify error notification', () => {
-      testErrorNotification();
-    });
+    testErrorNotification();
   }
 
 }

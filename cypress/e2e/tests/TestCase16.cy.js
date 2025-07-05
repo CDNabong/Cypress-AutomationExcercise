@@ -15,9 +15,16 @@ describe('Test Case 16: Place Order: Login before Checkout', () => {
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-  NavigationBar.clickSignUpLogin();
-  Login.validateUserLogin('client2');
-  Login.validateUserLoggedIn('client2');
+  it("Click on 'Signup / Login' button", () => {
+    NavigationBar.clickSignUpLogin();
+  });
+  it('Enter login credentials', () => {
+    Login.validateUserLogin('client2');
+  });
+
+  it('Verify user is logged in', () => {
+    Login.validateUserLoggedIn('client2');
+  });
   Products.verifyAddToCart(2);
   NavigationBar.verifyCart();
   Products.verifyProductExists(2);
@@ -30,13 +37,5 @@ describe('Test Case 16: Place Order: Login before Checkout', () => {
   Payments.verifyPaymentProcess();
   Payments.verifyPayAndConfirmOrderButton();
   Payments.verifySuccessPaymentNotification();
-
-  // it("Click 'Delete Account' button", () => {
-  //   SignUp.verifyAccountDeletion();
-  // });
-
-  // it("Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button", () => {
-  //   SignUp.verifyAccountDeleted();
-  // });
 
 });

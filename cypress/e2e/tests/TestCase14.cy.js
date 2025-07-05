@@ -19,10 +19,18 @@ describe('Test Case 14: Place Order: Register while Checkout', () => {
   NavigationBar.verifyCart();
   Products.verifyCheckoutButton();
   Products.verifyRegisterLoginLink();
-  NavigationBar.testNewUserSignup();
-  SignUp.testRegisterUser();
-  SignUp.verifyAccountCreated();
-  SignUp.verifyAccountLoggedIn();
+  it("Verify 'New User Signup!' is visible", () => {
+    NavigationBar.testNewUserSignup();
+  });
+  it('Should register a new user', () => {
+    SignUp.testRegisterUser();
+  });
+  it('Should verify the user is created', () => {
+    SignUp.verifyAccountCreated();
+  });
+  it('Should verify the user is logged in', () => {
+    SignUp.verifyAccountLoggedIn();
+  });
   NavigationBar.verifyCart();
   Products.verifyCheckoutButton();
   Payments.verifyDeliveryAddress();
@@ -31,7 +39,11 @@ describe('Test Case 14: Place Order: Register while Checkout', () => {
   Payments.verifyPaymentProcess();
   Payments.verifyPayAndConfirmOrderButton();
   Payments.verifySuccessPaymentNotification();
-  SignUp.verifyAccountDeletion();
-  SignUp.verifyAccountDeleted();
+  it("Click 'Delete Account' button", () => {
+    SignUp.verifyAccountDeletion();
+  });
+    it("Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button", () => {
+    SignUp.verifyAccountDeleted();
+  });
 
 });

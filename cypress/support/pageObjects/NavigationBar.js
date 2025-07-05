@@ -49,10 +49,8 @@ const clickCart = () => {
 
 
 class NavigationBar {
-   static clickSignUpLogin() {
-    it("Click on 'Signup / Login' button", () => {
-      verifySignUpLogin();
-    });
+  static clickSignUpLogin() {
+    return verifySignUpLogin();
   }
   
   static clickProducts() {
@@ -66,9 +64,7 @@ class NavigationBar {
   }
 
   static testNewUserSignup() {
-    it("Verify 'New User Signup!' is visible", () => {
-      verifyNewUserSignup();
-    });
+    return verifyNewUserSignup();
   }
 
   static verifyCart() {

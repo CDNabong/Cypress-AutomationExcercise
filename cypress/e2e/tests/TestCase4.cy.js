@@ -13,9 +13,21 @@ describe('Test Case 4: Logout User', () => {
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-  NavigationBar.clickSignUpLogin();
-  Login.validateUserLogin('client4');
-  Login.validateUserLoggedIn('client4');
-  Login.verifyLogout() 
+  
+  it("Click on 'Signup / Login' button", () => {
+    NavigationBar.clickSignUpLogin();
+  });
+
+  it('Enter login credentials', () => {
+    Login.validateUserLogin('client4');
+  });
+
+  it('Verify user is logged in', () => {
+    Login.validateUserLoggedIn('client4');
+  });
+
+  it('Logout user', () => {
+    Login.verifyLogout() 
+  });
 
 });

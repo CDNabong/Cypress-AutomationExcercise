@@ -53,11 +53,9 @@ const enterDeliveryAddress = (clientAccount) => {
 class Login {
 
   static validateUserLogin(clientAccount) {
-    it('Enter login credentials', () => {
-      testUsernameField(clientAccount);
-      testPasswordField(clientAccount);
-      testLoginButton();
-    });
+    testUsernameField(clientAccount);
+    testPasswordField(clientAccount);
+    testLoginButton();
   }
 
   static validateUserLoggedIn(clientAccount) {
@@ -67,15 +65,11 @@ class Login {
   }
 
   static verifyErrorNotification() {
-    it('Verify error notification', () => {
-      testErrorNotification();
-    });
+    testErrorNotification();
   }
 
   static verifyLogout() {
-    it('Logout user', () => {
-      clickLogout();
-    });
+    clickLogout();
   }
 
   static verifyDeliveryAddress(clientAccount) {

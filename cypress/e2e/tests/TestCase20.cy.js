@@ -18,9 +18,16 @@ describe('Test Case 20: Search Products and Verify Cart After Login', () => {
   Products.searchProduct('Jeans');
   Products.searchedProductResult(33, 35, 37);
   Products.verifyAddToCart(33, 35, 37);
-  NavigationBar.clickSignUpLogin();
-  Login.validateUserLogin('client2');
-  Login.validateUserLoggedIn('client2');
+  it("Click on 'Signup / Login' button", () => {
+    NavigationBar.clickSignUpLogin();
+  });
+  it('Enter login credentials', () => {
+    Login.validateUserLogin('client2');
+  });
+
+  it('Verify user is logged in', () => {
+    Login.validateUserLoggedIn('client2');
+  });
   NavigationBar.verifyCart();
   Products.verifyCartProductsDetails(33, 35, 37);
   Products.verifyProductRemoval(33, 35, 37);

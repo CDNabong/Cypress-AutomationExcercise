@@ -44,23 +44,33 @@ describe('Verify customer accounts in XYZ Bank', () => {
 
 
   it('Should register a new user', () => {
+    it('Should register a new user', () => {
     SignUp.testRegisterUser();
+  });
   });
 
   it('Should verify the user is created', () => {
+    it('Should verify the user is created', () => {
     SignUp.verifyAccountCreated();
+  });
   });
 
   it('Should verify the user is logged in', () => {
+    it('Should verify the user is logged in', () => {
     SignUp.verifyAccountLoggedIn();
+  });
   });
 
   it("Click 'Delete Account' button", () => {
+    it("Click 'Delete Account' button", () => {
     SignUp.verifyAccountDeletion();
+  });
   });
 
   it("Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button", () => {
+      it("Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button", () => {
     SignUp.verifyAccountDeleted();
+  });
   });
   
 });
