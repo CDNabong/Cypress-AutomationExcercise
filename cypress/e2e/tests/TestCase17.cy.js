@@ -5,18 +5,27 @@ import CommonHooks from '../../support/pageObjects/commonHooks';
 describe('Test Case 17: Remove Products From Cart', () => {
   before(() => {
     // runs once before all tests in the block
-    
     //clears the cookies
     cy.clearCookies()
-
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-  Products.verifyAddToCart(2);
-  NavigationBar.verifyCart();
-  Products.verifyProductExists(2);
-  Products.verifyProductRemoval(2);
-  Products.verifyProductRemoved(2);
-  
+
+  it("Add product and click 'Add to cart'", () => {
+    Products.verifyAddToCart(2);
+  });
+
+  it("Click on 'Cart' button", () => {
+    NavigationBar.verifyCart();
+  });
+
+  it("Verify product is in cart", () => {
+    Products.verifyProductExists(2);
+  });  
+
+  it("Click 'X' button corresponding to particular product", () => {
+    Products.verifyProductRemoval(2);
+  });
+    
 });

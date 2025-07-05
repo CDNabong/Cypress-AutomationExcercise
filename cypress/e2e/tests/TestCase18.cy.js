@@ -4,14 +4,15 @@ import Products from '../../support/pageObjects/Products';
 describe('Test Case 18: View Category Products', () => {
   before(() => {
     // runs once before all tests in the block
-    
     //clears the cookies
     cy.clearCookies()
-
     cy.visit('/');
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
+
+  // TODO: test case 18-26
+
   Products.verifyCategories();
   Products.verifyClickedCategory('Women');
   Products.verifySubCategory('Dress');

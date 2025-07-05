@@ -68,27 +68,19 @@ const downloadInvoice = () => {
 class Payments {
 
   static verifyPaymentProcess() {
-    it("Enter payment details: Name on Card, Card Number, CVC, Expiration date", () => {
-      paymentProcess();
-    });
+    paymentProcess();
   }
 
   static verifyPayAndConfirmOrderButton() {
-    it("Click 'Pay and Confirm Order' button", () => {
-      clickPayAndConfirmOrderButton();
-    });
+    clickPayAndConfirmOrderButton();
   }
 
   static verifySuccessPaymentNotification() {
-    it("Verify success message 'Your order has been placed successfully!'", () => {
-      successulPaymentNotification();
-    });
+    successulPaymentNotification();
   }
 
   static verifyDeliveryAddress() {
-    it("Verify Address Details and Review Your Order", () => {
-      deliveryAddress();
-    });
+    deliveryAddress();
   }
 
   static verifyBillingAddress() {

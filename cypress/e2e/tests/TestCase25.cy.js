@@ -17,7 +17,10 @@ describe("Test Case 25: Verify Scroll Up using 'Arrow' button and Scroll Down fu
     cy.scrollTo('bottom');
   });
 
-  Footer.subscriptionText();
+  it("Verify text 'SUBSCRIPTION'", () => {
+    Footer.subscriptionText();
+  });
+  
   Footer.clickScrollUpIcon();
 
   it("Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen", () => {

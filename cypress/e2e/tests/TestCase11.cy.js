@@ -13,8 +13,17 @@ describe('Test Case 11: Verify Subscription in Cart page', () => {
     cy.verifyPageTitle('Automation Exercise');
   })
   CommonHooks.CommonBeforeEachAfterEachHooks
-  NavigationBar.verifyCart();
-  Footer.subscriptionText();
-  Footer.verifyEmailForSubscription();
+
+  it("Click on 'Cart' button", () => {
+    NavigationBar.verifyCart();
+  });
+
+  it("Verify text 'SUBSCRIPTION'", () => {
+    Footer.subscriptionText();
+  });
+
+  it("Enter email address and click arrow button to Verify success message'", () => {
+    Footer.verifyEmailForSubscription();
+  });
 
 });

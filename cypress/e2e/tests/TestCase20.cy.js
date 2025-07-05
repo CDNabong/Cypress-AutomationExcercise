@@ -35,8 +35,12 @@ describe('Test Case 20: Search Products and Verify Cart After Login', () => {
   it('Verify user is logged in', () => {
     Login.validateUserLoggedIn('client2');
   });
-  NavigationBar.verifyCart();
-  Products.verifyCartProductsDetails(33, 35, 37);
+  it("Click on 'Cart' button", () => {
+    NavigationBar.verifyCart();
+  });
+  it("Verify their prices, quantity and total price", () => {
+    Products.verifyCartProductsDetails(33, 35, 37);
+  });
   Products.verifyProductRemoval(33, 35, 37);
   Products.verifyProductRemoved(33, 35, 37);
 });

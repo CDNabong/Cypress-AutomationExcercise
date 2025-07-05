@@ -130,7 +130,7 @@ const clickCheckoutButton = () => {
 
   const enterDescription = () => {
     cy.generateRandomText().then((text) => {
-      cy.typeElemAndCheckValue(selectors.description, text.randomText, text.randomText);
+      cy.typeElemAndCheckValue(selectors.description, text.randomText, text.randomText); // still not working
     });
   }
 
@@ -316,87 +316,59 @@ class Products {
   }
 
   static verifyAddToCart(...productNumbers) {
-    it("Add product and click 'Add to cart'", () => {
-      addToCart(...productNumbers);
-    });
+    addToCart(...productNumbers);
   }
 
   static viewCart() {
-    it("Click 'View Cart' button", () => {
-      clickViewCart();
-    });
+    clickViewCart();
   }
 
   static verifyCartProducts(...productNumbers) {
-    it("Verify both products are added to Cart", () => {
-      cartProducts(...productNumbers);
-    });
+    cartProducts(...productNumbers);
   }
 
   static verifyCartProductsDetails(...productNumbers) {
-    it("Verify their prices, quantity and total price", () => {
-      cartProductsDetails(...productNumbers);
-    });
+    cartProductsDetails(...productNumbers);
   }
 
   static productQuantity(quantity) {
-    it("Increase quantity to 4", () => {
-      increaseQuantity(quantity);
-    });
+    increaseQuantity(quantity);
   }
 
   static verifyClickAddToCart() {
-    it("Click 'Add to cart' button", () => {
-      clickAddToCart();
-    });  
+    clickAddToCart();
   }
 
   static verifyProductQuantity(productNumber, quantity) {
-    it("Verify that product is displayed in cart page with exact quantity", () => {
-      productQuantity(productNumber, quantity);
-    });
+    productQuantity(productNumber, quantity);
   }
 
   static verifyCheckoutButton() {
-    it("Click Proceed To Checkout", () => {
-      clickCheckoutButton();
-    });
+    clickCheckoutButton();
   }
 
   static verifyRegisterLoginLink() {
-     it("Click 'Register / Login' button", () => {
-      clickRegisterLoginLink();
-    });
+    clickRegisterLoginLink();
   }
 
   static verifyDescription(){
-    it("Enter description in comment text area", () => {
-      enterDescription();
-    });
+    enterDescription();
   }
 
   static verifyOrderAdded() {
-    it("Click 'Place Order'", () => {
-      clickPlaceOrder();
-    });
+    clickPlaceOrder();
   }
 
   static verifyProductExists(productNumber) {
-    it("Verify product is in cart", () => {
-      productExists(productNumber);
-    });
+    productExists(productNumber);
   }
 
   static verifyProductRemoval(...productNumber) {
-    it("Click 'X' button corresponding to particular product", () => {
-      removeProduct(...productNumber);
-    });
+    removeProduct(...productNumber);
   }
 
   static verifyProductRemoved(...productNumber) {
-    it("Verify that product is removed from the cart", () => {
-      productRemoved(...productNumber);
-    });
+    productRemoved(...productNumber);
   }
 
   static verifyCategories() {

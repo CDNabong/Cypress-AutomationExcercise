@@ -17,7 +17,9 @@ describe("Test Case 26: Verify Scroll Up without 'Arrow' button and Scroll Down 
     cy.scrollTo('bottom');
   });
 
-  Footer.subscriptionText();
+  it("Verify text 'SUBSCRIPTION'", () => {
+    Footer.subscriptionText();
+  });
 
 
   it("Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen", () => {

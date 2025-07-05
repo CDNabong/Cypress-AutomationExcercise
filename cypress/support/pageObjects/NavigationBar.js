@@ -62,9 +62,7 @@ class NavigationBar {
   }
 
   static verifyCart() {
-    it("Click on 'Cart' button", () => {
-      clickCart();
-    });
+    clickCart();
   }
 
   static verifyContactUs() {

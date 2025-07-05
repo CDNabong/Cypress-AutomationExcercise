@@ -31,12 +31,23 @@ describe('Test Case 23: Verify address details in checkout page', () => {
     SignUp.verifyAccountLoggedIn();
   });
   Products.verifyAddToCart(1, 2, 3);
-  NavigationBar.verifyCart();
-  Products.verifyCartProducts(1, 2, 3);
-  Products.verifyCartProductsDetails(1, 2, 3);
-  Products.verifyCheckoutButton();
-  Payments.verifyDeliveryAddress();
-  Payments.verifyBillingAddress();
+  it("Click on 'Cart' button", () => {
+    NavigationBar.verifyCart();
+  });
+  it("Verify both products are added to Cart", () => {
+    Products.verifyCartProducts(1, 2, 3);
+  });
+
+  it("Verify their prices, quantity and total price", () => {
+    Products.verifyCartProductsDetails(1, 2, 3);
+  });
+
+  it("Click Proceed To Checkout", () => {
+    Products.verifyCheckoutButton();
+  });
+  it("Verify Address Details and Review Your Order", () => {
+    Payments.verifyDeliveryAddress();
+  });  Payments.verifyBillingAddress();
   it("Click 'Delete Account' button", () => {
     SignUp.verifyAccountDeletion();
   });

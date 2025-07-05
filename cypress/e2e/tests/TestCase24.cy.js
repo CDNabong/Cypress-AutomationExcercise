@@ -31,17 +31,41 @@ describe('Test Case 24: Download Invoice after purchase order', () => {
     SignUp.verifyAccountLoggedIn();
   });
   Products.verifyAddToCart(1, 2, 3);
-  NavigationBar.verifyCart();
-  Products.verifyCartProducts(1, 2, 3);
-  Products.verifyCartProductsDetails(1, 2, 3);
-  Products.verifyCheckoutButton();
-  Payments.verifyDeliveryAddress();
-  Payments.verifyBillingAddress();
-  Products.verifyDescription();
-  Products.verifyOrderAdded();
-  Payments.verifyPaymentProcess();
-  Payments.verifyPayAndConfirmOrderButton();
-  Payments.verifySuccessPaymentNotification();
+  it("Click on 'Cart' button", () => {
+    NavigationBar.verifyCart();
+  });
+  it("Verify both products are added to Cart", () => {
+    Products.verifyCartProducts(1, 2, 3);
+  });
+
+  it("Verify their prices, quantity and total price", () => {
+    Products.verifyCartProductsDetails(1, 2, 3);
+  });
+
+  it("Click Proceed To Checkout", () => {
+    Products.verifyCheckoutButton();
+  });
+  it("Verify Address Details and Review Your Order", () => {
+    Payments.verifyDeliveryAddress();
+  });  Payments.verifyBillingAddress();
+  it("Enter description in comment text area", () => {
+    Products.verifyDescription();
+  });
+  it("Click 'Place Order'", () => {
+    Products.verifyOrderAdded();
+  });
+
+  it("Enter payment details: Name on Card, Card Number, CVC, Expiration date", () => {
+    Payments.verifyPaymentProcess();
+  });
+
+  it("Click 'Pay and Confirm Order' button", () => {
+    Payments.verifyPayAndConfirmOrderButton();
+  });
+
+  it("Verify success message 'Your order has been placed successfully!'", () => {
+    Payments.verifySuccessPaymentNotification();
+  });
   Payments.clickDownloadInvoice();
   it("Click 'Delete Account' button", () => {
     SignUp.verifyAccountDeletion();

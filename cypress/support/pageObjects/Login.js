@@ -73,9 +73,7 @@ class Login {
   }
 
   static verifyDeliveryAddress(clientAccount) {
-    it("Verify Address Details and Review Your Order", () => {
-      enterDeliveryAddress(clientAccount);
-    });
+    enterDeliveryAddress(clientAccount);
   }
 
   

@@ -19,7 +19,12 @@ describe('Test Case 22: Add to cart from Recommended items', () => {
   });
   Products.verifyRecommendedItemsHeader();
   Products.verifyAddToCartRecommendedItems();
-  NavigationBar.verifyCart();
-  Products.verifyCartProducts(4, 5);
+  it("Click on 'Cart' button", () => {
+    NavigationBar.verifyCart();
+  });
+  it("Verify both products are added to Cart", () => {
+    Products.verifyCartProducts(4, 5);
+  });
+
 
 });
