@@ -1,0 +1,4 @@
+# ignore the following files and directories
+cypress/downloads/invoice.txt
+cypress/videos
+cypress/screenshots
